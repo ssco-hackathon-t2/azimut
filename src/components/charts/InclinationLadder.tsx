@@ -1,26 +1,19 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { fmtNum, fmtPct } from "@/lib/format";
-import { unionCount, type SitesCompare } from "@/lib/story-core";
+// Startseite ist Englisch: englisches Zahlformat aus story-core, Beschriftungen aus dem Baukasten.
+import { fmtNumEn as fmtNum, fmtPctEn as fmtPct, unionCount, type SitesCompare } from "@/lib/story-core";
 import { CHART, EChart, alpha } from "./EChart";
 import { ChartFrame } from "./ChartFrame";
+import { DATA_STATUS, en, statusLabel } from "./panels/registry";
 
 const X_MAX = 112;
 const CATS = [
-  ["offen", "offen adressierbar"],
-  ["captive", "captive (z. B. Starlink)"],
-  ["gesperrt", "gesperrt (CN/RU, US-Sicherheit)"],
-  ["nicht_tauglich", "nicht Spectrum-tauglich"],
+  ["offen", "openly addressable"],
+  ["captive", "captive (e.g. Starlink)"],
+  ["gesperrt", "restricted (CN/RU, US national security)"],
+  ["nicht_tauglich", "not Spectrum-capable"],
 ] as const;
-
-const STATUS: Record<string, string> = {
-  operativ: "aktiv",
-  vertrag: "Vertrag",
-  term_sheet: "Term Sheet",
-  option: "Option",
-  kein_bezug: "kein Bezug",
-};
 
 type Api = { value: (i: number) => number; coord: (v: number[]) => number[]; size: (v: number[]) => number[] };
 
@@ -80,20 +73,20 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
           gridIndex: 0,
           type: "category",
           inverse: true,
-          data: data.sites.map((s) => s.label),
+          data: data.sites.map((s) => en(s.label)),
           axisTick: { show: false },
           axisLine: { show: false },
           axisLabel: { color: CHART.ink, fontSize: 12 },
         },
-        { gridIndex: 1, type: "value", name: "Nutzlasten 2025", nameTextStyle: { align: "left" }, axisLabel: { formatter: (v: number) => fmtNum(v, 0) } },
+        { gridIndex: 1, type: "value", name: "Payloads 2025", nameTextStyle: { align: "left" }, axisLabel: { formatter: (v: number) => fmtNum(v, 0) } },
       ],
       series: [
         {
           type: "custom",
-          name: "Fenster",
+          name: "Window",
           xAxisIndex: 0,
           yAxisIndex: 0,
-          data: data.sites.map((s, i) => ({ value: [s.inc_min, s.inc_max, i], name: s.label })),
+          data: data.sites.map((s, i) => ({ value: [s.inc_min, s.inc_max, i], name: en(s.label) })),
           renderItem: (_: unknown, api: Api) => {
             const i = api.value(2);
             const s = data.sites[i];
@@ -110,7 +103,7 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
           tooltip: {
             formatter: (p: { dataIndex: number }) => {
               const s = data.sites[p.dataIndex];
-              return `${s.label}<br/>Fenster ${fmtNum(s.inc_min, s.inc_min % 1 ? 1 : 0)}–${s.inc_max}°<br/>offen adressierbar <b>${fmtNum(s.e2_count, 0)}</b> (+${fmtNum(s.e2_extra_vs_andoya, 0)} ggü. Andøya)`;
+              return `${en(s.label)}<br/>Window ${fmtNum(s.inc_min, s.inc_min % 1 ? 1 : 0)} to ${s.inc_max}°<br/>openly addressable <b>${fmtNum(s.e2_count, 0)}</b> (+${fmtNum(s.e2_extra_vs_andoya, 0)} vs. Andøya)`;
             },
           },
         },
@@ -122,7 +115,7 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
           data: stacks[k],
           renderItem: rect(color[k]),
           encode: { x: [0, 1], y: [2, 3] },
-          tooltip: { formatter: (p: { value: number[] }) => `${p.value[0]}–${p.value[1]}°: ${fmtNum(p.value[4], 0)} ${label}` },
+          tooltip: { formatter: (p: { value: number[] }) => `${p.value[0]} to ${p.value[1]}°: ${fmtNum(p.value[4], 0)} ${label}` },
           ...(k === "offen" ? { markArea: { silent: true, itemStyle: { color: alpha(CHART.ice, 0.06) }, data: bands } } : {}),
         })),
         {
@@ -133,8 +126,8 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
           silent: true,
           tooltip: { show: false },
           data: [
-            { value: [peakOpen.inc_from + 1, top(peakOpen)], label: { formatter: `${fmtNum(peakOpen.offen, 0)} offen bei ${peakOpen.inc_from}–${peakOpen.inc_from + 2}°`, color: CHART.ice } },
-            { value: [peakCaptive.inc_from + 1, top(peakCaptive)], label: { formatter: `${fmtNum(peakCaptive.captive, 0)} captive bei ${peakCaptive.inc_from}–${peakCaptive.inc_from + 2}°`, color: CHART.mist } },
+            { value: [peakOpen.inc_from + 1, top(peakOpen)], label: { formatter: `${fmtNum(peakOpen.offen, 0)} open at ${peakOpen.inc_from} to ${peakOpen.inc_from + 2}°`, color: CHART.ice } },
+            { value: [peakCaptive.inc_from + 1, top(peakCaptive)], label: { formatter: `${fmtNum(peakCaptive.captive, 0)} captive at ${peakCaptive.inc_from} to ${peakCaptive.inc_from + 2}°`, color: CHART.mist } },
           ],
           label: { show: true, position: "top", fontSize: 12, fontWeight: 600 },
         },
@@ -153,7 +146,7 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
   return (
     <ChartFrame
       controls={
-        <div role="group" aria-label="Startplätze an- und abschalten" className="flex flex-wrap gap-2">
+        <div role="group" aria-label="Turn launch sites on and off" className="flex flex-wrap gap-2">
           {data.sites.map((s) => (
             <button
               key={s.id}
@@ -164,23 +157,23 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
                 on.has(s.id) ? "border-ice/70 bg-night-3 text-snow" : "border-rule text-mist-2 line-through decoration-mist-2/60 hover:text-snow"
               }`}
             >
-              {s.label}
+              {en(s.label)}
             </button>
           ))}
         </div>
       }
       note={
         <>
-          Basisjahr {data.provenance.basis_year}, gleiche Rakete und Marktregeln, nur das Fenster wechselt. Rechnung scripts/site_coverage.py, Engine{" "}
-          <span className="metric">{data.provenance.engine_commit}</span> · {data.provenance.data_status}
-          {hidden > 0 && ` · ${fmtNum(hidden, 0)} Nutzlasten über ${X_MAX}° nicht dargestellt`}
+          Base year {data.provenance.basis_year}, same launcher and market rules, only the window changes. Calculation scripts/site_coverage.py, engine{" "}
+          <span className="metric">{data.provenance.engine_commit}</span> · {DATA_STATUS[data.provenance.data_status] ?? data.provenance.data_status}
+          {hidden > 0 && ` · ${fmtNum(hidden, 0)} payloads above ${X_MAX}° not shown`}
         </>
       }
       table={
         <table className="stack-sm num w-full border-collapse text-left text-[0.92rem]">
           <thead className="text-mist">
             <tr className="border-b border-rule">
-              {["Standort", "Fenster", "Status Isar", "Technisch erreichbar", "Offen adressierbar", "Neu ggü. Andøya", "Missionen/Jahr"].map((h, i) => (
+              {["Launch site", "Window", "Isar status", "Technically reachable", "Openly addressable", "New vs. Andøya", "Missions/year"].map((h, i) => (
                 <th key={h} className={`py-2 pr-3 font-normal ${i > 2 ? "md:text-right" : ""}`}>
                   {h}
                 </th>
@@ -190,23 +183,23 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
           <tbody>
             {data.sites.map((s) => (
               <tr key={s.id} className={`border-b border-rule/50 ${on.has(s.id) ? "text-snow" : "text-mist-2"}`}>
-                <td className="py-2 pr-3">{s.label}</td>
-                <td className="py-2 pr-3" data-label="Fenster">
-                  {fmtNum(s.inc_min, s.inc_min % 1 ? 1 : 0)}–{s.inc_max}°
+                <td className="py-2 pr-3">{en(s.label)}</td>
+                <td className="py-2 pr-3" data-label="Window">
+                  {fmtNum(s.inc_min, s.inc_min % 1 ? 1 : 0)} to {s.inc_max}°
                 </td>
-                <td className="py-2 pr-3" data-label="Status Isar">
-                  {STATUS[s.isar_status ?? ""] ?? s.isar_status ?? "–"}
+                <td className="py-2 pr-3" data-label="Isar status">
+                  {statusLabel(s.isar_status)}
                 </td>
-                <td className="py-2 pr-3 md:text-right" data-label="Technisch erreichbar">
+                <td className="py-2 pr-3 md:text-right" data-label="Technically reachable">
                   {fmtPct(s.e1_share_count, 1)}
                 </td>
-                <td className="py-2 pr-3 md:text-right" data-label="Offen adressierbar">
+                <td className="py-2 pr-3 md:text-right" data-label="Openly addressable">
                   {fmtNum(s.e2_count, 0)}
                 </td>
-                <td className="py-2 pr-3 md:text-right" data-label="Neu ggü. Andøya">
+                <td className="py-2 pr-3 md:text-right" data-label="New vs. Andøya">
                   {s.id === "andoya" ? "–" : `+${fmtNum(s.e2_extra_vs_andoya, 0)}`}
                 </td>
-                <td className="py-2 md:text-right" data-label="Missionen/Jahr">
+                <td className="py-2 md:text-right" data-label="Missions/year">
                   {fmtNum(s.missions_per_year, 1)}
                 </td>
               </tr>
@@ -214,26 +207,26 @@ export function InclinationLadder({ data }: { data: SitesCompare }) {
           </tbody>
         </table>
       }
-      tableLabel="Vergleich als Tabelle"
+      tableLabel="Comparison as table"
     >
       <div className="grid gap-8 lg:grid-cols-[1fr_15rem]">
-        <EChart option={option} height={500} label="Neigungsfenster der sechs Startplätze über der Verteilung der Nutzlasten 2025 nach Neigung, getrennt nach offen, captive, gesperrt und nicht tauglich." />
+        <EChart option={option} height={500} label="Inclination windows of the six launch sites above the distribution of 2025 payloads by inclination, split into openly addressable, captive, restricted and not Spectrum-capable." />
         <dl className="grid content-start gap-6 border-t border-rule pt-5 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0" aria-live="polite">
           <div>
-            <dt className="text-[0.82rem] text-mist">Auswahl, offen adressierbar</dt>
+            <dt className="text-[0.82rem] text-mist">Selection, openly addressable</dt>
             <dd className="num mt-1 text-[2.4rem] font-semibold leading-none text-ice">{union == null ? "–" : fmtNum(union, 0)}</dd>
             <dd className="mt-1 text-[0.82rem] text-mist">
               {union == null || !andoya
                 ? on.size
-                  ? "Union für diese Auswahl nicht geliefert"
-                  : "kein Standort gewählt"
-                : `${union - andoya.e2_count >= 0 ? "+" : ""}${fmtNum(union - andoya.e2_count, 0)} ggü. Andøya allein`}
+                  ? "Union not supplied for this selection"
+                  : "no launch site selected"
+                : `${union - andoya.e2_count >= 0 ? "+" : ""}${fmtNum(union - andoya.e2_count, 0)} vs. Andøya alone`}
             </dd>
           </div>
           <div>
-            <dt className="text-[0.82rem] text-mist">Auswahl, technisch erreichbar</dt>
+            <dt className="text-[0.82rem] text-mist">Selection, technically reachable</dt>
             <dd className="num mt-1 text-[1.6rem] font-semibold leading-none text-snow">{unionE1 == null ? "–" : fmtPct(unionE1 / data.e0_count, 1)}</dd>
-            <dd className="mt-1 text-[0.82rem] text-mist">von {fmtNum(data.e0_count, 0)} Nutzlasten 2025</dd>
+            <dd className="mt-1 text-[0.82rem] text-mist">of {fmtNum(data.e0_count, 0)} payloads 2025</dd>
           </div>
           <ul className="grid gap-1.5 text-[0.8rem] text-mist">
             {CATS.map(([k, label]) => (

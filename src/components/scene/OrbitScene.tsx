@@ -47,7 +47,7 @@ const FOV = 32;
 /** Licht und Sternhimmel zum ersten Spectrum-Start: 30.03.2025, 12:30 MESZ (Andøya Space, Euronews). */
 export const LIGHT_MOMENT = new Date("2025-03-30T10:30:00Z");
 
-const STAR_VS = /* glsl */ `
+export const STAR_VS = /* glsl */ `
   attribute float size; attribute float bright; attribute vec3 tint;
   uniform float dpr; varying vec3 vTint; varying float vA;
   void main(){
@@ -56,7 +56,7 @@ const STAR_VS = /* glsl */ `
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }`;
 
-const STAR_FS = /* glsl */ `
+export const STAR_FS = /* glsl */ `
   uniform float fade; varying vec3 vTint; varying float vA;
   void main(){
     vec2 d = gl_PointCoord - 0.5; float r = dot(d, d);
@@ -66,7 +66,7 @@ const STAR_FS = /* glsl */ `
   }`;
 
 /** Sternfarbe aus dem B-V-Farbindex (grobe Näherung blau → weiß → orange). */
-function bvTint(bv: number | null): [number, number, number] {
+export function bvTint(bv: number | null): [number, number, number] {
   const t = Math.min(1, Math.max(0, ((bv ?? 0.6) + 0.3) / 1.9));
   const lerp = (a: number, b: number, k: number) => a + (b - a) * k;
   return t < 0.45
@@ -74,7 +74,7 @@ function bvTint(bv: number | null): [number, number, number] {
     : [1, lerp(0.98, 0.78, (t - 0.45) / 0.55), lerp(1, 0.58, (t - 0.45) / 0.55)];
 }
 
-const GLOBE_VS = /* glsl */ `
+export const GLOBE_VS = /* glsl */ `
   #include <common>
   #include <logdepthbuf_pars_vertex>
   varying vec2 vUv; varying vec3 vN; varying vec3 vW;
@@ -85,7 +85,7 @@ const GLOBE_VS = /* glsl */ `
     #include <logdepthbuf_vertex>
   }`;
 
-const GLOBE_FS = /* glsl */ `
+export const GLOBE_FS = /* glsl */ `
   #include <common>
   #include <logdepthbuf_pars_fragment>
   uniform sampler2D dayMap; uniform sampler2D nightMap; uniform vec3 sunDir;
@@ -109,7 +109,7 @@ const GLOBE_FS = /* glsl */ `
     #include <colorspace_fragment>
   }`;
 
-const ATMO_FS = /* glsl */ `
+export const ATMO_FS = /* glsl */ `
   #include <common>
   #include <logdepthbuf_pars_fragment>
   uniform vec3 sunDir; uniform float strength;

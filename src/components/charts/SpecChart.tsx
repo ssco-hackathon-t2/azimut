@@ -4,15 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { loadAsset, useAssetJSON } from "@/lib/data";
 import { CHART, alpha } from "./theme";
 import { EChart } from "./EChart";
-import { KINDS, viewOptions, type ChartsFile, type Palette, type PanelSpec, type Table } from "./panels/registry";
-
-const STATUS_TEXT: Record<string, string> = {
-  belegt: "belegt",
-  abgeleitet: "abgeleitet",
-  annahme: "Annahme",
-  team_annahme: "Team-Annahme",
-  unbestaetigt: "unbestätigt",
-};
+import { DATA_STATUS, KINDS, viewOptions, type ChartsFile, type Palette, type PanelSpec, type Table } from "./panels/registry";
 
 /**
  * Ein Diagramm aus dem Baukasten (public/data/charts.json). Hauptansichten oben rechts als Umschalter,
@@ -20,10 +12,10 @@ const STATUS_TEXT: Record<string, string> = {
  */
 export function SpecChart({ id, initialView }: { id: string; initialView?: string }) {
   const charts = useAssetJSON<ChartsFile>("data/charts.json");
-  if (charts.state === "loading") return <PanelShell title="Diagramm wird geladen …" />;
-  if (charts.state === "error") return <PanelShell title={`Diagramm-Baukasten nicht ladbar: ${charts.error}`} />;
+  if (charts.state === "loading") return <PanelShell title="Loading chart…" />;
+  if (charts.state === "error") return <PanelShell title={`Chart kit could not be loaded: ${charts.error}`} />;
   const spec = charts.data.panels[id];
-  if (!spec) return <PanelShell title={`Panel „${id}“ fehlt in charts.json`} />;
+  if (!spec) return <PanelShell title={`Panel "${id}" is missing from charts.json`} />;
   return <Panel id={id} spec={spec} initialView={initialView} />;
 }
 
@@ -122,7 +114,7 @@ function Panel({ id, spec, initialView }: { id: string; spec: PanelSpec; initial
         </div>
         <div className="flex items-center gap-2">
           {primary.length > 1 && (
-            <div role="group" aria-label="Ansicht" className="flex border border-rule-strong">
+            <div role="group" aria-label="View" className="flex border border-rule-strong">
               {primary.map((v) => (
                 <button
                   key={v.id}
@@ -138,7 +130,7 @@ function Panel({ id, spec, initialView }: { id: string; spec: PanelSpec; initial
           )}
           <button
             type="button"
-            aria-label="Diagramm einstellen"
+            aria-label="Chart settings"
             aria-expanded={menu}
             aria-controls={menuId}
             onClick={() => setMenu((m) => !m)}
@@ -154,10 +146,10 @@ function Panel({ id, spec, initialView }: { id: string; spec: PanelSpec; initial
         <div
           id={menuId}
           role="dialog"
-          aria-label="Diagramm einstellen"
+          aria-label="Chart settings"
           className="absolute top-14 right-3 z-20 w-[min(20rem,calc(100%-1.5rem))] border border-rule-strong bg-night-2 p-4 text-[0.86rem] shadow-[0_12px_40px_rgba(0,0,0,0.45)]"
         >
-          <MenuSection title="Ansicht">
+          <MenuSection title="View">
             {spec.views.map((v) => (
               <label key={v.id} className="flex cursor-pointer items-center gap-2 py-1 text-snow">
                 <input type="radio" name={`${menuId}-view`} checked={v.id === view.id} onChange={() => setViewId(v.id)} className="accent-[var(--color-ice)]" />
@@ -186,30 +178,30 @@ function Panel({ id, spec, initialView }: { id: string; spec: PanelSpec; initial
           <div className="mt-3 flex flex-wrap gap-2 border-t border-rule pt-3">
             {builtOk?.option && builtOk.table && (
               <button type="button" onClick={() => setShowTable((t) => !t)} className="border border-rule-strong px-2.5 py-1 text-snow hover:border-ice">
-                {showTable ? "Tabelle ausblenden" : "Werte als Tabelle"}
+                {showTable ? "Hide table" : "Values as table"}
               </button>
             )}
             <button type="button" onClick={reset} disabled={!modified} className="border border-rule-strong px-2.5 py-1 text-snow hover:border-ice disabled:opacity-40">
-              Zurücksetzen
+              Reset
             </button>
           </div>
         </div>
       )}
 
       <div className="px-3 pt-4 pb-2 sm:px-5">
-        {src.error && <p className="p-4 text-alert">Daten nicht ladbar: {src.error}</p>}
-        {!src.error && !built && <div className="animate-pulse bg-night-3/40" style={{ height: 260 }} aria-label="Daten werden geladen" />}
-        {built && "error" in built && <p className="p-4 text-alert">Baustein {view.kind}: {built.error}</p>}
+        {src.error && <p className="p-4 text-alert">Data could not be loaded: {src.error}</p>}
+        {!src.error && !built && <div className="animate-pulse bg-night-3/40" style={{ height: 260 }} aria-label="Loading data" />}
+        {built && "error" in built && <p className="p-4 text-alert">Chart kind {view.kind}: {built.error}</p>}
         {builtOk?.option && <EChart option={builtOk.option} height={builtOk.height ?? 300} label={`${spec.title} (${view.label})`} />}
         {builtOk?.table && (!builtOk.option || showTable) && <DataTable table={builtOk.table} />}
       </div>
 
       <figcaption className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-5 pb-4 text-[0.8rem] text-mist sm:px-6">
         {spec.status && (
-          <span className="border border-rule-strong px-1.5 py-px font-mono text-[0.66rem] uppercase tracking-[0.12em] text-snow">{STATUS_TEXT[spec.status] ?? spec.status}</span>
+          <span className="border border-rule-strong px-1.5 py-px font-mono text-[0.66rem] uppercase tracking-[0.12em] text-snow">{DATA_STATUS[spec.status] ?? spec.status}</span>
         )}
         {view.note && <span>{view.note}</span>}
-        {spec.source_note && <span>Quelle: {spec.source_note}</span>}
+        {spec.source_note && <span>Source: {spec.source_note}</span>}
       </figcaption>
     </figure>
   );

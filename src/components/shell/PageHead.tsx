@@ -1,8 +1,8 @@
-export function PageHead({ title, children }: { title: string; children?: React.ReactNode }) {
+/** Seitentitel ohne Unterzeile (Entscheidung 22.10.2026: keine Sub-Überschriften). */
+export function PageHead({ title }: { title: string }) {
   return (
     <div className="mx-auto max-w-[88rem] px-4 pb-6 pt-12 sm:px-8 sm:pt-16">
       <h1 className="text-[clamp(2rem,4vw,3.1rem)] font-semibold leading-[1.08]">{title}</h1>
-      {children && <div className="mt-4 max-w-[64ch] text-[1.05rem] text-mist">{children}</div>}
     </div>
   );
 }

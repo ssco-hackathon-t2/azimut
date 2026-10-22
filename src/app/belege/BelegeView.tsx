@@ -67,7 +67,7 @@ function Belege({
 
   return (
     <>
-      <PageHead title="Belege">Woher jede Zahl kommt: Formel, Eingangszahlen, Annahmen mit Quelle, Vergleichswerte und Datenstand. Wörtlich aus dem Rechenkern.</PageHead>
+      <PageHead title="Belege" />
       <div className="border-y border-rule/70 bg-night/92 lg:sticky lg:top-[var(--header-h)] lg:z-30 lg:backdrop-blur-md">
         <div className="mx-auto flex max-w-[88rem] flex-wrap items-end gap-x-8 gap-y-3 px-4 py-4 sm:px-8">
           <RunControls manifest={manifest} />

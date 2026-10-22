@@ -1,6 +1,20 @@
 // Reine Story-Logik ohne React (testbar mit node --test). Kapitel und Texte stehen in public/data/story.json,
 // Zahlen nur als Verweis auf die Daten-JSONs (knowledge/05_storyline.md: keine Zahl im Markup).
-import { fmtDate, fmtNum, fmtPct } from "./format.ts";
+// Startseite ist Englisch (22.10.2026): eigenes englisches Zahlenformat; lib/format.ts bleibt deutsch für die übrigen Seiten.
+
+const en = (d: number) => new Intl.NumberFormat("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+const ok = (x: number | null | undefined): x is number => typeof x === "number" && Number.isFinite(x);
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+export const fmtNumEn = (x: number | null | undefined, d = 0) => (ok(x) ? en(d).format(x) : "–");
+/** Anteil (0..1) als Prozent, englisch ohne Leerzeichen: 8.9%. */
+export const fmtPctEn = (x: number | null | undefined, d = 1) => (ok(x) ? `${en(d).format(x * 100)}%` : "–");
+/** ISO-Datum als 30 Mar 2025; anderes bleibt unverändert. */
+export function fmtDateEn(iso: string | null | undefined): string {
+  if (!iso) return "–";
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+  return m ? `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}` : iso;
+}
 
 export type Row = Record<string, unknown>;
 /** Alle Tabellen nach Namen: isar_data.json plus `sites` aus sites_compare.json. */
@@ -21,12 +35,16 @@ export interface Kpi {
   tone?: "win" | "accent";
 }
 
-export type Block =
+/** title: Überschrift der aufklappbaren Zeile im Kapitel (Grafiken und Texte starten zugeklappt). */
+export type Block = { title?: string } & (
   | { kind: "text"; text: string }
   | { kind: "quote"; text: string }
   | { kind: "placeholder"; text: string }
   | { kind: "panel"; id: string; initialView?: string }
-  | { kind: "funnel" | "keystatement" | "scenarios" | "inclination" | "q1" | "links" };
+  /** Interaktiver Block aus dem Design-Canvas Skizze Flow (components/flow). */
+  | { kind: "flow"; id: "orbits" | "startplaetze" | "fabrik" | "empfehlung" }
+  | { kind: "funnel" | "keystatement" | "scenarios" | "inclination" | "q1" | "links" }
+);
 
 export interface Chapter {
   id: string;
@@ -36,6 +54,8 @@ export interface Chapter {
   lead?: string;
   kpis?: Kpi[];
   blocks?: Block[];
+  /** Kapitel startet zugeklappt (nur Kicker mit „+“); öffnet per Klick oder Link auf #id. */
+  collapsed?: boolean;
 }
 
 export interface Story {
@@ -97,21 +117,22 @@ function autoDigits(fmt: Fmt, target: number): number {
 
 export function fmtValue(v: number | string | null, fmt: Fmt, digits?: number, target?: number): string {
   if (v == null) return "–";
-  if (typeof v === "string") return fmt === "date" ? fmtDate(v) : v;
+  if (typeof v === "string") return fmt === "date" ? fmtDateEn(v) : v;
   const d = digits ?? autoDigits(fmt, target ?? v);
-  return fmt === "pct" ? fmtPct(v, d) : fmtNum(v, d);
+  return fmt === "pct" ? fmtPctEn(v, d) : fmtNumEn(v, d);
 }
 
+/** Datenstatus (Schlüssel bleiben deutsch wie in den Daten-JSONs), Anzeige englisch. */
 export const STATUS_LABELS: Record<string, string> = {
-  belegt: "belegt",
-  abgeleitet: "abgeleitet",
-  annahme: "Annahme",
-  team_annahme: "Team-Annahme",
-  unbestaetigt: "unbestätigt",
-  widerspruechlich: "widersprüchlich",
+  belegt: "verified",
+  abgeleitet: "derived",
+  annahme: "assumption",
+  team_annahme: "team assumption",
+  unbestaetigt: "unconfirmed",
+  widerspruechlich: "contradictory",
 };
 
-export const statusLabel = (s: string) => STATUS_LABELS[s] ?? (s || "ohne Status");
+export const statusLabel = (s: string) => STATUS_LABELS[s] ?? (s || "no status");
 
 export type Piece = string | { text: string; title: string; missing: boolean };
 
@@ -124,7 +145,7 @@ export function splitTokens(text: string, t: Tables): Piece[] {
       const m = /^\{\{\s*([^}|]+?)\s*(?:\|\s*(pct|num|int|date|text)\s*)?(?:\|\s*(\d)\s*)?\}\}$/.exec(p);
       if (!m) return p;
       const v = lookup(t, m[1]);
-      if (!v) return { text: `[${m[1]} fehlt]`, title: `Verweis ${m[1]} nicht in den Daten`, missing: true };
+      if (!v) return { text: `[${m[1]} missing]`, title: `Reference ${m[1]} not found in the data`, missing: true };
       return { text: fmtValue(v.value, (m[2] as Fmt) ?? defaultFmt(v), m[3] ? Number(m[3]) : undefined), title: `${v.label} · ${statusLabel(v.status)}`, missing: false };
     });
 }
@@ -147,6 +168,10 @@ export interface Site {
   missions_per_year: number;
   isar_status?: string;
   data_status?: string;
+  /** Stammdaten aus launch_sites (Text in der Case-DB). */
+  lat?: string | number;
+  lon?: string | number;
+  country?: string;
 }
 
 export interface SitesCompare {

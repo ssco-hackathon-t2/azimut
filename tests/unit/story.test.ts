@@ -12,21 +12,21 @@ const t: Tables = {
 
 test("Story: Verweise auf Kennzahl, Tabellenzelle und Datum", () => {
   const p = splitTokens("A {{share}} B {{launch_vehicles:spectrum:payload_leo_kg}} C {{launch_vehicles:spectrum:first_flight}}", t);
-  assert.deepEqual(p.map((x) => (typeof x === "string" ? x : x.text)), ["A ", "8,9 %", " B ", "1.000", " C ", "30.03.2025"]);
+  assert.deepEqual(p.map((x) => (typeof x === "string" ? x : x.text)), ["A ", "8.9%", " B ", "1,000", " C ", "30 Mar 2025"]);
 });
 
 test("Story: fehlender Verweis bleibt sichtbar statt 0", () => {
   const [x] = splitTokens("{{gibt_es_nicht}}", t);
-  assert.ok(typeof x !== "string" && x.missing && x.text.includes("fehlt"));
+  assert.ok(typeof x !== "string" && x.missing && x.text.includes("missing"));
   assert.equal(resolve(t, "sites:andoya:e3", "market_metrics:mm_999:value"), null);
 });
 
 test("Story: Verhältnis aus zwei Verweisen ist abgeleitet, Stellen fest aus dem Zielwert", () => {
   const r = resolve(t, "sites:andoya:e3", "market_metrics:mm_012:value")!;
   assert.equal(r.status, "abgeleitet");
-  assert.equal(fmtValue(r.value, "pct", 0), "3 %");
-  // Hochzählen: Zwischenwerte nutzen die Stellen des Zielwerts (9,6 → eine Stelle).
-  assert.equal(fmtValue(4, "num", undefined, 9.6), "4,0");
+  assert.equal(fmtValue(r.value, "pct", 0), "3%");
+  // Hochzählen: Zwischenwerte nutzen die Stellen des Zielwerts (9.6 → eine Stelle).
+  assert.equal(fmtValue(4, "num", undefined, 9.6), "4.0");
 });
 
 test("Standorte: Union nur aus gelieferten Daten", () => {

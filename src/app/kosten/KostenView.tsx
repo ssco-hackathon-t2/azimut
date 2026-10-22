@@ -113,10 +113,7 @@ function Kosten({ db }: { db: IsarDb }) {
 
   return (
     <>
-      <PageHead title="Kosten pro Start">
-        Was ein Start bei wachsender Kadenz kostet, verglichen mit dem angenommenen Preis. Die Seite rechnet nicht: Sie wählt unter den Stützstellen der Kostenkurve aus der Isar
-        Case DB.
-      </PageHead>
+      <PageHead title="Kosten pro Start" />
       <div className="mx-auto max-w-[88rem] px-4 sm:px-8">
         <p className="flex items-baseline gap-2 text-[0.86rem] text-amber">
           <span aria-hidden="true" className="inline-block size-1.5 shrink-0 translate-y-[-0.1em] rounded-full bg-amber" />

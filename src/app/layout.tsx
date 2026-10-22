@@ -8,9 +8,9 @@ import { SiteHeader, SiteHeaderStatic } from "@/components/shell/SiteHeader";
 import { SiteFooter } from "@/components/shell/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Andøya Addressability Tool",
+  title: "Azimut",
   description:
-    "Welchen Anteil der global gestarteten Nutzlasten kann Isar Aerospace mit Spectrum von Andøya bedienen? Analyse E0 bis E3 mit Quellen.",
+    "What share of payloads launched worldwide can Isar Aerospace serve with Spectrum from Andøya? Analysis E0 to E3 with sources.",
 };
 
 export const viewport: Viewport = {
@@ -21,13 +21,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de">
+    <html lang="en">
       <body>
         <a
           href="#inhalt"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-night-3 focus:px-4 focus:py-2"
         >
-          Zum Inhalt springen
+          Skip to content
         </a>
         {/* useSearchParams braucht im statischen Export eine Suspense-Grenze. */}
         <Suspense fallback={<SiteHeaderStatic />}>

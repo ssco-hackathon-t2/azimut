@@ -129,7 +129,7 @@ async function main() {
     await page.goto(url("/"));
     await page.keyboard.press("Tab");
     const focused = await page.evaluate(() => document.activeElement?.textContent ?? "");
-    record("Tastatur: Sprunglink zuerst fokussierbar", focused.includes("Zum Inhalt springen"), focused);
+    record("Tastatur: Sprunglink zuerst fokussierbar", focused.includes("Skip to content"), focused);
     await ctx.close();
   }
 

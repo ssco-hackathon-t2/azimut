@@ -11,10 +11,7 @@ export function BaukastenView() {
   const errors = charts.state === "ready" ? validateCharts(charts.data) : [];
   return (
     <>
-      <PageHead title="Diagramm-Baukasten">
-        Jedes Diagramm hat oben rechts seine Ansichten und ein Eckmenü mit Backup-Ansichten, Optionen und Tabelle. Neue Ansichten
-        entstehen in <span className="metric text-snow">public/data/charts.json</span>, ohne Rebuild.
-      </PageHead>
+      <PageHead title="Chart kit" />
       <div className="mx-auto grid max-w-[88rem] gap-8 px-4 pb-20 sm:px-8">
         {errors.length > 0 && (
           <ul className="border border-alert p-4 text-[0.9rem] text-alert">

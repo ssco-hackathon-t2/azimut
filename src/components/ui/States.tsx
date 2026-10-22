@@ -46,10 +46,11 @@ export function Ready<T extends unknown[]>({
 }
 
 /** Sichtbar offene Funktion: nicht geliefert, nicht durch eigene Daten ersetzt. */
-export function OpenItem({ title, children }: { title: string; children: React.ReactNode }) {
+/** prefix: Sprache der Seite (Startseite Englisch „Open“, übrige Seiten „Offen“). */
+export function OpenItem({ title, children, prefix = "Offen" }: { title: string; children: React.ReactNode; prefix?: string }) {
   return (
     <div className="border border-dashed border-amber/60 px-5 py-4">
-      <p className="text-[0.95rem] font-medium text-amber">Offen: {title}</p>
+      <p className="text-[0.95rem] font-medium text-amber">{prefix}: {title}</p>
       <div className="mt-1 text-[0.92rem] text-mist">{children}</div>
     </div>
   );

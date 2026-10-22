@@ -70,10 +70,7 @@ function Standort({ config, dist, runs, geo, osm }: { manifest: Manifest; config
 
   return (
     <>
-      <PageHead title="Standort">
-        Andøya Spaceport, Pad A, an der Nordwestküste bei Nordmela (Børvågen). Lageplan aus echten Daten, darunter das technische Fenster
-        und die Verteilungen, die den Schritt E0 → E1 bestimmen.
-      </PageHead>
+      <PageHead title="Standort" />
       <div className="mx-auto max-w-[88rem] px-4 sm:px-8">
         <ProvenanceNote p={runs.provenance} />
       </div>

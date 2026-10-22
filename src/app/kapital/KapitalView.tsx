@@ -42,10 +42,7 @@ function Kapital({ config }: { config: ConfigFile }) {
   const refs = Object.entries((config.references ?? {}) as Record<string, RefEntry>).filter(([k]) => /capital|valuation|funding|invest/i.test(k));
   return (
     <>
-      <PageHead title="Kapital">
-        Kapitalreihen mit Zählweisen und deskriptiven Verzögerungen sind eine erwartete Lieferung des Fachlaufs. Bis dahin stehen hier nur die
-        Referenzwerte, die bereits im Projekt belegt sind.
-      </PageHead>
+      <PageHead title="Kapital" />
       <Section id="referenzen" title="Belegte Referenzwerte">
         {refs.length === 0 ? (
           <p className="text-mist">Keine Kapital-Referenzen in config/references.yaml.</p>

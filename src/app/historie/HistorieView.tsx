@@ -177,9 +177,7 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
 
   return (
     <>
-      <PageHead title="Historie">
-        Gestartete Nutzlasten seit {years[0]} aus dem GCAT-Katalog, gruppiert vom Rechenkern. {partial} läuft noch und ist unvollständig.
-      </PageHead>
+      <PageHead title="Historie" />
       <div className="mx-auto max-w-[88rem] px-4 sm:px-8">
         <ProvenanceNote p={hist.provenance} />
       </div>

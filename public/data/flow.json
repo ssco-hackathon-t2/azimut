@@ -1,0 +1,1759 @@
+{
+ "_hinweis": "Einstieg „Weltmarkt“ aus dem Design-Canvas Skizze Flow (claude.ai/artifact/CWEj1nv2FaX9oKdCoN3Eg8). Jahre mit ref lesen Wert und Status aus isar_data.json; Jahre ohne ref sind Jahresbilanzen bzw. LL2-Historie (Status unbestaetigt, gegenprüfen). Startorte und Startzahlen je Ort: Launch Library 2, Snapshot 22.10.2026 (hackaton-t2-ll2/data/ll2/pads.json). Kandidaten-Koordinaten aus launch_sites. Kapitel 2 bis 5: Texte und Kartenangaben aus dem Canvas (Case-DB, faktoren_standorte_01, Engine-Trichter); Kernzahlen (406, 9,6, 30, 7,3, 10,8, 11,6, 13, 40, Explorer-Punkte) lesen die Blöcke aus isar_data.json und sites_compare.json.",
+ "weltmarkt": {
+  "home": {
+   "lat": 52,
+   "lon": 14,
+   "dist": 4
+  },
+  "jahr": 2025,
+  "bis": 2049,
+  "raketen_max": 48,
+  "texte": {
+   "titel": "Global Orbit",
+   "kicker": "Isar · demand versus supply",
+   "lead": "Many more launches could be won than Isar can fly. That gap drives the demand for Isar.",
+   "potential": "Potential launches",
+   "actual": "Isar actual",
+   "vor_start": "no Isar launch yet",
+   "vor_start_info": "Founded {gruendung}, first flight {ab}",
+   "luecke": "launches gap",
+   "luecke_info": "Isar cannot fly this many winnable missions.",
+   "luecke_voll": "Factory 1 is full ({grenze} per year). From here on, factory 2 is needed.",
+   "reicht": "launches excess supply",
+   "reicht_info": "Supply is sufficient, now demand is the constraint.",
+   "annahme": " (assumption)",
+   "rk_vor_start": "No Isar launch yet",
+   "rk_potential": "Winnable: {n} launches per year",
+   "rk_actual": "Isar flies: {n} launches per year",
+   "rk_einheit": " · 1 rocket = {unit} launches",
+   "zeitleiste": "Timeline since the founding of Isar, to {bis}",
+   "zeitleiste_info": "Red = gap, green = supply is sufficient. From {annahme_ab} assumption: demand +{wachstum} % per year, supply grows to the factory limit of {grenze} by {grenze_jahr}.",
+   "panel": "How much of this does Europe launch itself, and from where?",
+   "filter": "Isar-relevant only",
+   "filter_info": "excluding US, China, Russia, Kazakhstan",
+   "orte_quelle": "Total orbital launches per site, Launch Library 2",
+   "fussnote": "Launches 2018–2023: annual tallies (to be cross-checked), 2024–2025: case DB, 2026: GCAT through July, 2027–2029: trend 2021–2025 (+22.5 % per year, assumption). Mass and orbits: LL2 history."
+  },
+  "jahre": [
+   {
+    "jahr": 2018,
+    "starts": 114,
+    "tonnen": 329,
+    "label": "2018",
+    "monate": null,
+    "bahnen": [
+     33.6,
+     44.3,
+     9.2,
+     13
+    ],
+    "isar": "Founded in Munich"
+   },
+   {
+    "jahr": 2019,
+    "starts": 102,
+    "tonnen": 337,
+    "label": "2019",
+    "monate": null,
+    "bahnen": [
+     57.2,
+     28.7,
+     3.5,
+     10.6
+    ],
+    "isar": "Spectrum development, no milestone in the case DB"
+   },
+   {
+    "jahr": 2020,
+    "starts": 114,
+    "tonnen": 516,
+    "label": "2020",
+    "monate": null,
+    "bahnen": [
+     72,
+     15.7,
+     8.1,
+     4.1
+    ],
+    "isar": "Series A USD 17M (April), Series B EUR 75M (December)"
+   },
+   {
+    "jahr": 2021,
+    "starts": 146,
+    "tonnen": 709,
+    "label": "2021",
+    "monate": null,
+    "bahnen": [
+     60.7,
+     20.2,
+     15.8,
+     3.3
+    ],
+    "isar": "Exclusive pad at Andøya for 20 years, Series B extended by USD 75M"
+   },
+   {
+    "jahr": 2022,
+    "starts": 186,
+    "tonnen": 971,
+    "label": "2022",
+    "monate": null,
+    "bahnen": [
+     66.8,
+     24,
+     4.4,
+     4.8
+    ],
+    "isar": "Term sheet for Kourou"
+   },
+   {
+    "jahr": 2023,
+    "starts": 223,
+    "tonnen": 1523,
+    "label": "2023",
+    "monate": [
+     16,
+     13,
+     26,
+     12,
+     20,
+     13,
+     19,
+     22,
+     23,
+     17,
+     15,
+     30
+    ],
+    "bahnen": [
+     70.6,
+     22,
+     4.9,
+     2.5
+    ],
+    "isar": "Series C USD 165M (March)"
+   },
+   {
+    "jahr": 2024,
+    "ref": "market_metrics:mm_013:value",
+    "tonnen": 2050,
+    "label": "2024",
+    "monate": [
+     22,
+     19,
+     21,
+     19,
+     26,
+     17,
+     13,
+     21,
+     23,
+     20,
+     29,
+     30
+    ],
+    "bahnen": [
+     79.8,
+     14.1,
+     2.9,
+     3.2
+    ],
+    "isar": "Series C extended by USD 70M"
+   },
+   {
+    "jahr": 2025,
+    "ref": "market_metrics:mm_012:value",
+    "tonnen": 2706,
+    "label": "2025",
+    "monate": [
+     21,
+     20,
+     26,
+     26,
+     28,
+     25,
+     24,
+     28,
+     31,
+     25,
+     31,
+     40
+    ],
+    "bahnen": [
+     75.3,
+     20.5,
+     2.3,
+     1.9
+    ],
+    "isar": "Flight 1 on 30 March terminated after about 30 s"
+   },
+   {
+    "jahr": 2026,
+    "starts": 172,
+    "tonnen": 1468,
+    "label": "2026 through July",
+    "monate": [
+     24,
+     18,
+     30,
+     32,
+     23,
+     29,
+     12,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "bahnen": [
+     46.7,
+     45.3,
+     5.3,
+     2.7
+    ],
+    "isar": "Series D EUR 270M (June), Nova Scotia contract (July), flight 2 reached orbit (5 Sept)"
+   }
+  ],
+  "zukunft": [
+   {
+    "jahr": 2027,
+    "starts": 490,
+    "label": "2027 (trend)",
+    "isar": "Plan: 4 flights, Andøya remains the only launch site until the end of 2027"
+   },
+   {
+    "jahr": 2028,
+    "starts": 610,
+    "label": "2028 (trend)",
+    "isar": "Plan: double the cadence, first launch from Nova Scotia"
+   },
+   {
+    "jahr": 2029,
+    "starts": 740,
+    "label": "2029 (trend)",
+    "isar": "Assumption: Andøya plus Nova Scotia, Kourou possible from 2029"
+   }
+  ],
+  "zukunft_isar": [
+   [
+    2030,
+    "Plan: ramp-up to 18 launches, second pad in operation"
+   ],
+   [
+    2039,
+    "Assumption: supply grows towards the factory limit of {grenze}"
+   ],
+   [
+    2041,
+    "Assumption: factory 1 fully utilised"
+   ],
+   [
+    2049,
+    "Assumption: demand exceeds factory 1, factory 2 needed"
+   ]
+  ],
+  "luecke": {
+   "ab": 2025,
+   "nachfrage": [
+    9.6,
+    9.8,
+    10,
+    10.3,
+    10.5,
+    10.8
+   ],
+   "angebot": [
+    1,
+    1,
+    4,
+    8,
+    12,
+    15.2
+   ],
+   "wachstum_ref": "assumptions:viz02_growth_addressable:value_base",
+   "grenze_jahr": 2040,
+   "status": "2025 to 2029: engine and Isar plan; from 2030 assumption (demand +12 % per year per DB assumption viz02, range 0–30 %)"
+  },
+  "europa": {
+   "ref": "market_metrics:mm_022:value",
+   "isar": 1,
+   "text": "orbital launches from Europe in 2026 through October"
+  },
+  "ohne": [
+   "US",
+   "CN",
+   "RU",
+   "KZ"
+  ],
+  "isar_ab": {
+   "andoya": 2025,
+   "nova_scotia": 2028,
+   "kourou_elm": 2029
+  },
+  "kandidaten": [
+   "andoya",
+   "esrange",
+   "saxavord",
+   "nova_scotia",
+   "kourou_elm",
+   "santa_maria"
+  ],
+  "orte": {
+   "alle": [
+    [
+     "Plesetsk",
+     1688
+    ],
+    [
+     "Baikonur",
+     1561
+    ],
+    [
+     "Cape Canaveral",
+     1105
+    ],
+    [
+     "Kourou (Europe, ESA)",
+     336
+    ],
+    [
+     "Jiuquan",
+     299
+    ],
+    [
+     "Andøya",
+     2
+    ]
+   ],
+   "isar": [
+    [
+     "Kourou (Europe, ESA)",
+     336
+    ],
+    [
+     "Satish Dhawan (India)",
+     103
+    ],
+    [
+     "Tanegashima (Japan)",
+     100
+    ],
+    [
+     "Mahia (New Zealand)",
+     84
+    ],
+    [
+     "Uchinoura (Japan)",
+     43
+    ],
+    [
+     "Andøya",
+     2
+    ]
+   ]
+  },
+  "pads": [
+   [
+    62.93,
+    40.58,
+    1688,
+    "RU",
+    "Plesetsk"
+   ],
+   [
+    45.97,
+    63.3,
+    1561,
+    "KZ",
+    "Baikonur"
+   ],
+   [
+    28.49,
+    -80.58,
+    1105,
+    "US",
+    "Cape Canaveral"
+   ],
+   [
+    34.75,
+    -120.52,
+    915,
+    "US",
+    "Vandenberg"
+   ],
+   [
+    5.17,
+    -52.69,
+    336,
+    "GF",
+    "Kourou"
+   ],
+   [
+    40.96,
+    100.29,
+    299,
+    "CN",
+    "Jiuquan"
+   ],
+   [
+    28.52,
+    -80.65,
+    281,
+    "US",
+    ""
+   ],
+   [
+    28.25,
+    102.03,
+    242,
+    "CN",
+    "Xichang"
+   ],
+   [
+    38.85,
+    111.61,
+    162,
+    "CN",
+    "Taiyuan"
+   ],
+   [
+    13.72,
+    80.23,
+    103,
+    "IN",
+    "Satish Dhawan"
+   ],
+   [
+    48.59,
+    45.72,
+    101,
+    "RU",
+    "Kapustin Yar"
+   ],
+   [
+    30.4,
+    130.97,
+    100,
+    "JP",
+    "Tanegashima"
+   ],
+   [
+    -39.26,
+    177.87,
+    84,
+    "NZ",
+    "Mahia"
+   ],
+   [
+    19.61,
+    110.95,
+    75,
+    "CN",
+    ""
+   ],
+   [
+    37.93,
+    -75.47,
+    55,
+    "US",
+    "Wallops"
+   ],
+   [
+    31.25,
+    131.08,
+    43,
+    "JP",
+    ""
+   ],
+   [
+    36.68,
+    121.24,
+    29,
+    "CN",
+    ""
+   ],
+   [
+    51.88,
+    128.33,
+    21,
+    "RU",
+    ""
+   ],
+   [
+    35.23,
+    53.92,
+    15,
+    "IR",
+    ""
+   ],
+   [
+    31.9,
+    34.69,
+    13,
+    "IL",
+    ""
+   ],
+   [
+    51.05,
+    59.85,
+    10,
+    "RU",
+    ""
+   ],
+   [
+    57.44,
+    -152.34,
+    9,
+    "US",
+    ""
+   ],
+   [
+    -2.94,
+    40.21,
+    9,
+    "IT",
+    ""
+   ],
+   [
+    34.43,
+    127.53,
+    8,
+    "KR",
+    ""
+   ],
+   [
+    39.66,
+    124.7,
+    7,
+    "KP",
+    ""
+   ],
+   [
+    36.2,
+    55.33,
+    6,
+    "IR",
+    ""
+   ],
+   [
+    -30.96,
+    136.53,
+    6,
+    "AU",
+    ""
+   ],
+   [
+    51.7,
+    128,
+    5,
+    "RU",
+    ""
+   ],
+   [
+    30.78,
+    -3.06,
+    4,
+    "FR",
+    ""
+   ],
+   [
+    -2.34,
+    -44.42,
+    3,
+    "BR",
+    ""
+   ],
+   [
+    33.54,
+    135.89,
+    3,
+    "JP",
+    ""
+   ],
+   [
+    40.86,
+    129.69,
+    2,
+    "KP",
+    ""
+   ],
+   [
+    22.02,
+    -159.78,
+    1,
+    "US",
+    ""
+   ],
+   [
+    26,
+    -97.16,
+    1,
+    "US",
+    ""
+   ],
+   [
+    -19.96,
+    148.11,
+    1,
+    "AU",
+    ""
+   ]
+  ]
+ },
+ "orbits": {
+  "titel": "Five orbits, one core business: Isar’s open market lies almost entirely in sun-synchronous orbit.",
+  "titel_fern": "Key focus: strengthen our core, Launch as a Service.",
+  "titel_aussen": "Key focus stays on our core. Other models are possible on the platform, but we do not pursue them.",
+  "hinweis": "Click an orbit or a satellite",
+  "fuss_fern": "We focus on the nucleus to strengthen our core first. Market size: launch services market 2025.",
+  "fuss_aussen": "Area = market potential in USD B (case DB, business_models; telecom and satellite services from SIA 2025). All possible on top of the launch platform, none of them pursued: focus stays on the nucleus. Models without a market figure in the DB are not shown.",
+  "quelle": "Satellites and mass 2025 by inclination, engine funnel and GCAT. Mass = all satellites in the orbit.",
+  "stufen": [
+   "Core",
+   "Near",
+   "Adjacent",
+   "Option",
+   "Outside"
+  ],
+  "bahnen": [
+   {
+    "id": "aequator",
+    "label": "Equatorial to GEO",
+    "rx": 340,
+    "ry": 62,
+    "rot": -8,
+    "color": "#8794a8",
+    "style": "dashed",
+    "dur": 26,
+    "delays": [
+     -6
+    ],
+    "lx": 0,
+    "ly": 372,
+    "name": "Equatorial to GEO",
+    "band": "0–40°",
+    "strat": "Outside",
+    "step": 4,
+    "alt": "LEO to 35,786 km (GEO)",
+    "n": 65,
+    "mass": "196 t",
+    "open": 1,
+    "cap": 0,
+    "lock": 3,
+    "nt": 61,
+    "use": "Communications, science, rideshare",
+    "cust": "Brazil, Indonesia, research",
+    "isar": "only from Kourou, up to 1,000 kg",
+    "text": "Hardly any market for a 1 t rocket: GEO satellites are too heavy and too high for Spectrum."
+   },
+   {
+    "id": "mittel",
+    "label": "Mid 40–60°",
+    "rx": 228,
+    "ry": 70,
+    "rot": -35,
+    "color": "#a9b4c4",
+    "style": "solid",
+    "dur": 8,
+    "delays": [
+     0,
+     -2.7,
+     -5.4
+    ],
+    "lx": 585,
+    "ly": 160,
+    "name": "Mid inclination",
+    "band": "40–60°",
+    "strat": "Option, far from core",
+    "step": 3,
+    "alt": "400–600 km",
+    "n": 2942,
+    "mass": "1,890 t",
+    "open": 44,
+    "cap": 2499,
+    "lock": 85,
+    "nt": 314,
+    "use": "Constellations, ISS, Starlink 43° and 53°",
+    "cust": "Starlink, ISS resupply",
+    "isar": "from Nova Scotia (850 kg), Kourou or Santa Maria",
+    "text": "The largest orbit, but 85% Starlink. 44 remain open, mostly educational cubesats. Future: IRIS² and the LEO initiative."
+   },
+   {
+    "id": "hoch",
+    "label": "High 60–80°",
+    "rx": 236,
+    "ry": 60,
+    "rot": -60,
+    "color": "#a9b4c4",
+    "style": "solid",
+    "dur": 11,
+    "delays": [
+     -3
+    ],
+    "lx": 516,
+    "ly": 88,
+    "name": "High inclination",
+    "band": "60–80°",
+    "strat": "Adjacent",
+    "step": 2,
+    "alt": "around 570 km",
+    "n": 434,
+    "mass": "277 t",
+    "open": 0,
+    "cap": 338,
+    "lock": 88,
+    "nt": 8,
+    "use": "Constellations, Starlink 70°",
+    "cust": "Starlink",
+    "isar": "only from Nova Scotia, SaxaVord, Kourou or Santa Maria",
+    "text": "Volume yes, open market no: Starlink launches almost all of it itself."
+   },
+   {
+    "id": "polar",
+    "label": "Polar 80–95°",
+    "rx": 244,
+    "ry": 50,
+    "rot": -82,
+    "color": "#8fd3ff",
+    "style": "solid",
+    "dur": 10,
+    "delays": [
+     -7
+    ],
+    "lx": 432,
+    "ly": 48,
+    "name": "Polar",
+    "band": "80–95°",
+    "strat": "Close to core",
+    "step": 1,
+    "alt": "500–1,200 km",
+    "n": 163,
+    "mass": "84 t",
+    "open": 1,
+    "cap": 54,
+    "lock": 54,
+    "nt": 54,
+    "use": "Polar communications",
+    "cust": "Qianfan, Xingwang (China, restricted)",
+    "isar": "reachable from Andøya, 720 kg",
+    "text": "Technically close, but hardly any open market: the rest is Chinese, captive or unsuitable."
+   },
+   {
+    "id": "sso",
+    "label": "SSO 95–100° · Isar core",
+    "rx": 252,
+    "ry": 44,
+    "rot": -100,
+    "color": "#ff5a4f",
+    "style": "solid",
+    "dur": 9,
+    "delays": [
+     -1,
+     -5.5
+    ],
+    "lx": 444,
+    "ly": 548,
+    "name": "Sun-synchronous (SSO)",
+    "band": "95–100°",
+    "strat": "Core business",
+    "step": 0,
+    "alt": "500–800 km",
+    "n": 940,
+    "mass": "260 t",
+    "open": 405,
+    "cap": 307,
+    "lock": 197,
+    "nt": 31,
+    "use": "Earth observation, reconnaissance, weather",
+    "cust": "Planet, ICEYE, Bundeswehr SARah",
+    "isar": "today from Andøya, 700 kg payload",
+    "text": "Almost the entire open market sits here: 405 of the 406 openly addressable satellites from Andøya."
+   }
+  ],
+  "geschaeft": {
+   "kern": "Launch as a Service",
+   "kern_ref": "business_models:laas_commercial:market_size_usd_bn",
+   "urteile": {
+    "verfolgen": "pursue",
+    "spaeter": "later",
+    "nicht": "not pursued"
+   },
+   "ringe": [
+    {
+     "label": "Near",
+     "rx": 175,
+     "ry": 105
+    },
+    {
+     "label": "Mid",
+     "rx": 335,
+     "ry": 185
+    },
+    {
+     "label": "Far",
+     "rx": 500,
+     "ry": 255
+    }
+   ],
+   "modelle": [
+    {
+     "name": "Launch site operations",
+     "ref": "business_models:launch_site_ops:market_size_usd_bn",
+     "ring": 0,
+     "deg": 30,
+     "urteil": "verfolgen"
+    },
+    {
+     "name": "Kick stage",
+     "ref": "business_models:kick_stage_otv:market_size_usd_bn",
+     "ring": 1,
+     "deg": 90,
+     "urteil": "spaeter"
+    },
+    {
+     "name": "Hypersonic tests",
+     "ref": "business_models:hypersonic_tests:market_size_usd_bn",
+     "ring": 1,
+     "deg": 155,
+     "urteil": "nicht"
+    },
+    {
+     "name": "Suborbital",
+     "ref": "business_models:suborbital:market_size_usd_bn",
+     "ring": 1,
+     "deg": 300,
+     "urteil": "nicht"
+    },
+    {
+     "name": "Sell engines",
+     "ref": "business_models:engine_sales:market_size_usd_bn",
+     "ring": 1,
+     "deg": 210,
+     "urteil": "nicht"
+    },
+    {
+     "name": "Telecom and satellite services",
+     "ref": "market_metrics:mm_010:value",
+     "ring": 2,
+     "deg": 0,
+     "urteil": "nicht"
+    },
+    {
+     "name": "Own satellites",
+     "ref": "business_models:own_satellites:market_size_usd_bn",
+     "ring": 2,
+     "deg": 185,
+     "urteil": "nicht"
+    },
+    {
+     "name": "Data, constellation",
+     "ref": "business_models:data_constellation:market_size_usd_bn",
+     "ring": 2,
+     "deg": 60,
+     "urteil": "nicht"
+    },
+    {
+     "name": "Space situational awareness",
+     "ref": "business_models:ssa:market_size_usd_bn",
+     "ring": 2,
+     "deg": 250,
+     "urteil": "nicht"
+    }
+   ]
+  }
+ },
+ "startplaetze": {
+  "hinweis": "Click the map or a launch site: camera flight to the pad",
+  "fuss": "Per pad = 365 × weather-capable days ÷ 30 days turnaround",
+  "offen": "[open]",
+  "links": [
+   "andoya",
+   "saxavord_isar",
+   "esrange_isar"
+  ],
+  "rechts": [
+   "nova_scotia",
+   "kourou_elm",
+   "santa_maria"
+  ],
+  "plaetze": {
+   "andoya": {
+    "name": "Andøya",
+    "tag": "LA · NO · ACTIVE",
+    "karte": [
+     "{permitted} permitted · {pad} per pad",
+     "700 kg SSO · 720 kg polar",
+     "Earth observation, Bundeswehr, ESA/DLR"
+    ],
+    "win": "{inc}",
+    "flights": "{permitted} permitted for all operators, {pad} per pad weather-adjusted. Isar plans 4 flights in 2027.",
+    "orbits": [
+     [
+      "Polar",
+      "720 kg"
+     ],
+     [
+      "SSO",
+      "700 kg"
+     ],
+     [
+      "Retrograde",
+      "620 kg"
+     ]
+    ],
+    "logi": "Road and ferry, 2,700–3,000 km, 5–8 days"
+   },
+   "saxavord_isar": {
+    "name": "SaxaVord",
+    "tag": "LA · UK · OPTION",
+    "karte": [
+     "{permitted} permitted · {pad} per pad",
+     "710 kg SSO · max. 760 kg",
+     "UK MoD, NATO, SSO backup"
+    ],
+    "win": "{inc}",
+    "flights": "{permitted} permitted for the spaceport, {pad} per pad weather-adjusted.",
+    "orbits": [
+     [
+      "High",
+      "760 kg"
+     ],
+     [
+      "Polar",
+      "730 kg"
+     ],
+     [
+      "SSO",
+      "710 kg"
+     ],
+     [
+      "Retrograde",
+      "630 kg"
+     ]
+    ],
+    "logi": "Road and ferry via Aberdeen, about 2,200 km, 5–8 days"
+   },
+   "esrange_isar": {
+    "name": "Esrange",
+    "tag": "LA · SE · OPTION",
+    "karte": [
+     "{permitted} · {pad} per pad",
+     "690 kg SSO · 720 kg polar",
+     "Swedish armed forces, polar/SSO"
+    ],
+    "win": "{inc}",
+    "flights": "Permit {permitted}, {pad} per pad. Orbital launches only with Norwegian overflight permission.",
+    "orbits": [
+     [
+      "Polar",
+      "720 kg"
+     ],
+     [
+      "SSO",
+      "690 kg"
+     ],
+     [
+      "Retrograde",
+      "600 kg"
+     ]
+    ],
+    "logi": "Road about 2,700 km, 4–6 days. Isar already tests engines and stages there."
+   },
+   "nova_scotia": {
+    "name": "Nova Scotia",
+    "tag": "LA · CA · CONTRACT",
+    "karte": [
+     "{permitted} permitted · {pad} per pad",
+     "710 kg SSO · max. 850 kg",
+     "Canada, NATO, constellations"
+    ],
+    "win": "{inc}",
+    "flights": "{permitted} permitted (environmental permit), {pad} per pad. First launch planned for 2028.",
+    "orbits": [
+     [
+      "Mid",
+      "850 kg"
+     ],
+     [
+      "High",
+      "780 kg"
+     ],
+     [
+      "Polar",
+      "740 kg"
+     ],
+     [
+      "SSO",
+      "710 kg"
+     ]
+    ],
+    "logi": "Sea freight Hamburg to Halifax 14 days, then road to Canso"
+   },
+   "kourou_elm": {
+    "name": "Kourou ELM",
+    "tag": "LA · GF · TERM SHEET",
+    "karte": [
+     "shared · {pad} per pad",
+     "700 kg SSO · max. 1,000 kg",
+     "ESA, institutional, equator"
+    ],
+    "win": "{inc}",
+    "flights": "Complex shared with four operators, Ariane 6 and Vega-C take priority. {pad} per pad.",
+    "orbits": [
+     [
+      "Equatorial",
+      "1,000 kg"
+     ],
+     [
+      "Low",
+      "980 kg"
+     ],
+     [
+      "Mid",
+      "900 kg"
+     ],
+     [
+      "High",
+      "800 kg"
+     ],
+     [
+      "Polar",
+      "730 kg"
+     ],
+     [
+      "SSO",
+      "700 kg"
+     ]
+    ],
+    "logi": "Sea route about 10 days (analogue Ariane 6)"
+   },
+   "santa_maria": {
+    "name": "Santa Maria",
+    "tag": "LA · PT · NO LINK",
+    "karte": [
+     "{permitted} · {pad} per pad",
+     "700 kg SSO · max. 950 kg",
+     "Portugal, ESA, mid inclination"
+    ],
+    "win": "{inc} (estimated)",
+    "flights": "Permit {permitted}, {pad} per pad. So far suborbital only.",
+    "orbits": [
+     [
+      "Low",
+      "950 kg"
+     ],
+     [
+      "Mid",
+      "900 kg"
+     ],
+     [
+      "High",
+      "800 kg"
+     ],
+     [
+      "Polar",
+      "730 kg"
+     ],
+     [
+      "SSO",
+      "700 kg"
+     ]
+    ],
+    "logi": "Island location, sea transport [gap]"
+   }
+  },
+  "status": {
+   "operativ": "active",
+   "vertrag": "Contract",
+   "term_sheet": "Term Sheet",
+   "option": "Option",
+   "kein_bezug": "no link"
+  },
+  "explorer": {
+   "titel": "Further viable launch sites by our six criteria",
+   "kriterien": [
+    "Market",
+    "Payload",
+    "Weather",
+    "Geopolitics",
+    "Cost",
+    "Maturity"
+   ],
+   "gewichte": {
+    "gleich": [
+     "Equal",
+     [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    ],
+    "markt": [
+     "Market first",
+     [
+      3,
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    ],
+    "resilienz": [
+     "Resilience first",
+     [
+      1,
+      1,
+      2,
+      3,
+      1,
+      2
+     ]
+    ],
+    "kosten": [
+     "Cost first",
+     [
+      1,
+      1,
+      1,
+      1,
+      3,
+      2
+     ]
+    ]
+   },
+   "offen": [
+    [
+     "Andøya, pad 2",
+     "NO",
+     "Option",
+     "shares the limit of 30 launches with pad 1"
+    ],
+    [
+     "North Sea platform GOSA",
+     "DE",
+     "no link",
+     "no launch yet, 2024 demo cancelled"
+    ],
+    [
+     "Bundeswehr launch site",
+     "DE",
+     "Under review",
+     "so far only a statement by Pistorius (Jul 2026)"
+    ]
+   ],
+   "offen_label": "[not yet assessed]",
+   "welt": [
+    [
+     "Plesetsk Cosmodrome, Russian Federation",
+     "RU",
+     1688
+    ],
+    [
+     "Baikonur Cosmodrome, Republic of Kazakhstan",
+     "KZ",
+     1561
+    ],
+    [
+     "Cape Canaveral SFS, FL, USA",
+     "US",
+     1105
+    ],
+    [
+     "Vandenberg SFB, CA, USA",
+     "US",
+     915
+    ],
+    [
+     "Jiuquan Satellite Launch Center, People's Republic of China",
+     "CN",
+     299
+    ],
+    [
+     "Kennedy Space Center, FL, USA",
+     "US",
+     281
+    ],
+    [
+     "Xichang Satellite Launch Center, People's Republic of China",
+     "CN",
+     242
+    ],
+    [
+     "Taiyuan Satellite Launch Center, People's Republic of China",
+     "CN",
+     162
+    ],
+    [
+     "Satish Dhawan Space Centre, India",
+     "IN",
+     103
+    ],
+    [
+     "Kapustin Yar, Russian Federation",
+     "RU",
+     101
+    ],
+    [
+     "Tanegashima Space Center, Japan",
+     "JP",
+     100
+    ],
+    [
+     "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
+     "NZ",
+     84
+    ],
+    [
+     "Wenchang Space Launch Site, People's Republic of China",
+     "CN",
+     75
+    ],
+    [
+     "Wallops Flight Facility, Virginia, USA",
+     "US",
+     55
+    ],
+    [
+     "Air launch to orbit",
+     "ES",
+     52
+    ],
+    [
+     "Uchinoura Space Center, Japan",
+     "JP",
+     43
+    ],
+    [
+     "Sea Launch",
+     null,
+     40
+    ],
+    [
+     "Haiyang Oriental Spaceport",
+     "CN",
+     29
+    ],
+    [
+     "Vostochny Cosmodrome, Siberia, Russian Federation",
+     "RU",
+     21
+    ],
+    [
+     "Semnan Space Center, Islamic Republic of Iran",
+     "IR",
+     15
+    ],
+    [
+     "Palmachim Airbase, State of Israel",
+     "IL",
+     13
+    ],
+    [
+     "Dombarovskiy, Russian Federation",
+     "RU",
+     10
+    ],
+    [
+     "Broglio Space Center, Kenya",
+     "IT",
+     9
+    ],
+    [
+     "Pacific Spaceport Complex, Alaska, USA",
+     "US",
+     9
+    ],
+    [
+     "Naro Space Center, South Korea",
+     "KR",
+     8
+    ],
+    [
+     "Sohae Satellite Launching Station,  Cholsan County, North Pyongan Province, Democratic People's Republic of Korea",
+     "KP",
+     7
+    ],
+    [
+     "Air launch to Suborbital flight",
+     "US",
+     6
+    ],
+    [
+     "RAAF Woomera Range Complex",
+     "AU",
+     6
+    ],
+    [
+     "Shahrud Missile Test Site, Islamic Republic of Iran",
+     "IR",
+     6
+    ],
+    [
+     "Ronald Reagan Ballistic Missile Defense Test Site, Kwajalein Atoll, Marshall Islands",
+     "MH",
+     5
+    ],
+    [
+     "Svobodny Cosmodrome, Russian Federation",
+     "RU",
+     5
+    ],
+    [
+     "Interarmy Special Vehicles Test Centre, French Algeria",
+     "FR",
+     4
+    ],
+    [
+     "Alcântara Space Center, Federative Republic of Brazil",
+     "BR",
+     3
+    ],
+    [
+     "Spaceport Kii, Japan",
+     "JP",
+     3
+    ],
+    [
+     "Tonghae Satellite Launching Ground",
+     "KP",
+     2
+    ],
+    [
+     "Bowen Orbital Spaceport",
+     "AU",
+     1
+    ],
+    [
+     "Pacific Missile Range Facility, Barking Sands, HI, USA",
+     "US",
+     1
+    ],
+    [
+     "SpaceX Starbase, TX, USA",
+     "US",
+     1
+    ],
+    [
+     "Arnhem Space Centre",
+     "AU",
+     0
+    ],
+    [
+     "Corn Ranch, Van Horn, TX, USA",
+     "US",
+     0
+    ],
+    [
+     "El Arenosillo Test Centre",
+     "ES",
+     0
+    ],
+    [
+     "Etlaq Spaceport",
+     "OM",
+     0
+    ],
+    [
+     "Hokkaido Spaceport, Japan",
+     "JP",
+     0
+    ],
+    [
+     "Koonibba Test Range, South Australia",
+     "AU",
+     0
+    ],
+    [
+     "Kulasekarapattinam Spaceport, India",
+     "IN",
+     0
+    ],
+    [
+     "Spaceport America, NM, USA",
+     "US",
+     0
+    ],
+    [
+     "Sutherland Spaceport",
+     "GB",
+     0
+    ],
+    [
+     "Whalers Way Orbital Launch Complex, South Australia",
+     "AU",
+     0
+    ],
+    [
+     "White Sands Missile Range",
+     "US",
+     0
+    ]
+   ],
+   "welt_zeile": [
+    "{starts} orbital launch (LL2)",
+    "{starts} orbital launches (LL2)"
+   ],
+   "welt_quelle": "Search also covers all launch locations worldwide: Launch Library 2 (The Space Devs), pads snapshot of 22 Oct 2026, orbital launch attempts summed per location; lunar sites and the four locations already listed above (Andøya, Guiana Space Centre, SaxaVord, Esrange) omitted.",
+   "fuss": "Scores 1 to 5. Market (openly addressable payloads), payload (SSO factor) and weather (weather-capable days) normalised against the best site; geopolitics, cost and maturity as team assessment with sources. Total = weighted mean. Click a row to start the deep dive above. Source: sites_compare.json (factors), case DB launch_sites."
+  }
+ },
+ "fabrik": {
+  "fabrik1": {
+   "name": "Vaterstetten",
+   "ort": "near Munich",
+   "lat": 48.11,
+   "lon": 11.77,
+   "flaeche": 40000,
+   "jahr": 2030,
+   "zeilen": [
+    [
+     "Unit cost",
+     "EUR 6M per rocket at 20 per year, learning rate 0.85"
+    ],
+    [
+     "Fixed cost",
+     "EUR 90M per year"
+    ],
+    [
+     "Talent",
+     "TUM ranked 38th worldwide in aerospace engineering (ShanghaiRanking 2026)"
+    ],
+    [
+     "Stability",
+     "Germany 69.3 of 100 (World Bank WGI 2025)"
+    ],
+    [
+     "Routes",
+     "Esrange 4–6 days, Andøya 5–8 days, Nova Scotia 14 days by sea"
+    ]
+   ]
+  },
+  "karte": "Route from factory 1 to the six launch sites. Red = Andøya, the only site today.",
+  "fabrik2": {
+   "schwelle": 0.85,
+   "gebaut_2026": 2,
+   "kandidaten": [
+    [
+     "Canada, near Nova Scotia",
+     "4",
+     "79.8",
+     "[gap]"
+    ],
+    [
+     "UK, near SaxaVord",
+     "9",
+     "70.7",
+     "[gap]"
+    ],
+    [
+     "Spain, low-wage EU",
+     "[open]",
+     "[open]",
+     "EUR 28.7"
+    ],
+    [
+     "Germany (today)",
+     "5",
+     "69.3",
+     "EUR 49.8"
+    ]
+   ],
+   "ausloeser": "local manufacturing as a condition of a partner state (Canada, TKMS offset deal).",
+   "fuss": "Talent = top-100 aerospace universities (GRAS 2026), stability = World Bank WGI 2025 (0–100), wage = industry per hour."
+  },
+  "frage": "With potential new sites → new factory?",
+  "dashboard": {
+   "formel": "Investment = factories × value per factory + X × cost per pad. X = pads needed so that all factories are utilised across the year.",
+   "start": {
+    "F": 3,
+    "U": 85,
+    "T": 30,
+    "W": 60,
+    "FW": 0,
+    "PK": 0
+   },
+   "hebel": [
+    [
+     "F",
+     "Factories",
+     1,
+     3,
+     1,
+     "#",
+     "as many rockets per year each as Vaterstetten"
+    ],
+    [
+     "U",
+     "Target utilisation",
+     10,
+     100,
+     5,
+     "#%",
+     "share of factory capacity that should fly"
+    ],
+    [
+     "T",
+     "Turnaround per pad",
+     7,
+     90,
+     1,
+     "# days",
+     "team assumption 7 to 90 days"
+    ],
+    [
+     "W",
+     "Weather-capable days",
+     30,
+     95,
+     5,
+     "#%",
+     "Andøya 60%, Nova Scotia 65%, Kourou 85%"
+    ],
+    [
+     "FW",
+     "Value per factory",
+     0,
+     500,
+     10,
+     "EUR #M",
+     "not yet in the DB, 0 = open"
+    ],
+    [
+     "PK",
+     "Cost per pad",
+     0,
+     200,
+     5,
+     "EUR #M",
+     "reference Kourou launch complex EUR 35M, 0 = open"
+    ]
+   ],
+   "szenarien": [
+    [
+     "As sketched: 3 factories",
+     {
+      "F": 3,
+      "U": 85,
+      "T": 30,
+      "W": 60
+     }
+    ],
+    [
+     "One factory full",
+     {
+      "F": 1,
+      "U": 85,
+      "T": 30,
+      "W": 60
+     }
+    ],
+    [
+     "Demand 2030 only",
+     {
+      "F": 1,
+      "U": 29,
+      "T": 30,
+      "W": 60
+     }
+    ],
+    [
+     "Fast turnaround",
+     {
+      "F": 1,
+      "U": 85,
+      "T": 7,
+      "W": 60
+     }
+    ]
+   ]
+  }
+ },
+ "empfehlung": {
+  "kicker": "Recommendation to Isar",
+  "urteil_label": "For SSVE",
+  "urteil": "Support",
+  "pruef_titel": "Review criteria by 31 Dec 2027",
+  "pruef": [
+   "Launch rate achieved",
+   "Nova Scotia: licence and pad",
+   "Backup for Andøya secured"
+  ],
+  "plaetze": [
+   [
+    "andoya",
+    "Andøya + Pad 2",
+    "zuerst"
+   ],
+   [
+    "nova_scotia",
+    "Nova Scotia",
+    "versicherung"
+   ],
+   [
+    "saxavord_isar",
+    "SaxaVord",
+    "option"
+   ],
+   [
+    "kourou_elm",
+    "Kourou",
+    "option"
+   ],
+   [
+    "esrange_isar",
+    "Esrange",
+    "nicht"
+   ],
+   [
+    "santa_maria",
+    "Santa Maria",
+    "nicht"
+   ]
+  ],
+  "legende": {
+   "zuerst": "first: second pad",
+   "versicherung": "Insurance",
+   "option": "Option with trigger",
+   "nicht": "not prioritised"
+  },
+  "karten": [
+   {
+    "tag": "01 · Cadence before floor space",
+    "einheit": "launches per year",
+    "satz": "Second pad first.",
+    "ton": "zuerst"
+   },
+   {
+    "tag": "02 · Nova Scotia as insurance",
+    "wert": "2028",
+    "einheit": "first launch planned",
+    "satz": "Money only against milestones.",
+    "ton": "versicherung"
+   },
+   {
+    "tag": "03 · Kourou and SaxaVord as options",
+    "einheit": "open market, at most",
+    "satz": "Only with a trigger.",
+    "ton": "option"
+   }
+  ]
+ },
+ "hero": {
+  "titel": "Production is all it takes",
+  "weiter": "Scroll down",
+  "bild": "hero/isar-launch.jpg",
+  "bild_alt": "Spectrum lifting off from Andøya Spaceport, flame and exhaust plume over the launch pad",
+  "credit": "Image: Spectrum flight 2, 5 Sep 2026 · © Isar Aerospace",
+  "weiter_nach_s": 15
+ },
+ "deepdive": {
+  "zurueck": "‹ Launch sites",
+  "ui": {
+   "score": "Resilience score",
+   "von": "/ 5",
+   "best": "Best of the six sites.",
+   "rang": "Rank {rank} of the six sites.",
+   "stats": [
+    "launches per year permitted",
+    "per pad, weather-adjusted",
+    "payload to SSO"
+   ],
+   "zeilen": [
+    "Orbits",
+    "Market",
+    "Expansion"
+   ],
+   "markt": "{market} launches per year winnable",
+   "wie": "How {name} becomes resilient",
+   "fuss": "Score = overall grade across the six criteria, weighting “resilience first” (geopolitics ×3, weather ×2, maturity ×2). Failed launch: {standdown} months of downtime (median of analogues).",
+   "offen": "[open]",
+   "kacheln": "No Sentinel tiles or OSM data for this site yet [gap] · camera flight on the 3D globe",
+   "uebersicht": "[ back to overview ]"
+  },
+  "plaetze": {
+   "andoya": {
+    "titel": "Andøya Spaceport, Pad A",
+    "sub": "Exclusive to Isar until 2041",
+    "note": "But: one pad, one country. After a failed launch only about {after_failure} launches per year remain.",
+    "orbits": "Polar and SSO, {inc}",
+    "ausbau": "Pad 2 proposed, budget 2027/28",
+    "kern": "One pad handles {pad} launches, {market} would be winnable. Pad 2 closes the gap.",
+    "wie": [
+     "Build Pad 2: second pad, about {pad2} instead of {pad} launches",
+     "Secure SaxaVord by contract as SSO backup without Norway",
+     "Nova Scotia as second jurisdiction, money only against milestones"
+    ]
+   },
+   "nova_scotia": {
+    "titel": "Spaceport Nova Scotia, Canso",
+    "sub": "Contract: 10 years plus 2 × 5, first launch planned for 2028",
+    "note": "Contract and DND/NATO anchor, but no Canadian launch law in force yet (Bill C-28).",
+    "orbits": "Mid, high, polar and SSO, {inc}",
+    "ausbau": "Pad for Isar, handover by 1 Nov 2026; no orbital launch yet, minimal infrastructure",
+    "kern": "{extra} more openly addressable payloads than Andøya, but only {permitted} launches per year permitted.",
+    "wie": [
+     "Canadian launch law (Bill C-28) in force; Royal Assent rather 2027",
+     "US Technology Safeguards Agreement (TSA) confirmed; so far it is not",
+     "Pad handover by 1 Nov 2026 and first launch in 2028 as planned"
+    ]
+   },
+   "kourou_elm": {
+    "titel": "CSG Kourou, ELM launch complex",
+    "sub": "Binding term sheet since 2022, no date",
+    "note": "Best weather and widest inclination window, but Ariane 6 and Vega-C take priority.",
+    "orbits": "Equatorial to SSO, {inc}",
+    "ausbau": "Shared complex, own launch table per operator; Isar pad for up to 10 launches per year planned (2022)",
+    "kern": "{extra} more openly addressable payloads than Andøya, but only a term sheet.",
+    "wie": [
+     "Turn the term sheet into a contract (no date so far)",
+     "Build an own Isar pad on the shared complex",
+     "Cadence limit next to Ariane 6, Vega-C, PLD, RFA, Latitude and Sirius Space [gap]"
+    ]
+   },
+   "saxavord_isar": {
+    "titel": "SaxaVord Spaceport, Isar pad (option)",
+    "sub": "No contract. Named in the UK–German declaration of 8 Oct 2026",
+    "note": "Licensed spaceport and NATO, but the UK is not in the EU and each operator needs its own launch licence.",
+    "orbits": "High, polar and SSO, {inc}",
+    "ausbau": "Two more launch complexes under construction; Orbex slot free since its insolvency (Feb 2026); Isar first launch 2029 at the earliest",
+    "kern": "{extra} additional openly addressable payloads versus Andøya: a backup without Norway, not extra market.",
+    "wie": [
+     "Contract with SaxaVord; so far only the UK–German declaration",
+     "British operator licence and marine licence for Isar (RFA's marine licence took 31 months)",
+     "New pad: the Fredo pad is exclusive to RFA"
+    ]
+   },
+   "esrange_isar": {
+    "titel": "Esrange Space Center, spaceport (option)",
+    "sub": "No contract. Isar already tests engines and stages here",
+    "note": "EU and NATO, but every orbital trajectory needs Norwegian approval.",
+    "orbits": "Polar and SSO, {inc}",
+    "ausbau": "LC-3C under construction for Firefly Alpha (from 2028); further pads not announced",
+    "kern": "{extra} additional openly addressable payloads versus Andøya, and every orbital launch depends on Norway.",
+    "wie": [
+     "Norwegian approval for the trajectory over Norway (Tromsø 220 km); Norway is reviewing the risks",
+     "New Swedish space law (Rymdlag) in force",
+     "Launch right and pad for Isar [gap]"
+    ]
+   },
+   "santa_maria": {
+    "titel": "Atlantic Spaceport, Santa Maria (Azores)",
+    "sub": "No link to Isar. INNOSPACE has priority",
+    "note": "EU and NATO, spaceport licence in force since 2025, but every mission needs its own approval.",
+    "orbits": "Low to SSO southwards, {inc} (estimated)",
+    "ausbau": "INNOSPACE builds its pad in stages; orbital launches 2027 at the earliest",
+    "kern": "{extra} more openly addressable payloads than Andøya, but no link to Isar and no orbital launch yet.",
+    "wie": [
+     "Any link with Isar [gap]: no contract, no option",
+     "Orbital capability: so far only suborbital launches (Aug 2026)",
+     "INNOSPACE priority until 2030 and local political criticism"
+    ]
+   }
+  }
+ }
+}

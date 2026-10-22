@@ -36,9 +36,7 @@ function Export({ manifest, runs, timeline }: { manifest: Manifest; runs: RunsFi
 
   return (
     <>
-      <PageHead title="Export">
-        Die Daten des aktiven Runs so, wie die Oberfläche sie anzeigt. Die Dateien serialisieren gelieferte Werte; berechnet wird hier nichts.
-      </PageHead>
+      <PageHead title="Export" />
       <div className="border-y border-rule/70 bg-night/92 lg:sticky lg:top-[var(--header-h)] lg:z-30 lg:backdrop-blur-md">
         <div className="mx-auto max-w-[88rem] px-4 py-4 sm:px-8">
           <RunControls manifest={manifest} />

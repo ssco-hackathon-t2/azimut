@@ -57,10 +57,7 @@ function Analysis({ manifest, runs, timeline, config }: { manifest: Manifest; ru
 
   return (
     <>
-      <PageHead title="Analyse">
-        Trichter von der globalen Nachfrage (E0) bis zum gewinnbaren Anteil (E3) für den gewählten Run. Alle Ansichten zeigen denselben
-        aktiven Run.
-      </PageHead>
+      <PageHead title="Analyse" />
 
       <div className="border-y border-rule/70 bg-night/92 lg:sticky lg:top-[var(--header-h)] lg:z-30 lg:backdrop-blur-md">
         <div className="mx-auto flex max-w-[88rem] flex-col gap-3 px-4 py-4 sm:px-8 lg:flex-row lg:items-end lg:justify-between">

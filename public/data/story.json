@@ -1,193 +1,203 @@
 {
-  "_hinweis": "Texte aus knowledge/05_storyline.md (verbindlich). Zahlen nur als {{verweis}}: kpi_id aus derived_kpis oder tabelle:zeilen_id:spalte aus isar_data.json bzw. sites:<id>:<feld> aus sites_compare.json. Optional {{verweis|pct|0}} für Format und Stellen. Schema: docs/frontend/STORY_JSON.md",
+  "_hinweis": "Englische Fassung von knowledge/05_storyline.md (verbindlich; Startseite Englisch seit 22.10.2026). Zahlen nur als {{verweis}}: kpi_id aus derived_kpis oder tabelle:zeilen_id:spalte aus isar_data.json bzw. sites:<id>:<feld> aus sites_compare.json. Optional {{verweis|pct|0}} für Format und Stellen. Schema: docs/frontend/STORY_JSON.md",
   "hero": {
-    "nav": "Einstieg",
+    "nav": "World market",
     "kicker": "Isar Aerospace · Spectrum",
-    "title": "Europas privater Weg in den Orbit startet am Polarkreis.",
-    "lead": "Isar Aerospace baut Spectrum: {{launch_vehicles:spectrum:payload_leo_kg}} kg in LEO, {{launch_vehicles:spectrum:payload_sso_kg}} kg in SSO. Flug 1 am {{launch_vehicles:spectrum:first_flight}} abgebrochen, Flug 2 am 05.09.2026 im Orbit. Series D über {{funding_rounds:fund_07:amount}} Mio. € am {{funding_rounds:fund_07:round_date}}. Einziger aktiver Startplatz: Andøya, Norwegen.",
-    "claim": "Mit einer Rampe bremst der Takt, ab der zweiten die Nachfrage."
+    "title": "Europe's private path to orbit starts at the Arctic Circle.",
+    "lead": "Isar Aerospace builds Spectrum: {{launch_vehicles:spectrum:payload_leo_kg}} kg to LEO, {{launch_vehicles:spectrum:payload_sso_kg}} kg to SSO. Flight 1 was terminated on {{launch_vehicles:spectrum:first_flight}}, flight 2 reached orbit on 5 Sep 2026. Series D of more than €{{funding_rounds:fund_07:amount}}m on {{funding_rounds:fund_07:round_date}}. Only active launch site: Andøya, Norway.",
+    "claim": "With one pad, cadence is the constraint. From the second pad on, demand is."
   },
   "chapters": [
     {
       "id": "frage-1",
-      "nav": "Frage 1 · Andøya",
-      "kicker": "Frage 1 · Andøya",
-      "title": "Andøya erreicht nur polare und sonnensynchrone Bahnen. Genau dort liegt der offene Markt.",
-      "lead": "Von {{sites_meta:all:e0_count}} Nutzlasten 2025 sind {{site_andoya_e1_share_count}} technisch erreichbar und {{site_andoya_e2_count}} offen adressierbar. Andøya deckt damit schon {{site_andoya_e2_count}} der {{sites_meta:all:union_e2_count}} Nutzlasten, die Spectrum von allen sechs Startplätzen zusammen offen erreicht.",
+      "nav": "Orbits",
+      "kicker": "Orbits and strategies",
+      "title": "Andøya reaches only polar and sun-synchronous orbits. That is exactly where the open market is.",
       "kpis": [
         {
           "ref": "sites:andoya:missions_per_year",
           "of": "assumptions:global_launches_2025:value_base",
-          "prefix": "rund",
+          "prefix": "about",
           "digits": 0,
-          "label": "aller Orbitalstarts 2025",
-          "note": "{{sites:andoya:missions_per_year|num|1}} gewinnbare Missionen pro Jahr bei {{assumptions:global_launches_2025:value_base}} Starts. Case-DB mit Isars Kapazität: {{q1_andoya_share_global_launches}}.",
+          "label": "of all orbital launches in 2025",
+          "note": "{{sites:andoya:missions_per_year|num|1}} winnable missions per year out of {{assumptions:global_launches_2025:value_base}} launches. Case DB with Isar's capacity: {{q1_andoya_share_global_launches}}.",
           "tone": "win"
         },
         {
           "ref": "site_andoya_e1_share_count",
-          "label": "technisch erreichbar (E1)",
-          "note": "Fenster 90 bis 108°, Höhe, Masse"
+          "label": "technically reachable (E1)",
+          "note": "Window 90 to 108°, altitude, mass"
         },
         {
           "ref": "site_andoya_e2_count",
-          "label": "offen adressierbare Nutzlasten (E2)",
-          "note": "{{site_andoya_e2_share_count}} aller Nutzlasten 2025",
+          "label": "openly addressable payloads (E2)",
+          "note": "{{site_andoya_e2_share_count}} of all payloads in 2025",
           "tone": "accent"
         }
       ],
       "blocks": [
         {
-          "kind": "q1"
+          "kind": "flow",
+          "id": "orbits"
+        },
+        {
+          "kind": "q1",
+          "title": "Switch launch sites on and off"
         },
         {
           "kind": "panel",
-          "id": "q1-trichter"
+          "id": "q1-trichter",
+          "title": "From all payloads to the openly addressable market"
         }
       ]
     },
     {
       "id": "frage-2",
-      "nav": "Frage 2 · Startplätze",
-      "kicker": "Frage 2 · Weitere Startplätze",
-      "title": "Sechs Startplätze, ein Ergebnis: mehr Bahnen, kaum mehr offener Markt.",
-      "lead": "Kourou und Nova Scotia erreichen technisch drei- bis viermal so viel, aber die Zusatzmenge ist captive oder gesperrt. SaxaVord und Esrange duplizieren Andøya. Ihr Wert ist Ausweichkapazität ohne Norwegen.",
+      "nav": "Launch sites",
+      "kicker": "Launch sites",
+      "title": "Six launch sites, one result: more orbits, hardly any more open market.",
       "kpis": [
         {
           "ref": "sites:kourou_elm:e2_extra_vs_andoya",
           "of": "sites:andoya:e2_count",
-          "prefix": "höchstens plus",
+          "prefix": "at most plus",
           "digits": 0,
-          "label": "offen adressierbare Nutzlasten gegenüber Andøya",
-          "note": "Kourou: +{{sites:kourou_elm:e2_extra_vs_andoya}} auf {{sites:kourou_elm:e2_count}}",
+          "label": "openly addressable payloads compared with Andøya",
+          "note": "Kourou: +{{sites:kourou_elm:e2_extra_vs_andoya}} to {{sites:kourou_elm:e2_count}}",
           "tone": "accent"
         },
         {
           "ref": "sites:kourou_elm:e1_share_count",
-          "label": "technisch erreichbar ab Kourou",
+          "label": "technically reachable from Kourou",
           "note": "Andøya: {{site_andoya_e1_share_count}}"
         },
         {
           "ref": "sites:nova_scotia:e1_share_count",
-          "label": "technisch erreichbar ab Nova Scotia",
-          "note": "offen adressierbar: {{sites:nova_scotia:e2_count}} Nutzlasten"
+          "label": "technically reachable from Nova Scotia",
+          "note": "openly addressable: {{sites:nova_scotia:e2_count}} payloads"
         }
       ],
       "blocks": [
         {
-          "kind": "inclination"
+          "kind": "flow",
+          "id": "startplaetze"
+        },
+        {
+          "kind": "inclination",
+          "title": "Inclination windows of the six launch sites"
         },
         {
           "kind": "panel",
-          "id": "standorte-markt"
+          "id": "standorte-markt",
+          "title": "More orbits, hardly more open market"
         },
         {
           "kind": "text",
-          "text": "Wofür die Plätze wirklich stehen: Nova Scotia ist die zweite Rechtsordnung mit Kanada und der NATO als Kunden. Kourou steht für ESA, institutionelle Kunden und äquatornahe Bahnen. SaxaVord und Esrange sind SSO-Ersatz, falls Andøya ausfällt. Santa Maria bietet mittlere Neigungen von EU-Boden, bisher nur suborbital."
+          "text": "Nova Scotia is the second jurisdiction, with Canada and NATO as customers. Kourou stands for ESA, institutional customers and near-equatorial orbits. SaxaVord and Esrange are SSO backups if Andøya goes down. Santa Maria offers mid inclinations from EU soil, so far suborbital only.",
+          "title": "What the sites really stand for"
         }
       ]
     },
     {
       "id": "frage-3",
-      "nav": "Frage 3 · Faktoren",
-      "kicker": "Frage 3 · Startplatzwahl und Produktion",
-      "title": "Die Fabrik ist kein Engpass. Mit einer Rampe bremst der Takt, ab der zweiten die Nachfrage.",
-      "lead": "Nach welchen sechs Faktoren wählen wir den nächsten Startplatz, und was heißt das für Produktion, Wetter und Startausfälle? Markt und Nutzlast unterscheiden die sechs Plätze kaum. Entscheiden werden Wetter, Geopolitik, Kosten und Reife.",
+      "nav": "Factory to launch",
+      "kicker": "Factory to launch",
+      "title": "The factory is not the bottleneck. With one pad, cadence is the constraint. From the second pad on, demand is.",
       "kpis": [
         {
           "ref": "portfolio_chain:A_rampe_wetter:value",
           "format": "num",
           "digits": 1,
-          "prefix": "nur",
-          "label": "Starts pro Jahr schafft eine Rampe in Andøya, wetterbereinigt",
-          "note": "60 % wetterfähige Tage, 30 Tage zwischen zwei Starts. Gewinnbare Nachfrage {{portfolio_chain:A_nachfrage:value|num|1}}, Break-even {{break_even_ops}}",
+          "prefix": "only",
+          "label": "launches per year from one pad at Andøya, weather-adjusted",
+          "note": "60% weather-suitable days, 30 days between two launches. Winnable demand {{portfolio_chain:A_nachfrage:value|num|1}}, break-even {{break_even_ops}}",
           "tone": "accent"
         },
         {
           "ref": "portfolio_chain:D_nachfrage:value",
-          "label": "gewinnbare Missionen 2030 mit allen sechs Plätzen",
-          "note": "nur Andøya: {{portfolio_chain:A_nachfrage:value|num|1}}"
+          "label": "winnable missions in 2030 with all six sites",
+          "note": "Andøya only: {{portfolio_chain:A_nachfrage:value|num|1}}"
         },
         {
           "ref": "portfolio_chain:A_fabrik:value",
           "of": "portfolio_chain:A_nachfrage:value",
           "format": "num",
           "digits": 0,
-          "prefix": "rund",
+          "prefix": "about",
           "suffix": "×",
-          "label": "Fabrik-Auslegung gegenüber gewinnbarer Nachfrage 2030",
-          "note": "{{portfolio_chain:A_fabrik:value}} Raketen pro Jahr gegenüber {{portfolio_chain:A_nachfrage:value|num|1}} gewinnbaren Missionen (nur Andøya)"
+          "label": "factory capacity versus winnable demand in 2030",
+          "note": "{{portfolio_chain:A_fabrik:value}} rockets per year versus {{portfolio_chain:A_nachfrage:value|num|1}} winnable missions (Andøya only)"
         }
       ],
       "blocks": [
         {
-          "kind": "panel",
-          "id": "engpass-2030"
+          "kind": "flow",
+          "id": "fabrik"
         },
         {
           "kind": "panel",
-          "id": "standorte-faktoren"
+          "id": "engpass-2030",
+          "title": "Bottleneck chain 2030"
         },
         {
-          "kind": "text",
-          "text": "Wetter und Startausfall gehen so in die Kalkulation ein: Rampenkapazität = 365 × wetterfähige Tage / Tage zwischen zwei Starts. Erwartete erfolgreiche Starts = bindende Stufe × (1 − Ausfallwahrscheinlichkeit). Nach einem Fehlstart fallen Starts für die Stillstandszeit aus (Median der Analoga 9 Monate). Die Wendezeit der Rampe ist die unsicherste Annahme und im Eckmenü der Engpass-Kette umschaltbar."
-        }
-      ]
-    },
-    {
-      "id": "frage-4",
-      "nav": "Frage 4 · Resilienz",
-      "kicker": "Frage 4 · Wortlaut folgt",
-      "title": "Resilienz: was im Ernstfall bleibt.",
-      "lead": "Andøya gesperrt oder Kanada priorisiert eigene Missionen: welche Standorte fangen SSO auf?",
-      "blocks": [
-        {
-          "kind": "placeholder",
-          "text": "Frage 4 erscheint um 12:45. Muster: Stressfall-Schalter je Standort, Ergebnis in Starts und Mio. €."
+          "kind": "panel",
+          "id": "standorte-faktoren",
+          "title": "Andøya leads on law and maturity, Kourou on weather"
         }
       ]
     },
     {
       "id": "empfehlung",
-      "nav": "Empfehlung",
-      "kicker": "Empfehlung an Isar und SSVE",
-      "title": "Weitermachen mit Prüfschritt bis 31.12.2027.",
+      "nav": "Recommendation",
+      "kicker": "Recommendation to Isar",
+      "title": "Proceed, with a review gate by 31 Dec 2027.",
       "blocks": [
         {
+          "kind": "flow",
+          "id": "empfehlung"
+        },
+        {
           "kind": "quote",
-          "text": "Mit einer Rampe bremst der Takt, ab der zweiten die Nachfrage."
+          "text": "With one pad, cadence is the constraint. From the second pad on, demand is.",
+          "title": "Core message"
         },
         {
           "kind": "text",
-          "text": "Takt vor Fläche. Eine Rampe in Andøya schafft wetterbereinigt nur rund {{portfolio_chain:A_rampe_wetter:value|num|0}} Starts pro Jahr, der Break-even liegt bei {{break_even_ops}}. Die zweite Rampe (Andøya Pad 2 oder Nova Scotia) ist der wichtigste Schritt. Die Fabrik Vaterstetten (Auslegung {{facts:fa_003:value_num}} pro Jahr) reicht dafür."
+          "text": "One pad at Andøya manages only about {{portfolio_chain:A_rampe_wetter:value|num|0}} launches per year after weather, while break-even is at {{break_even_ops}}. The second pad (Andøya Pad 2 or Nova Scotia) is the most important step. The Vaterstetten factory (capacity {{facts:fa_003:value_num}} per year) is sufficient for that.",
+          "title": "Cadence before footprint"
         },
         {
           "kind": "text",
-          "text": "Nova Scotia als Versicherung, nicht als Wachstumsmotor. Vertrag seit 07.07.2026, erster Start 2028 geplant, kanadisches Startgesetz (C-28) noch offen. Geld nur gegen Meilensteine: Lizenz, Pad-Übergabe, erster Start."
+          "text": "Contract in place since 7 Jul 2026, first launch planned for 2028, Canadian launch legislation (C-28) still pending. Money only against milestones: licence, pad handover, first launch.",
+          "title": "Nova Scotia as insurance, not as a growth engine"
         },
         {
           "kind": "text",
-          "text": "Kourou und SaxaVord als Optionen mit Auslöser. Kourou nur für ESA und institutionelle Kunden. SaxaVord als Notfall-Backup für SSO ohne Norwegen."
+          "text": "Kourou only for ESA and institutional customers. SaxaVord as an emergency backup for SSO without Norway.",
+          "title": "Kourou and SaxaVord as options with a trigger"
         },
         {
           "kind": "text",
-          "text": "Für SSVE: unterstützen, mit Prüfschritt bis 31.12.2027. Prüfkriterium Nummer eins ist die erreichte Startrate, nicht die Zahl der Startplätze."
+          "text": "The number one review criterion is the launch rate achieved, not the number of launch sites.",
+          "title": "For SSVE: support, with a review gate by 31 Dec 2027"
         }
       ]
     },
     {
       "id": "anhang",
-      "nav": "Anhang",
-      "kicker": "Anhang",
-      "title": "So ist das Tool gebaut.",
-      "lead": "Jede Zahl kommt aus einer Datendatei und trägt Status und Quelle.",
+      "nav": "Appendix",
+      "kicker": "Appendix",
+      "title": "How the tool is built.",
+      "lead": "Every number comes from a data file and carries its status and source.",
       "blocks": [
         {
           "kind": "placeholder",
-          "text": "Architektur und Datenfluss als Diagramm folgen (knowledge/06_architektur.md)."
+          "text": "Architecture and data flow diagram to follow (knowledge/06_architektur.md).",
+          "title": "Architecture and data flow"
         },
         {
-          "kind": "links"
+          "kind": "links",
+          "title": "Further pages"
         }
       ]
     }

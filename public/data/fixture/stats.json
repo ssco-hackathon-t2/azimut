@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-10-22T11:55:32.661Z",
+  "generated_at": "2026-10-22T08:28:19.092Z",
   "generated_by": "web/scripts/write-stats.mjs",
   "tests": {
     "command": "python -m pytest -q -p no:cacheprovider",
-    "ran_at": "2026-10-22T13:11:38.122206+02:00",
-    "seconds": 2626.175,
-    "total": 910,
-    "passed": 892,
+    "ran_at": "2026-10-22T10:16:19.893057+02:00",
+    "seconds": 716.441,
+    "total": 771,
+    "passed": 753,
     "failed": 1,
     "failures": [
       {
         "test": "tests/test_trace.py::test_real_data_traces_and_runtime",
-        "message": "assert (1792668882.0275483 - 1792668866.1239793) < 15"
+        "message": "assert ((1792657586.193644 - 1792657556.0769558) < 12)"
       }
     ],
     "skipped": 17,
@@ -25,13 +25,13 @@
         "count": 1
       }
     ],
-    "repo_commit": "f67aea61cf7e626306b58a3de71ff018c9b18a32",
-    "fixture_commit": "dfdf83b2e680641f6689c8df29fd9ad1cdffc481",
+    "repo_commit": "20a7ebc480bf54b624a83b933d3e86da207a877e",
+    "fixture_commit": "95ca89d29dc37067fe1851957e55a2121ee4664d",
     "engine_matches_fixture": true
   },
   "web_tests": {
-    "total": 28,
-    "passed": 28,
+    "total": 16,
+    "passed": 16,
     "failed": 0,
     "skipped": 0
   },
@@ -43,8 +43,8 @@
     ],
     "kpis": 306,
     "kpis_complete": 306,
-    "assumptions_used": 37,
-    "assumptions_with_source": 37,
-    "team_assumptions": 28
+    "assumptions_used": 32,
+    "assumptions_with_source": 32,
+    "team_assumptions": 23
   }
 }

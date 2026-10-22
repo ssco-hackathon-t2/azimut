@@ -2,17 +2,17 @@
   "version": 1,
   "panels": {
     "q1-trichter": {
-      "kicker": "Frage 1 · Andøya · Basisjahr 2025",
-      "title": "Andøya erreicht nur polare und sonnensynchrone Bahnen. Genau dort liegt der offene Markt.",
+      "kicker": "Question 1 · Andøya · base year 2025",
+      "title": "Andøya reaches only polar and sun-synchronous orbits. That is exactly where the open market is.",
       "sources": {
         "runs": "data/fixture/runs.json"
       },
       "status": "abgeleitet",
-      "source_note": "GCAT-Katalog 17.10.2026, Engine-Trichter E0 bis E3, Rakete Spectrum, Fenster 90 bis 108°",
+      "source_note": "GCAT catalogue 17 Oct 2026, engine funnel E0 to E3, Spectrum launcher, window 90 to 108°",
       "views": [
         {
           "id": "anzahl",
-          "label": "Anzahl",
+          "label": "Count",
           "kind": "funnel",
           "options": {
             "metric": "count",
@@ -21,24 +21,24 @@
           "controls": [
             {
               "key": "labels",
-              "label": "Werte",
+              "label": "Values",
               "values": [
                 [
                   "on",
-                  "anzeigen"
+                  "show"
                 ],
                 [
                   "off",
-                  "aus"
+                  "hide"
                 ]
               ]
             }
           ],
-          "note": "Nutzlasten 2025. E2 ohne Captive (Starlink u. a.), ohne China/Russland, ohne US-Sicherheit."
+          "note": "Payloads 2025. E2 excludes captive (Starlink and others), China/Russia and US national security."
         },
         {
           "id": "masse",
-          "label": "Masse",
+          "label": "Mass",
           "kind": "funnel",
           "options": {
             "metric": "mass",
@@ -47,11 +47,11 @@
           "controls": [
             {
               "key": "scale",
-              "label": "Skala",
+              "label": "Scale",
               "values": [
                 [
                   "log",
-                  "logarithmisch"
+                  "logarithmic"
                 ],
                 [
                   "lin",
@@ -60,11 +60,11 @@
               ]
             }
           ],
-          "note": "Masse in Tonnen. Linear verschwinden E2 und E3 neben Starlink."
+          "note": "Mass in tonnes. On a linear scale E2 and E3 vanish next to Starlink."
         },
         {
           "id": "gruende",
-          "label": "Ausschlussgründe",
+          "label": "Exclusion reasons",
           "kind": "reasons",
           "backup": true,
           "options": {
@@ -73,41 +73,41 @@
           "controls": [
             {
               "key": "metric",
-              "label": "Maß",
+              "label": "Measure",
               "values": [
                 [
                   "count",
-                  "Anzahl"
+                  "Count"
                 ],
                 [
                   "mass",
-                  "Masse"
+                  "Mass"
                 ]
               ]
             }
           ],
-          "note": "Jede Nutzlast hat genau einen Grund (erster zutreffender Filter)."
+          "note": "Each payload has exactly one reason (the first filter that applies)."
         },
         {
           "id": "tabelle",
-          "label": "Werte als Tabelle",
+          "label": "Values as table",
           "kind": "funnel-table",
           "backup": true
         }
       ]
     },
     "standorte-markt": {
-      "kicker": "Frage 2 · Sechs Startplätze · Basisjahr 2025",
-      "title": "Mehr Bahnen, kaum mehr offener Markt",
+      "kicker": "Question 2 · Six launch sites · base year 2025",
+      "title": "More orbits, hardly more open market",
       "sources": {
         "sites": "data/sites/sites_compare.json"
       },
       "status": "abgeleitet",
-      "source_note": "GCAT 17.10.2026, Engine-Trichter je Standortfenster (scripts/site_coverage.py), Stammdaten Case-DB",
+      "source_note": "GCAT 17 Oct 2026, engine funnel per site window (scripts/site_coverage.py), master data from the case database",
       "views": [
         {
           "id": "adressierbar",
-          "label": "Offen adressierbar",
+          "label": "Openly addressable",
           "kind": "sites-bars",
           "options": {
             "metric": "e2_count",
@@ -116,7 +116,7 @@
           "controls": [
             {
               "key": "sort",
-              "label": "Reihenfolge",
+              "label": "Order",
               "values": [
                 [
                   "data",
@@ -124,16 +124,16 @@
                 ],
                 [
                   "value",
-                  "nach Wert"
+                  "By value"
                 ]
               ]
             }
           ],
-          "note": "Offen adressierbare Nutzlasten 2025 je Startplatz. Gestrichelt: Andøya."
+          "note": "Openly addressable payloads 2025 per launch site. Dashed: Andøya."
         },
         {
           "id": "missionen",
-          "label": "Missionen/Jahr",
+          "label": "Missions/year",
           "kind": "sites-bars",
           "options": {
             "metric": "missions_per_year",
@@ -142,7 +142,7 @@
           "controls": [
             {
               "key": "sort",
-              "label": "Reihenfolge",
+              "label": "Order",
               "values": [
                 [
                   "data",
@@ -150,57 +150,57 @@
                 ],
                 [
                   "value",
-                  "nach Wert"
+                  "By value"
                 ]
               ]
             }
           ],
-          "note": "Gewinnbare Spectrum-Missionen pro Jahr (Win-Rate gewichtet, Bündelung zu Missionen)."
+          "note": "Winnable Spectrum missions per year (weighted by win rate, payloads bundled into missions)."
         },
         {
           "id": "reichweite",
-          "label": "Technisch vs. offen",
+          "label": "Technical vs. open",
           "kind": "sites-reach",
           "backup": true,
-          "note": "Kourou und Nova Scotia erreichen technisch drei- bis viermal so viel, die Zusatzmenge ist captive oder gesperrt."
+          "note": "Kourou and Nova Scotia technically reach three to four times as much; the extra volume is captive or restricted."
         },
         {
           "id": "zusatz",
-          "label": "Neu ggü. Andøya",
+          "label": "New vs. Andøya",
           "kind": "sites-bars",
           "backup": true,
           "options": {
             "metric": "e2_extra_vs_andoya",
             "sort": "value"
           },
-          "note": "Offen adressierbare Nutzlasten, die Andøya nicht erreicht (ohne Doppelzählung)."
+          "note": "Openly addressable payloads that Andøya does not reach (no double counting)."
         },
         {
           "id": "tabelle",
-          "label": "Werte als Tabelle",
+          "label": "Values as table",
           "kind": "sites-table",
           "backup": true
         }
       ]
     },
     "standorte-faktoren": {
-      "kicker": "Startplätze · sechs Faktoren",
-      "title": "Andøya führt bei Recht und Reife, Kourou beim Wetter",
+      "kicker": "Launch sites · six factors",
+      "title": "Andøya leads on law and maturity, Kourou on weather",
       "sources": {
         "sites": "data/sites/sites_compare.json"
       },
       "status": "team_annahme",
-      "source_note": "Markt: Engine; Nutzlast: Case-DB; Wetter: Klimadaten, an Spectrum-Abbrüchen kalibriert (Annahme); Geopolitik, Kosten, Reife: Team-Bewertung 1 bis 5 mit Quellen (faktoren_standorte_01)",
+      "source_note": "Market: engine; payload: case database; weather: climate data calibrated against Spectrum scrubs (assumption); geopolitics, cost, maturity: team rating 1 to 5 with sources (faktoren_standorte_01)",
       "views": [
         {
           "id": "matrix",
           "label": "Matrix",
           "kind": "factor-heatmap",
-          "note": "Punkte 1 bis 5. Markt, Nutzlast, Wetter: 5 x Wert / bester Wert. Geopolitik, Kosten, Reife: Team-Bewertung."
+          "note": "Points 1 to 5. Market, payload, weather: 5 x value / best value. Geopolitics, cost, maturity: team rating."
         },
         {
           "id": "gesamt",
-          "label": "Gesamtnote",
+          "label": "Overall score",
           "kind": "factor-total",
           "options": {
             "weights": "gleich",
@@ -209,29 +209,29 @@
           "controls": [
             {
               "key": "weights",
-              "label": "Gewichtung",
+              "label": "Weighting",
               "values": [
                 [
                   "gleich",
-                  "gleich"
+                  "equal"
                 ],
                 [
                   "markt",
-                  "Markt zuerst"
+                  "market first"
                 ],
                 [
                   "resilienz",
-                  "Resilienz zuerst"
+                  "resilience first"
                 ],
                 [
                   "kosten",
-                  "Kosten zuerst"
+                  "cost first"
                 ]
               ]
             },
             {
               "key": "sort",
-              "label": "Reihenfolge",
+              "label": "Order",
               "values": [
                 [
                   "data",
@@ -239,33 +239,33 @@
                 ],
                 [
                   "value",
-                  "nach Note"
+                  "By score"
                 ]
               ]
             }
           ],
-          "note": "Gewichteter Mittelwert der vorhandenen Punkte. Lücken zählen nicht und stehen in der Tabelle."
+          "note": "Weighted mean of the available points. Gaps do not count and are listed in the table."
         },
         {
           "id": "tabelle",
-          "label": "Rohwerte und Begründung",
+          "label": "Raw values and rationale",
           "kind": "factor-table",
           "backup": true
         }
       ]
     },
     "engpass-2030": {
-      "kicker": "Produktion bis Nachfrage · Basis 2030",
-      "title": "Mit einer Rampe bremst der Takt, ab der zweiten die Nachfrage",
+      "kicker": "Production to demand · base 2030",
+      "title": "With one pad, cadence is the constraint. From the second pad on, demand is.",
       "sources": {
         "sites": "data/sites/sites_compare.json"
       },
       "status": "abgeleitet",
-      "source_note": "engine/multisite.py (main 70fb986), Fabrik laut Isar, Hochlauf assumptions.yaml, Break-even Case-DB",
+      "source_note": "engine/multisite.py (main 70fb986), factory per Isar, ramp-up assumptions.yaml, break-even from the case database",
       "views": [
         {
           "id": "kette",
-          "label": "Engpass-Kette",
+          "label": "Bottleneck chain",
           "kind": "chain",
           "options": {
             "portfolio": "A",
@@ -274,7 +274,7 @@
           "controls": [
             {
               "key": "portfolio",
-              "label": "Standorte",
+              "label": "Launch sites",
               "values": [
                 [
                   "A",
@@ -294,36 +294,36 @@
                 ],
                 [
                   "D",
-                  "alle"
+                  "all"
                 ]
               ]
             },
             {
               "key": "turnaround",
-              "label": "Wendezeit der Rampe",
+              "label": "Pad turnaround",
               "values": [
                 [
                   "7",
-                  "7 Tage"
+                  "7 days"
                 ],
                 [
                   "30",
-                  "30 Tage"
+                  "30 days"
                 ],
                 [
                   "90",
-                  "90 Tage"
+                  "90 days"
                 ]
               ]
             }
           ],
-          "note": "Hervorgehoben: die Stufe, die bindet. Gestrichelt: Break-even Betrieb. Wendezeit = Tage zwischen zwei Starts von einer Rampe (Team-Annahme 7 bis 90)."
+          "note": "Highlighted: the stage that binds. Dashed: operating break-even. Turnaround = days between two launches from one pad (team assumption 7 to 90)."
         },
         {
           "id": "portfolios",
-          "label": "Nachfrage je Portfolio",
+          "label": "Demand per portfolio",
           "kind": "portfolio-demand",
-          "note": "Gewinnbare Missionen 2030 ohne Doppelzählung. Mehr Standorte heben die Nachfrage kaum."
+          "note": "Winnable missions 2030 without double counting. More launch sites barely lift demand."
         }
       ]
     }

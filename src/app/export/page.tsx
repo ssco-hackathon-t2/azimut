@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { PageHead } from "@/components/shell/PageHead";
 import { ExportView } from "./ExportView";
 
-export const metadata = { title: "Export · Andøya Addressability Tool" };
+export const metadata = { title: "Export · Azimut" };
 
 export default function Page() {
   return (
