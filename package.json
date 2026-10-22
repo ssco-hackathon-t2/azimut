@@ -1,0 +1,39 @@
+{
+  "name": "andoya-web",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.34.7",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/flatten-segments.mjs out",
+    "build:pages": "cross-env NEXT_PUBLIC_BASE_PATH=/azimut next build && node scripts/flatten-segments.mjs out",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types tests/unit/*.test.ts",
+    "serve:pages": "node scripts/serve-static.mjs",
+    "check:static": "node scripts/check-static.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/martian-mono": "5.3.0",
+    "@fontsource-variable/schibsted-grotesk": "5.3.0",
+    "echarts": "6.1.0",
+    "motion": "14.5.0",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "cross-env": "10.1.0",
+    "playwright-core": "1.64.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

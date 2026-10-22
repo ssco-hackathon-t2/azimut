@@ -1,0 +1,98 @@
+{
+  "_hinweis": "Texte aus knowledge/05_storyline.md (verbindlich). Zahlen nur als {{verweis}}: kpi_id aus derived_kpis oder tabelle:zeilen_id:spalte aus isar_data.json bzw. sites:<id>:<feld> aus sites_compare.json. Optional {{verweis|pct|0}} für Format und Stellen. Schema: docs/frontend/STORY_JSON.md",
+  "hero": {
+    "nav": "Einstieg",
+    "kicker": "Isar Aerospace · Spectrum",
+    "title": "Europas privater Weg in den Orbit startet am Polarkreis.",
+    "lead": "Isar Aerospace baut Spectrum: {{launch_vehicles:spectrum:payload_leo_kg}} kg in LEO, {{launch_vehicles:spectrum:payload_sso_kg}} kg in SSO. Flug 1 am {{launch_vehicles:spectrum:first_flight}} abgebrochen, Flug 2 am 05.09.2026 im Orbit. Series D über {{funding_rounds:fund_07:amount}} Mio. € am {{funding_rounds:fund_07:round_date}}. Einziger aktiver Startplatz: Andøya, Norwegen.",
+    "claim": "Der Engpass ist der Takt, nicht die Geografie."
+  },
+  "chapters": [
+    {
+      "id": "frage-1",
+      "nav": "Frage 1 · Andøya",
+      "kicker": "Frage 1 · Andøya",
+      "title": "Andøya erreicht nur polare und sonnensynchrone Bahnen. Genau dort liegt der offene Markt.",
+      "lead": "Von {{sites_meta:all:e0_count}} Nutzlasten 2025 sind {{site_andoya_e1_share_count}} technisch erreichbar und {{site_andoya_e2_count}} offen adressierbar. Andøya deckt damit schon {{site_andoya_e2_count}} der {{sites_meta:all:union_e2_count}} Nutzlasten, die Spectrum von allen sechs Startplätzen zusammen offen erreicht.",
+      "kpis": [
+        {
+          "ref": "sites:andoya:missions_per_year",
+          "of": "assumptions:global_launches_2025:value_base",
+          "prefix": "rund",
+          "digits": 0,
+          "label": "aller Orbitalstarts 2025",
+          "note": "{{sites:andoya:missions_per_year|num|1}} gewinnbare Missionen pro Jahr bei {{assumptions:global_launches_2025:value_base}} Starts. Case-DB mit Isars Kapazität: {{q1_andoya_share_global_launches}}.",
+          "tone": "win"
+        },
+        { "ref": "site_andoya_e1_share_count", "label": "technisch erreichbar (E1)", "note": "Fenster 90 bis 108°, Höhe, Masse" },
+        { "ref": "site_andoya_e2_count", "label": "offen adressierbare Nutzlasten (E2)", "note": "{{site_andoya_e2_share_count}} aller Nutzlasten 2025", "tone": "accent" }
+      ],
+      "blocks": [{ "kind": "q1" }, { "kind": "panel", "id": "q1-trichter" }]
+    },
+    {
+      "id": "frage-2",
+      "nav": "Frage 2 · Startplätze",
+      "kicker": "Frage 2 · Weitere Startplätze",
+      "title": "Sechs Startplätze, ein Ergebnis: mehr Bahnen, kaum mehr offener Markt.",
+      "lead": "Kourou und Nova Scotia erreichen technisch drei- bis viermal so viel, aber die Zusatzmenge ist captive oder gesperrt. SaxaVord und Esrange duplizieren Andøya. Ihr Wert ist Ausweichkapazität ohne Norwegen.",
+      "kpis": [
+        {
+          "ref": "sites:kourou_elm:e2_extra_vs_andoya",
+          "of": "sites:andoya:e2_count",
+          "prefix": "höchstens plus",
+          "digits": 0,
+          "label": "offen adressierbare Nutzlasten gegenüber Andøya",
+          "note": "Kourou: +{{sites:kourou_elm:e2_extra_vs_andoya}} auf {{sites:kourou_elm:e2_count}}",
+          "tone": "accent"
+        },
+        { "ref": "sites:kourou_elm:e1_share_count", "label": "technisch erreichbar ab Kourou", "note": "Andøya: {{site_andoya_e1_share_count}}" },
+        { "ref": "sites:nova_scotia:e1_share_count", "label": "technisch erreichbar ab Nova Scotia", "note": "offen adressierbar: {{sites:nova_scotia:e2_count}} Nutzlasten" }
+      ],
+      "blocks": [
+        { "kind": "inclination" },
+        { "kind": "panel", "id": "standorte-markt" },
+        { "kind": "text", "text": "Wofür die Plätze wirklich stehen: Nova Scotia ist die zweite Rechtsordnung mit Kanada und der NATO als Kunden. Kourou steht für ESA, institutionelle Kunden und äquatornahe Bahnen. SaxaVord und Esrange sind SSO-Ersatz, falls Andøya ausfällt. Santa Maria bietet mittlere Neigungen von EU-Boden, bisher nur suborbital." }
+      ]
+    },
+    {
+      "id": "frage-3",
+      "nav": "Frage 3 · Portfolio",
+      "kicker": "Frage 3 · Wortlaut folgt",
+      "title": "Eine Fabrik, mehrere Rampen: {{scenarios:basis:launches_total}} Starts 2030 brauchen Andøya plus einen zweiten Platz.",
+      "lead": "Der zweite Platz ist nötig für Kadenz, nicht für Markt.",
+      "blocks": [{ "kind": "placeholder", "text": "Frage 3 erscheint um 09:30. Wortlaut, große Zahl und Diagramm trägt die Orchestrierung in knowledge/05_storyline.md nach." }]
+    },
+    {
+      "id": "frage-4",
+      "nav": "Frage 4 · Resilienz",
+      "kicker": "Frage 4 · Wortlaut folgt",
+      "title": "Resilienz: was im Ernstfall bleibt.",
+      "lead": "Andøya gesperrt oder Kanada priorisiert eigene Missionen: welche Standorte fangen SSO auf?",
+      "blocks": [{ "kind": "placeholder", "text": "Frage 4 erscheint um 12:45. Muster: Stressfall-Schalter je Standort, Ergebnis in Starts und Mio. €." }]
+    },
+    {
+      "id": "empfehlung",
+      "nav": "Empfehlung",
+      "kicker": "Empfehlung an Isar und SSVE",
+      "title": "Weitermachen mit Prüfschritt bis 31.12.2027.",
+      "blocks": [
+        { "kind": "quote", "text": "Der Engpass ist der Takt, nicht die Geografie." },
+        { "kind": "text", "text": "Takt vor Fläche. Erst Andøya auf über {{break_even_ops}} Starts pro Jahr bringen (Break-even laut Kostenmodell), mit zweiter Rampe auf Andøya und der Fabrik Vaterstetten (Auslegung {{facts:fa_003:value_num}} pro Jahr). Ohne diese Kadenz hilft kein zweiter Startplatz." },
+        { "kind": "text", "text": "Nova Scotia als Versicherung, nicht als Wachstumsmotor. Vertrag seit 07.07.2026, erster Start 2028 geplant, kanadisches Startgesetz (C-28) noch offen. Geld nur gegen Meilensteine: Lizenz, Pad-Übergabe, erster Start." },
+        { "kind": "text", "text": "Kourou und SaxaVord als Optionen mit Auslöser. Kourou nur für ESA und institutionelle Kunden. SaxaVord als Notfall-Backup für SSO ohne Norwegen." },
+        { "kind": "text", "text": "Für SSVE: unterstützen, mit Prüfschritt bis 31.12.2027. Prüfkriterium Nummer eins ist die erreichte Startrate, nicht die Zahl der Startplätze." }
+      ]
+    },
+    {
+      "id": "anhang",
+      "nav": "Anhang",
+      "kicker": "Anhang",
+      "title": "So ist das Tool gebaut.",
+      "lead": "Jede Zahl kommt aus einer Datendatei und trägt Status und Quelle.",
+      "blocks": [
+        { "kind": "placeholder", "text": "Architektur und Datenfluss als Diagramm folgen (knowledge/06_architektur.md)." },
+        { "kind": "links" }
+      ]
+    }
+  ]
+}

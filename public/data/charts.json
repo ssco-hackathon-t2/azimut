@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "panels": {
+    "q1-trichter": {
+      "kicker": "Frage 1 · Andøya · Basisjahr 2025",
+      "title": "Andøya erreicht nur polare und sonnensynchrone Bahnen. Genau dort liegt der offene Markt.",
+      "sources": { "runs": "data/fixture/runs.json" },
+      "status": "abgeleitet",
+      "source_note": "GCAT-Katalog 17.10.2026, Engine-Trichter E0 bis E3, Rakete Spectrum, Fenster 90 bis 108°",
+      "views": [
+        {
+          "id": "anzahl", "label": "Anzahl", "kind": "funnel",
+          "options": { "metric": "count", "labels": "on" },
+          "controls": [{ "key": "labels", "label": "Werte", "values": [["on", "anzeigen"], ["off", "aus"]] }],
+          "note": "Nutzlasten 2025. E2 ohne Captive (Starlink u. a.), ohne China/Russland, ohne US-Sicherheit."
+        },
+        {
+          "id": "masse", "label": "Masse", "kind": "funnel",
+          "options": { "metric": "mass", "scale": "log" },
+          "controls": [{ "key": "scale", "label": "Skala", "values": [["log", "logarithmisch"], ["lin", "linear"]] }],
+          "note": "Masse in Tonnen. Linear verschwinden E2 und E3 neben Starlink."
+        },
+        {
+          "id": "gruende", "label": "Ausschlussgründe", "kind": "reasons", "backup": true,
+          "options": { "metric": "count" },
+          "controls": [{ "key": "metric", "label": "Maß", "values": [["count", "Anzahl"], ["mass", "Masse"]] }],
+          "note": "Jede Nutzlast hat genau einen Grund (erster zutreffender Filter)."
+        },
+        { "id": "tabelle", "label": "Werte als Tabelle", "kind": "funnel-table", "backup": true }
+      ]
+    },
+    "standorte-markt": {
+      "kicker": "Frage 2 · Sechs Startplätze · Basisjahr 2025",
+      "title": "Mehr Bahnen, kaum mehr offener Markt",
+      "sources": { "sites": "data/sites/sites_compare.json" },
+      "status": "abgeleitet",
+      "source_note": "GCAT 17.10.2026, Engine-Trichter je Standortfenster (scripts/site_coverage.py), Stammdaten Case-DB",
+      "views": [
+        {
+          "id": "adressierbar", "label": "Offen adressierbar", "kind": "sites-bars",
+          "options": { "metric": "e2_count", "sort": "data" },
+          "controls": [{ "key": "sort", "label": "Reihenfolge", "values": [["data", "Status"], ["value", "nach Wert"]] }],
+          "note": "Offen adressierbare Nutzlasten 2025 je Startplatz. Gestrichelt: Andøya."
+        },
+        {
+          "id": "missionen", "label": "Missionen/Jahr", "kind": "sites-bars",
+          "options": { "metric": "missions_per_year", "sort": "data" },
+          "controls": [{ "key": "sort", "label": "Reihenfolge", "values": [["data", "Status"], ["value", "nach Wert"]] }],
+          "note": "Gewinnbare Spectrum-Missionen pro Jahr (Win-Rate gewichtet, Bündelung zu Missionen)."
+        },
+        {
+          "id": "reichweite", "label": "Technisch vs. offen", "kind": "sites-reach", "backup": true,
+          "note": "Kourou und Nova Scotia erreichen technisch drei- bis viermal so viel, die Zusatzmenge ist captive oder gesperrt."
+        },
+        {
+          "id": "zusatz", "label": "Neu ggü. Andøya", "kind": "sites-bars", "backup": true,
+          "options": { "metric": "e2_extra_vs_andoya", "sort": "value" },
+          "note": "Offen adressierbare Nutzlasten, die Andøya nicht erreicht (ohne Doppelzählung)."
+        },
+        { "id": "tabelle", "label": "Werte als Tabelle", "kind": "sites-table", "backup": true }
+      ]
+    }
+  }
+}

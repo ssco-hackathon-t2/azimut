@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* Polarnacht-Welt: Navy/Graphit trägt die Fläche, gebrochenes Weiß, Eisblau für Auswahl,
+   Aurora-Grün nur für „gewinnbar“. Kontraste gegen --color-night geprüft (docs/frontend/CHECKS.md). */
+/* static: alle Tokens landen als CSS-Variable in :root, auch ohne Utility-Nutzung. Das ECharts-Theme
+   (components/charts/theme.ts) liest sie zur Laufzeit; Farben ändern sich nur hier. */
+@theme static {
+  --color-night: #0b1220;
+  --color-night-2: #111a2b;
+  --color-night-3: #18243a;
+  --color-rule: #2a3a55;
+  --color-rule-strong: #3d5272;
+  --color-snow: #e9edf2;
+  --color-mist: #a9b4c4;
+  --color-mist-2: #8794a8;
+  --color-ice: #8fd3ff;
+  --color-ice-deep: #4fa3d9;
+  --color-ice-dim: #3a6f93;
+  --color-aurora: #7ee0b5;
+  --color-amber: #f2b45a;
+  --color-alert: #ff8a80;
+
+  --font-sans: "Schibsted Grotesk Variable", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Martian Mono Variable", "Cascadia Code", Consolas, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --header-h: 3.5rem;
+  /* Diagramme: Abzugsbalken (≥ 3:1 gegen den Grund, WCAG 1.4.11) und Serienpalette für Gruppen.
+     Eisblau-Rampe für die größten Gruppen, danach Neutraltöne; kein Regenbogen (Designbriefing). */
+  --chart-deduct: #2c3850;
+  --chart-series: #8fd3ff, #5fb3e6, #3d8fc4, #2a6a96, #c9d3df, #a9b4c4, #8794a8, #6b788c, #55617a, #475266, #3a4558, #2f3a4d, #273145;
+}
+
+/* Elementstile in @layer base, Hilfsklassen in @layer components: so gewinnen Tailwind-Utilities
+   (z. B. Textfarbe auf Links) immer. Unlayered CSS würde sie sonst überstimmen. */
+@layer base {
+  html {
+    background: var(--color-night);
+    color: var(--color-snow);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  body {
+    background: var(--color-night);
+    min-height: 100dvh;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-ice) 40%, transparent);
+    color: var(--color-snow);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ice);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  * {
+    scrollbar-color: var(--color-rule-strong) var(--color-night);
+    scrollbar-width: thin;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  input,
+  textarea {
+    caret-color: var(--color-ice);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+}
+
+@layer components {
+  /* Tabellen unter 768 px als gestapelte Zeilen: Spaltenname aus data-label vor jedem Wert. */
+  @media (max-width: 767px) {
+    table.stack-sm thead {
+      display: none;
+    }
+    table.stack-sm tr {
+      display: block;
+      padding: 0.75rem 0;
+    }
+    table.stack-sm td {
+      display: block;
+      padding: 0.1rem 0;
+      text-align: left;
+    }
+    table.stack-sm td[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      color: var(--color-mist);
+      font-size: 0.76rem;
+      font-family: var(--font-sans);
+      letter-spacing: 0;
+    }
+  }
+
+  /* Tabellarische Ziffern nur in Tabellen und Zahlenspalten; im Fließtext würden sie auch Komma und Punkt verbreitern. */
+  table.num td,
+  table.num th,
+  dd.num,
+  .tnum {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .num {
+    font-variant-numeric: lining-nums;
+  }
+
+  .measure {
+    max-width: 68ch;
+  }
+
+  /* Startseite als Kapitel-Story: jedes Kapitel mindestens ein Bildschirm, Inhalt blendet beim Ankommen gestaffelt ein. */
+  .chapter {
+    display: flex;
+    align-items: center;
+    min-height: calc(100svh - var(--header-h));
+    padding-block: 6rem;
+    border-top: 1px solid color-mix(in oklab, var(--color-rule) 55%, transparent);
+  }
+  .chapter .rv {
+    opacity: 0;
+    transform: translateY(1.75rem);
+    transition:
+      opacity 0.9s var(--ease-out-expo),
+      transform 1.2s var(--ease-out-expo);
+    transition-delay: calc(var(--d, 0) * 110ms);
+  }
+  .chapter[data-seen] .rv {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Messwerte: Koordinaten, Grad, IDs. Nicht für Fließtext. */
+  .metric {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+
+}
+
+/* Präsentationsmodus (Taste P): ohne Kopf- und Fußzeile, Kapitel rasten am Bildschirmrand ein. */
+html.praesentation {
+  --header-h: 0px;
+  scroll-padding-top: 0;
+  scroll-snap-type: y proximity;
+}
+html.praesentation body > header,
+html.praesentation body > footer {
+  display: none;
+}
+html.praesentation #einstieg,
+html.praesentation .chapter {
+  scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,217 @@
+{
+ "pad": {
+  "lat": 69.10843,
+  "lon": 15.58929,
+  "accuracy_m": 5,
+  "label": "Andøya Spaceport, Pad A (Isar Aerospace)",
+  "basis": "Flächenschwerpunkt OSM way 1372369263, gegen Satellitenbild geprüft",
+  "crs": "WGS84"
+ },
+ "files": {
+  "region_bmng.jpg": {
+   "km": 1600,
+   "bounds_wsen": [
+    -2.0,
+    60.0,
+    34.0,
+    74.0
+   ],
+   "px": [
+    2160,
+    840
+   ],
+   "crs": "EPSG:4326",
+   "source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography-bathymetry/july/world.topo.bathy.200407.3x21600x10800.jpg",
+   "title": "NASA Blue Marble NG Juli 2004, Ausschnitt Nordeuropa (500 m-Produkt, 1,85 km/px)",
+   "credit": "NASA Earth Observatory (Blue Marble Next Generation, R. Stöckli)",
+   "license": "NASA-Bildmaterial, frei nutzbar mit Quellenangabe (keine Billigung durch NASA)"
+  },
+  "globe_day.jpg": {
+   "source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography-bathymetry/july/world.topo.bathy.200407.3x5400x2700.jpg",
+   "title": "NASA Blue Marble Next Generation, Topographie und Bathymetrie, Juli 2004",
+   "credit": "NASA Earth Observatory (Blue Marble Next Generation, R. Stöckli)",
+   "license": "NASA-Bildmaterial, frei nutzbar mit Quellenangabe (keine Billigung durch NASA)",
+   "crs": "EPSG:4326 equirectangular",
+   "px": [
+    4096,
+    2048
+   ]
+  },
+  "globe_night.jpg": {
+   "source": "https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144898/BlackMarble_2016_3km.jpg",
+   "title": "NASA Black Marble 2016 (Nachtlichter)",
+   "credit": "NASA Earth Observatory / Suomi NPP VIIRS",
+   "license": "NASA-Bildmaterial, frei nutzbar mit Quellenangabe (keine Billigung durch NASA)",
+   "crs": "EPSG:4326 equirectangular",
+   "px": [
+    4096,
+    2048
+   ]
+  },
+  "pad_osm.json": {
+   "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=15.54,69.09,15.62,69.13",
+   "title": "OpenStreetMap-Ausschnitt um Andøya Spaceport Pad A",
+   "bbox_wsen": [
+    15.54,
+    69.09,
+    15.62,
+    69.13
+   ],
+   "credit": "© OpenStreetMap contributors",
+   "license": "ODbL 1.0 (openstreetmap.org/copyright)",
+   "features": {
+    "coastline": 103,
+    "road": 58,
+    "water": 28,
+    "building": 9,
+    "launchpad": 1,
+    "tank": 7,
+    "fence": 1
+   }
+  },
+  "lod_130.jpg": {
+   "km": 130,
+   "bounds_wsen": [
+    13.951877291888874,
+    68.52058837357788,
+    17.226702708111127,
+    69.69627162642212
+   ],
+   "px": [
+    1024,
+    1024
+   ],
+   "crs": "EPSG:4326",
+   "ground_m_per_px": 126.953125,
+   "native_m_per_px": 10,
+   "scenes": [
+    "S2B_33WWS_20250718_0_L2A",
+    "S2B_33WWT_20250830_0_L2A",
+    "S2C_33WVS_20250716_1_L2A",
+    "S2C_33WVT_20250706_0_L2A",
+    "S2B_33WWS_20250714_0_L2A"
+   ],
+   "coverage": 1.0,
+   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "credit": "Contains modified Copernicus Sentinel data 2025",
+   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "acquired": [
+    "20250706",
+    "20250714",
+    "20250716",
+    "20250718",
+    "20250830"
+   ]
+  },
+  "lod_42.jpg": {
+   "km": 42,
+   "bounds_wsen": [
+    15.060279740456405,
+    68.918511936079,
+    16.118300259543595,
+    69.298348063921
+   ],
+   "px": [
+    1024,
+    1024
+   ],
+   "crs": "EPSG:4326",
+   "ground_m_per_px": 41.015625,
+   "native_m_per_px": 10,
+   "scenes": [
+    "S2B_33WWS_20250714_0_L2A"
+   ],
+   "coverage": 1.0,
+   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "credit": "Contains modified Copernicus Sentinel data 2025",
+   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "acquired": [
+    "20250714"
+   ]
+  },
+  "lod_14.jpg": {
+   "km": 14,
+   "bounds_wsen": [
+    15.412953246818802,
+    69.045123978693,
+    15.765626753181198,
+    69.171736021307
+   ],
+   "px": [
+    1024,
+    1024
+   ],
+   "crs": "EPSG:4326",
+   "ground_m_per_px": 13.671875,
+   "native_m_per_px": 10,
+   "scenes": [
+    "S2B_33WWS_20250714_0_L2A"
+   ],
+   "coverage": 1.0,
+   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "credit": "Contains modified Copernicus Sentinel data 2025",
+   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "acquired": [
+    "20250714"
+   ]
+  },
+  "lod_4_5.jpg": {
+   "km": 4.5,
+   "bounds_wsen": [
+    15.532610329334615,
+    69.08808163600847,
+    15.645969670665385,
+    69.12877836399153
+   ],
+   "px": [
+    1024,
+    1024
+   ],
+   "crs": "EPSG:4326",
+   "ground_m_per_px": 4.39453125,
+   "native_m_per_px": 10,
+   "scenes": [
+    "S2B_33WWS_20250714_0_L2A"
+   ],
+   "coverage": 1.0,
+   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "credit": "Contains modified Copernicus Sentinel data 2025",
+   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "acquired": [
+    "20250714"
+   ]
+  },
+  "lod_1_5.jpg": {
+   "km": 1.5,
+   "bounds_wsen": [
+    15.570396776444872,
+    69.10164721200282,
+    15.608183223555129,
+    69.11521278799718
+   ],
+   "px": [
+    1024,
+    1024
+   ],
+   "crs": "EPSG:4326",
+   "ground_m_per_px": 1.46484375,
+   "native_m_per_px": 10,
+   "scenes": [
+    "S2B_33WWS_20250714_0_L2A"
+   ],
+   "coverage": 1.0,
+   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "credit": "Contains modified Copernicus Sentinel data 2025",
+   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "acquired": [
+    "20250714"
+   ]
+  },
+  "stars_bsc5.json": {
+   "source": "https://cdsarc.cds.unistra.fr/ftp/V/50/catalog.gz",
+   "title": "Yale Bright Star Catalogue, 5. Ausgabe (9096 Sterne, J2000, V, B-V)",
+   "credit": "Hoffleit & Warren 1991, über CDS VizieR V/50",
+   "license": "frei nutzbar mit Quellenangabe (CDS-Nutzungsbedingungen)"
+  }
+ }
+}
