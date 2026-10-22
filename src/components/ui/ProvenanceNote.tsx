@@ -14,7 +14,7 @@ export function ProvenanceNote({ p, compact = false }: { p: Provenance; compact?
     <div className={`flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[0.86rem] ${fixture ? "text-amber" : "text-aurora"}`}>
       <span className="inline-flex items-baseline gap-2 font-medium">
         <span aria-hidden="true" className={`inline-block size-1.5 translate-y-[-0.1em] rounded-full ${fixture ? "bg-amber" : "bg-aurora"}`} />
-        {fixture ? "UI-Demo mit Fixtures, keine aktuelle Fachberechnung" : "Fachlieferung"}
+        {fixture ? "UI-Demo mit Fixtures, keine aktuelle Fachberechnung" : p.label}
       </span>
       {!compact && (
         <span className="text-mist">

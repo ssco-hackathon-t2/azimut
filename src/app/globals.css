@@ -20,8 +20,10 @@
   --color-amber: #f2b45a;
   --color-alert: #ff8a80;
 
-  --font-sans: "Schibsted Grotesk Variable", "Segoe UI", system-ui, sans-serif;
-  --font-mono: "Martian Mono Variable", "Cascadia Code", Consolas, monospace;
+  /* Red Hat Display für Überschriften und Kernzahlen, Geist für Text und Bedienung, Geist Mono für Messwerte. */
+  --font-display: "Red Hat Display Variable", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Geist Variable", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", "Cascadia Code", Consolas, monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -84,6 +86,7 @@
   h1,
   h2,
   h3 {
+    font-family: var(--font-display);
     text-wrap: balance;
     letter-spacing: -0.015em;
   }

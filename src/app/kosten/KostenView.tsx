@@ -149,7 +149,7 @@ function Kosten({ db }: { db: IsarDb }) {
             </p>
 
             <p className="mt-8 text-[0.92rem] text-mist">Kosten pro Start bei {row.n} Starts pro Jahr</p>
-            <p className="num text-[clamp(2.4rem,5vw,3.6rem)] font-semibold leading-[1.05] text-snow">{eur(row.cost)}</p>
+            <p className="num font-display text-[clamp(2.4rem,5vw,3.6rem)] font-semibold leading-[1.05] text-snow">{eur(row.cost)}</p>
             <p aria-live="polite" className={`mt-2 text-[1.05rem] ${covered ? "text-aurora" : "text-alert"}`}>
               <span className="font-semibold">{covered ? "Deckt die Betriebskosten" : "Verlust je Start"}</span>: {covered ? "unter" : "über"} dem Preis von {eur(p)}, vor
               Entwicklung.

@@ -129,7 +129,7 @@ function Analysis({ manifest, runs, timeline, config }: { manifest: Manifest; ru
         )}
       </Section>
 
-      <Section id="szenarien" title={`Szenarien im Vergleich, ${run.params.year}`} intro={`Vorbereitete Szenarien, ${SCOPE_LABELS[run.params.scope]}. Freie Parameteränderungen gibt es erst mit einer Rechenschnittstelle.`}>
+      <Section id="szenarien" title={`Szenarien im Vergleich, ${run.params.year}`} intro={`Drei Modellszenarien aus dem Python-Rechenkern, ${SCOPE_LABELS[run.params.scope]}.`}>
         <ScenarioCompare runs={sameYearScope} active={run.params.scenario} labels={labels} />
       </Section>
 

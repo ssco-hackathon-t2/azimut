@@ -93,7 +93,7 @@ function Belege({
       {t ? (
         <>
           <Section id="kennzahl" title={t.label}>
-            <p className="num text-[clamp(2rem,4vw,2.8rem)] font-semibold text-snow">{fmtValue(t.value, t.unit)}</p>
+            <p className="num font-display text-[clamp(2rem,4vw,2.8rem)] font-semibold text-snow">{fmtValue(t.value, t.unit)}</p>
             <p className="metric mt-1 text-mist">
               {t.kpi_id} · Run {id}
             </p>
@@ -219,7 +219,7 @@ function Belege({
           </li>
           <li className="grid gap-1 py-3 md:grid-cols-[14rem_1fr]">
             <span className="metric text-snow">Schriften</span>
-            <span className="text-mist">Schibsted Grotesk und Martian Mono, SIL Open Font License 1.1, lokal ausgeliefert.</span>
+            <span className="text-mist">Red Hat Display, Geist und Geist Mono, SIL Open Font License 1.1, lokal ausgeliefert.</span>
           </li>
         </ul>
       </Section>
@@ -234,6 +234,7 @@ function Pruefstand({ s, p }: { s: StatsFile; p: Provenance }) {
   const ran = t.ran_at ? `${fmtDate(t.ran_at)}, ${t.ran_at.slice(11, 16)} Uhr` : "–";
   const source = p.data_source ? p.data_source[0].toUpperCase() + p.data_source.slice(1) : "–";
   const facts: [string, string][] = [
+    ["Berichtsstand", "Archivierter Prüflauf des Fixture-Snapshots; kein Testnachweis für den aktuellen Live-Lauf"],
     ["Kennzahlen mit Formel und Eingangszahlen", `${fmtNum(e.kpis_complete)} von ${fmtNum(e.kpis)}`],
     ["Runs mit Belegen", `${fmtNum(e.runs_with_traces)} von ${fmtNum(e.runs_total)} (${e.traced_scopes.map((x) => SCOPE_LABELS[x] ?? x).join(", ")})`],
     ["Annahmen mit Quellenangabe", `${fmtNum(e.assumptions_with_source)} von ${fmtNum(e.assumptions_used)}, davon ${fmtNum(e.team_assumptions)} als Team-Annahme gekennzeichnet`],
@@ -251,7 +252,7 @@ function Pruefstand({ s, p }: { s: StatsFile; p: Provenance }) {
     <>
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
         <div>
-          <p className="num text-[clamp(2rem,4vw,2.8rem)] font-semibold text-snow">{fmtNum(t.passed)}</p>
+          <p className="num font-display text-[clamp(2rem,4vw,2.8rem)] font-semibold text-snow">{fmtNum(t.passed)}</p>
           <p className="text-snow">von {fmtNum(t.total)} Tests des Rechenkerns bestanden</p>
           {t.failed > 0 && (
             <div className="mt-1 text-alert">

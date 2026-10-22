@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 // Unterpfad für GitHub Pages (Vorschlag: /azimut). Leer = Wurzel, z. B. lokal.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -13,4 +14,11 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname,
 };
 
-export default nextConfig;
+export default function config(phase: string): NextConfig {
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    return { ...nextConfig, output: undefined, async rewrites() {
+      return [{ source: "/api/:path*", destination: "http://127.0.0.1:8000/api/:path*" }];
+    } };
+  }
+  return nextConfig;
+}

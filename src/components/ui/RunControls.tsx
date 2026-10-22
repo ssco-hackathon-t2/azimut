@@ -5,13 +5,13 @@ import { SCENARIO_FALLBACK, SCOPE_LABELS } from "@/lib/labels";
 import { useSelection } from "@/lib/selection";
 import { zoneLabel } from "@/components/charts/TimelineChart";
 
-/** Auswahl vorbereiteter Szenarien. Keine freien Regler: ohne Rechenschnittstelle gibt es nur gelieferte Runs. */
+/** Auswahl der Parameter für den Python-Rechenkern oder den expliziten Offline-Satz. */
 export function RunControls({ manifest, config }: { manifest: Manifest; config?: ConfigFile }) {
   const { selection, update } = useSelection(manifest);
   const labels = config?.scenario_labels?.value ?? SCENARIO_FALLBACK;
   return (
     <form
-      aria-label="Vorbereitetes Szenario wählen"
+      aria-label="Szenario wählen"
       className="flex min-w-0 max-w-full flex-wrap items-end gap-x-6 gap-y-4"
       onSubmit={(e) => e.preventDefault()}
     >

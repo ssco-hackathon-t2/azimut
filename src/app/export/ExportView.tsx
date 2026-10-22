@@ -1,8 +1,8 @@
 "use client";
 
 import type { Manifest, RunsFile, TimelineFile } from "@/lib/contract";
-import { DATA_DIR, asset, useJSON } from "@/lib/data";
-import { findRun, useSelection } from "@/lib/selection";
+import { dataURL, useJSON } from "@/lib/data";
+import { findRun, useSelection, selectionQuery } from "@/lib/selection";
 import { SCOPE_LABELS } from "@/lib/labels";
 import { PageHead, Section } from "@/components/shell/PageHead";
 import { OpenItem, Ready } from "@/components/ui/States";
@@ -69,7 +69,7 @@ function Export({ manifest, runs, timeline }: { manifest: Manifest; runs: RunsFi
             </div>
             <div className="flex flex-wrap gap-2">
               {manifest.files.map((f) => (
-                <a key={f} href={asset(`${DATA_DIR}/${f}`)} download className="border border-rule-strong px-2.5 py-1 text-[0.85rem] no-underline hover:border-ice">
+                <a key={f} href={dataURL(f, selectionQuery(selection))} download className="border border-rule-strong px-2.5 py-1 text-[0.85rem] no-underline hover:border-ice">
                   {f}
                 </a>
               ))}

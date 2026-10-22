@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts/core";
-import { BarChart, LineChart, ScatterChart, CustomChart } from "echarts/charts";
+import { BarChart, LineChart, ScatterChart, CustomChart, HeatmapChart } from "echarts/charts";
 import {
+  VisualMapComponent,
   GridComponent,
   TooltipComponent,
   LegendComponent,
@@ -24,6 +25,8 @@ echarts.use([
   LineChart,
   ScatterChart,
   CustomChart,
+  HeatmapChart,
+  VisualMapComponent,
   GridComponent,
   TooltipComponent,
   LegendComponent,

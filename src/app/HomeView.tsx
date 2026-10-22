@@ -234,7 +234,7 @@ function Hero({
               </p>
             )}
             {hero.claim && (
-              <p className="mt-6 border-l-2 border-aurora pl-4 text-[clamp(1.1rem,1.7vw,1.4rem)] font-semibold text-snow">
+              <p className="mt-6 border-l-2 border-aurora pl-4 font-display text-[clamp(1.1rem,1.7vw,1.4rem)] font-semibold text-snow">
                 <Tokens text={hero.claim} t={t} />
               </p>
             )}

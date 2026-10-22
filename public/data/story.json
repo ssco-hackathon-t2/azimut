@@ -5,7 +5,7 @@
     "kicker": "Isar Aerospace · Spectrum",
     "title": "Europas privater Weg in den Orbit startet am Polarkreis.",
     "lead": "Isar Aerospace baut Spectrum: {{launch_vehicles:spectrum:payload_leo_kg}} kg in LEO, {{launch_vehicles:spectrum:payload_sso_kg}} kg in SSO. Flug 1 am {{launch_vehicles:spectrum:first_flight}} abgebrochen, Flug 2 am 05.09.2026 im Orbit. Series D über {{funding_rounds:fund_07:amount}} Mio. € am {{funding_rounds:fund_07:round_date}}. Einziger aktiver Startplatz: Andøya, Norwegen.",
-    "claim": "Der Engpass ist der Takt, nicht die Geografie."
+    "claim": "Mit einer Rampe bremst der Takt, ab der zweiten die Nachfrage."
   },
   "chapters": [
     {
@@ -24,10 +24,27 @@
           "note": "{{sites:andoya:missions_per_year|num|1}} gewinnbare Missionen pro Jahr bei {{assumptions:global_launches_2025:value_base}} Starts. Case-DB mit Isars Kapazität: {{q1_andoya_share_global_launches}}.",
           "tone": "win"
         },
-        { "ref": "site_andoya_e1_share_count", "label": "technisch erreichbar (E1)", "note": "Fenster 90 bis 108°, Höhe, Masse" },
-        { "ref": "site_andoya_e2_count", "label": "offen adressierbare Nutzlasten (E2)", "note": "{{site_andoya_e2_share_count}} aller Nutzlasten 2025", "tone": "accent" }
+        {
+          "ref": "site_andoya_e1_share_count",
+          "label": "technisch erreichbar (E1)",
+          "note": "Fenster 90 bis 108°, Höhe, Masse"
+        },
+        {
+          "ref": "site_andoya_e2_count",
+          "label": "offen adressierbare Nutzlasten (E2)",
+          "note": "{{site_andoya_e2_share_count}} aller Nutzlasten 2025",
+          "tone": "accent"
+        }
       ],
-      "blocks": [{ "kind": "q1" }, { "kind": "panel", "id": "q1-trichter" }]
+      "blocks": [
+        {
+          "kind": "q1"
+        },
+        {
+          "kind": "panel",
+          "id": "q1-trichter"
+        }
+      ]
     },
     {
       "id": "frage-2",
@@ -45,22 +62,77 @@
           "note": "Kourou: +{{sites:kourou_elm:e2_extra_vs_andoya}} auf {{sites:kourou_elm:e2_count}}",
           "tone": "accent"
         },
-        { "ref": "sites:kourou_elm:e1_share_count", "label": "technisch erreichbar ab Kourou", "note": "Andøya: {{site_andoya_e1_share_count}}" },
-        { "ref": "sites:nova_scotia:e1_share_count", "label": "technisch erreichbar ab Nova Scotia", "note": "offen adressierbar: {{sites:nova_scotia:e2_count}} Nutzlasten" }
+        {
+          "ref": "sites:kourou_elm:e1_share_count",
+          "label": "technisch erreichbar ab Kourou",
+          "note": "Andøya: {{site_andoya_e1_share_count}}"
+        },
+        {
+          "ref": "sites:nova_scotia:e1_share_count",
+          "label": "technisch erreichbar ab Nova Scotia",
+          "note": "offen adressierbar: {{sites:nova_scotia:e2_count}} Nutzlasten"
+        }
       ],
       "blocks": [
-        { "kind": "inclination" },
-        { "kind": "panel", "id": "standorte-markt" },
-        { "kind": "text", "text": "Wofür die Plätze wirklich stehen: Nova Scotia ist die zweite Rechtsordnung mit Kanada und der NATO als Kunden. Kourou steht für ESA, institutionelle Kunden und äquatornahe Bahnen. SaxaVord und Esrange sind SSO-Ersatz, falls Andøya ausfällt. Santa Maria bietet mittlere Neigungen von EU-Boden, bisher nur suborbital." }
+        {
+          "kind": "inclination"
+        },
+        {
+          "kind": "panel",
+          "id": "standorte-markt"
+        },
+        {
+          "kind": "text",
+          "text": "Wofür die Plätze wirklich stehen: Nova Scotia ist die zweite Rechtsordnung mit Kanada und der NATO als Kunden. Kourou steht für ESA, institutionelle Kunden und äquatornahe Bahnen. SaxaVord und Esrange sind SSO-Ersatz, falls Andøya ausfällt. Santa Maria bietet mittlere Neigungen von EU-Boden, bisher nur suborbital."
+        }
       ]
     },
     {
       "id": "frage-3",
-      "nav": "Frage 3 · Portfolio",
-      "kicker": "Frage 3 · Wortlaut folgt",
-      "title": "Eine Fabrik, mehrere Rampen: {{scenarios:basis:launches_total}} Starts 2030 brauchen Andøya plus einen zweiten Platz.",
-      "lead": "Der zweite Platz ist nötig für Kadenz, nicht für Markt.",
-      "blocks": [{ "kind": "placeholder", "text": "Frage 3 erscheint um 09:30. Wortlaut, große Zahl und Diagramm trägt die Orchestrierung in knowledge/05_storyline.md nach." }]
+      "nav": "Frage 3 · Faktoren",
+      "kicker": "Frage 3 · Startplatzwahl und Produktion",
+      "title": "Die Fabrik ist kein Engpass. Mit einer Rampe bremst der Takt, ab der zweiten die Nachfrage.",
+      "lead": "Nach welchen sechs Faktoren wählen wir den nächsten Startplatz, und was heißt das für Produktion, Wetter und Startausfälle? Markt und Nutzlast unterscheiden die sechs Plätze kaum. Entscheiden werden Wetter, Geopolitik, Kosten und Reife.",
+      "kpis": [
+        {
+          "ref": "portfolio_chain:A_rampe_wetter:value",
+          "format": "num",
+          "digits": 1,
+          "prefix": "nur",
+          "label": "Starts pro Jahr schafft eine Rampe in Andøya, wetterbereinigt",
+          "note": "60 % wetterfähige Tage, 30 Tage zwischen zwei Starts. Gewinnbare Nachfrage {{portfolio_chain:A_nachfrage:value|num|1}}, Break-even {{break_even_ops}}",
+          "tone": "accent"
+        },
+        {
+          "ref": "portfolio_chain:D_nachfrage:value",
+          "label": "gewinnbare Missionen 2030 mit allen sechs Plätzen",
+          "note": "nur Andøya: {{portfolio_chain:A_nachfrage:value|num|1}}"
+        },
+        {
+          "ref": "portfolio_chain:A_fabrik:value",
+          "of": "portfolio_chain:A_nachfrage:value",
+          "format": "num",
+          "digits": 0,
+          "prefix": "rund",
+          "suffix": "×",
+          "label": "Fabrik-Auslegung gegenüber gewinnbarer Nachfrage 2030",
+          "note": "{{portfolio_chain:A_fabrik:value}} Raketen pro Jahr gegenüber {{portfolio_chain:A_nachfrage:value|num|1}} gewinnbaren Missionen (nur Andøya)"
+        }
+      ],
+      "blocks": [
+        {
+          "kind": "panel",
+          "id": "engpass-2030"
+        },
+        {
+          "kind": "panel",
+          "id": "standorte-faktoren"
+        },
+        {
+          "kind": "text",
+          "text": "Wetter und Startausfall gehen so in die Kalkulation ein: Rampenkapazität = 365 × wetterfähige Tage / Tage zwischen zwei Starts. Erwartete erfolgreiche Starts = bindende Stufe × (1 − Ausfallwahrscheinlichkeit). Nach einem Fehlstart fallen Starts für die Stillstandszeit aus (Median der Analoga 9 Monate). Die Wendezeit der Rampe ist die unsicherste Annahme und im Eckmenü der Engpass-Kette umschaltbar."
+        }
+      ]
     },
     {
       "id": "frage-4",
@@ -68,7 +140,12 @@
       "kicker": "Frage 4 · Wortlaut folgt",
       "title": "Resilienz: was im Ernstfall bleibt.",
       "lead": "Andøya gesperrt oder Kanada priorisiert eigene Missionen: welche Standorte fangen SSO auf?",
-      "blocks": [{ "kind": "placeholder", "text": "Frage 4 erscheint um 12:45. Muster: Stressfall-Schalter je Standort, Ergebnis in Starts und Mio. €." }]
+      "blocks": [
+        {
+          "kind": "placeholder",
+          "text": "Frage 4 erscheint um 12:45. Muster: Stressfall-Schalter je Standort, Ergebnis in Starts und Mio. €."
+        }
+      ]
     },
     {
       "id": "empfehlung",
@@ -76,11 +153,26 @@
       "kicker": "Empfehlung an Isar und SSVE",
       "title": "Weitermachen mit Prüfschritt bis 31.12.2027.",
       "blocks": [
-        { "kind": "quote", "text": "Der Engpass ist der Takt, nicht die Geografie." },
-        { "kind": "text", "text": "Takt vor Fläche. Erst Andøya auf über {{break_even_ops}} Starts pro Jahr bringen (Break-even laut Kostenmodell), mit zweiter Rampe auf Andøya und der Fabrik Vaterstetten (Auslegung {{facts:fa_003:value_num}} pro Jahr). Ohne diese Kadenz hilft kein zweiter Startplatz." },
-        { "kind": "text", "text": "Nova Scotia als Versicherung, nicht als Wachstumsmotor. Vertrag seit 07.07.2026, erster Start 2028 geplant, kanadisches Startgesetz (C-28) noch offen. Geld nur gegen Meilensteine: Lizenz, Pad-Übergabe, erster Start." },
-        { "kind": "text", "text": "Kourou und SaxaVord als Optionen mit Auslöser. Kourou nur für ESA und institutionelle Kunden. SaxaVord als Notfall-Backup für SSO ohne Norwegen." },
-        { "kind": "text", "text": "Für SSVE: unterstützen, mit Prüfschritt bis 31.12.2027. Prüfkriterium Nummer eins ist die erreichte Startrate, nicht die Zahl der Startplätze." }
+        {
+          "kind": "quote",
+          "text": "Mit einer Rampe bremst der Takt, ab der zweiten die Nachfrage."
+        },
+        {
+          "kind": "text",
+          "text": "Takt vor Fläche. Eine Rampe in Andøya schafft wetterbereinigt nur rund {{portfolio_chain:A_rampe_wetter:value|num|0}} Starts pro Jahr, der Break-even liegt bei {{break_even_ops}}. Die zweite Rampe (Andøya Pad 2 oder Nova Scotia) ist der wichtigste Schritt. Die Fabrik Vaterstetten (Auslegung {{facts:fa_003:value_num}} pro Jahr) reicht dafür."
+        },
+        {
+          "kind": "text",
+          "text": "Nova Scotia als Versicherung, nicht als Wachstumsmotor. Vertrag seit 07.07.2026, erster Start 2028 geplant, kanadisches Startgesetz (C-28) noch offen. Geld nur gegen Meilensteine: Lizenz, Pad-Übergabe, erster Start."
+        },
+        {
+          "kind": "text",
+          "text": "Kourou und SaxaVord als Optionen mit Auslöser. Kourou nur für ESA und institutionelle Kunden. SaxaVord als Notfall-Backup für SSO ohne Norwegen."
+        },
+        {
+          "kind": "text",
+          "text": "Für SSVE: unterstützen, mit Prüfschritt bis 31.12.2027. Prüfkriterium Nummer eins ist die erreichte Startrate, nicht die Zahl der Startplätze."
+        }
       ]
     },
     {
@@ -90,8 +182,13 @@
       "title": "So ist das Tool gebaut.",
       "lead": "Jede Zahl kommt aus einer Datendatei und trägt Status und Quelle.",
       "blocks": [
-        { "kind": "placeholder", "text": "Architektur und Datenfluss als Diagramm folgen (knowledge/06_architektur.md)." },
-        { "kind": "links" }
+        {
+          "kind": "placeholder",
+          "text": "Architektur und Datenfluss als Diagramm folgen (knowledge/06_architektur.md)."
+        },
+        {
+          "kind": "links"
+        }
       ]
     }
   ]

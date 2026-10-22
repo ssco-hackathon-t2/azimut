@@ -116,7 +116,7 @@ const funnel: Builder = (data, opts, p) => {
         data: stages.map((s) => STAGE_LABEL[s.name]),
         axisLine: { show: false },
         axisTick: { show: false },
-        axisLabel: { color: p.mist, fontSize: 13 },
+        axisLabel: { color: p.mist, fontSize: 13, width: 150, overflow: "break" },
       },
       tooltip: { show: false },
       series: [
@@ -162,7 +162,7 @@ const reasons: Builder = (data, opts, p) => {
         data: rows.map((r) => REASON_LABEL[r.reason] ?? r.reason),
         axisLine: { show: false },
         axisTick: { show: false },
-        axisLabel: { color: p.mist, fontSize: 13 },
+        axisLabel: { color: p.mist, fontSize: 13, width: 150, overflow: "break" },
       },
       series: [
         {
@@ -252,7 +252,7 @@ const sitesReach: Builder = (data, _opts, p) => {
       grid: { left: 8, right: 64, top: 36, bottom: 8, containLabel: true },
       legend: { top: 0, left: 0, data: ["Technisch erreichbar", "Offen adressierbar"] },
       xAxis: { type: "value", show: false, max: 1 },
-      yAxis: { type: "category", inverse: true, data: sites.map((s) => s.label), axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: p.ink, fontSize: 13 } },
+      yAxis: { type: "category", inverse: true, data: sites.map((s) => s.label), axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: p.ink, fontSize: 13, width: 150, overflow: "break" } },
       series: [
         {
           name: "Technisch erreichbar",
@@ -297,7 +297,203 @@ const sitesTable: Builder = (data) => ({
   },
 });
 
+// --------------------------------------------------------------------------- Sechs Faktoren je Startplatz
+
+/** Gewichtungen für die Gesamtnote; Schlüssel = Faktor-ID aus sites_compare.json. */
+export const WEIGHTS: Record<string, Record<string, number>> = {
+  gleich: { markt: 1, nutzlast: 1, wetter: 1, geopolitik: 1, kosten: 1, kapazitaet: 1 },
+  markt: { markt: 3, nutzlast: 1, wetter: 1, geopolitik: 1, kosten: 1, kapazitaet: 1 },
+  resilienz: { markt: 1, nutzlast: 1, wetter: 2, geopolitik: 3, kosten: 1, kapazitaet: 2 },
+  kosten: { markt: 1, nutzlast: 1, wetter: 1, geopolitik: 1, kosten: 3, kapazitaet: 2 },
+};
+
+/** Gewichteter Mittelwert der vorhandenen Punkte; Lücken zählen nicht, werden aber gemeldet. */
+export function siteTotals(sites: any, weights: Record<string, number>) {
+  return (sites.sites as any[]).map((s) => {
+    const vals = (sites.factors.values as any[]).filter((v) => v.site === s.id);
+    let sum = 0;
+    let w = 0;
+    const missing: string[] = [];
+    for (const v of vals) {
+      const k = weights[v.factor] ?? 0;
+      if (v.score === null || v.score === undefined) missing.push(v.factor);
+      else {
+        sum += k * v.score;
+        w += k;
+      }
+    }
+    return { id: s.id, label: s.label, status: s.isar_status, total: w ? sum / w : null, missing };
+  });
+}
+
+const factorLabel = (sites: any, id: string) => (sites.factors.factors as any[]).find((f) => f.id === id)?.label ?? id;
+
+const factorHeatmap: Builder = (data, _opts, p) => {
+  const s = data.sites;
+  const factors = s.factors.factors as any[];
+  const sites = s.sites as any[];
+  const cells = (s.factors.values as any[]).map((v) => [
+    factors.findIndex((f) => f.id === v.factor),
+    sites.findIndex((x) => x.id === v.site),
+    v.score === null ? "-" : Math.round(v.score * 10) / 10,
+  ]);
+  return {
+    height: 90 + sites.length * 48,
+    table: factorTable(data, {}, p).table,
+    option: {
+      grid: { left: 8, right: 8, top: 8, bottom: 40, containLabel: true },
+      xAxis: { type: "category", data: factors.map((f) => f.label), position: "bottom", axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: p.mist, fontSize: 12, interval: 0, width: 90, overflow: "break" }, splitArea: { show: false } },
+      yAxis: { type: "category", inverse: true, data: sites.map((x) => x.label), axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: p.ink, fontSize: 13, width: 150, overflow: "break" } },
+      visualMap: { show: false, min: 1, max: 5, inRange: { color: [p.muted, p.accent] } },
+      series: [
+        {
+          type: "heatmap",
+          data: cells,
+          itemStyle: { borderColor: p.rule, borderWidth: 2 },
+          label: { show: true, color: p.ink, fontFamily: p.mono, fontSize: 12, formatter: (x: any) => (x.value[2] === "-" ? "Lücke" : num(x.value[2], 1)) },
+        },
+      ],
+    },
+  };
+};
+
+const factorTotal: Builder = (data, opts, p) => {
+  const weights = WEIGHTS[opts.weights] ?? WEIGHTS.gleich;
+  const rows = siteTotals(data.sites, weights);
+  const sorted = opts.sort === "value" ? [...rows].sort((a, b) => (b.total ?? 0) - (a.total ?? 0)) : rows;
+  return {
+    height: 70 + sorted.length * 44,
+    table: {
+      columns: [["site", "Startplatz"], ["total", "Gesamtnote (1 bis 5)", "right"], ["missing", "Lücken"]],
+      rows: sorted.map((r) => ({ site: r.label, total: r.total === null ? "–" : num(r.total, 2), missing: r.missing.map((f) => factorLabel(data.sites, f)).join(", ") || "keine" })),
+    },
+    option: {
+      grid: { left: 8, right: 56, top: 8, bottom: 8, containLabel: true },
+      xAxis: { type: "value", show: false, min: 0, max: 5 },
+      yAxis: {
+        type: "category",
+        inverse: true,
+        data: sorted.map((r) => r.label),
+        axisLine: { show: false },
+        axisTick: { show: false },
+        axisLabel: {
+          fontSize: 13,
+          formatter: (label: string, i: number) => `{n|${label}}\n{s|${statusLabel(sorted[i].status)}}`,
+          rich: { n: { color: p.ink, fontSize: 13, lineHeight: 18 }, s: { color: p.mist, fontFamily: p.mono, fontSize: 11, lineHeight: 15 } },
+        },
+      },
+      series: [
+        {
+          type: "bar",
+          barWidth: "52%",
+          data: sorted.map((r) => ({ value: r.total, itemStyle: { color: r.id === "andoya" ? p.accent : p.muted } })),
+          label: { show: true, position: "right", color: p.ink, fontFamily: p.mono, fontSize: 12, formatter: (x: any) => (x.value === null ? "–" : num(x.value, 2)) },
+        },
+      ],
+    },
+  };
+};
+
+const factorTable: Builder = (data) => {
+  const s = data.sites;
+  const label = (id: string) => (s.sites as any[]).find((x) => x.id === id)?.label ?? id;
+  return {
+    table: {
+      columns: [["site", "Startplatz"], ["factor", "Faktor"], ["raw", "Rohwert", "right"], ["score", "Punkte", "right"], ["status", "Status"], ["note", "Begründung"]],
+      rows: (s.factors.values as any[]).map((v) => ({
+        site: label(v.site),
+        factor: factorLabel(s, v.factor),
+        raw: v.raw === null ? "Lücke" : num(v.raw, v.raw < 1.5 ? 2 : v.raw < 10 ? 1 : 0),
+        score: v.score === null ? "–" : num(v.score, 1),
+        status: v.status ?? "–",
+        note: (v.note ?? "").slice(0, 140),
+      })),
+    },
+  };
+};
+
+// --------------------------------------------------------------------------- Engpass-Kette 2030
+
+const chain: Builder = (data, opts, p) => {
+  const items = data.sites.portfolios.items as any[];
+  const pf = items.find((x) => x.id === opts.portfolio) ?? items[0];
+  // Variante je Wendezeit der Rampe (Tage zwischen zwei Starts), sonst die Vorgabe der Daten
+  const v = pf.variants?.[opts.turnaround] ?? pf;
+  const stages = (v.chain as any[]).filter((c) => c.value !== null && c.value !== undefined);
+  const be = pf.break_even;
+  return {
+    height: 70 + stages.length * 46,
+    table: {
+      columns: [["stage", "Stufe"], ["value", "Starts bzw. Missionen pro Jahr", "right"], ["status", "Status"], ["note", "Hinweis"]],
+      rows: (v.chain as any[]).map((c) => ({ stage: c.label, value: c.value === null ? "Lücke" : num(c.value, 1), status: c.status ?? "–", note: c.note ?? "" })),
+    },
+    option: {
+      grid: { left: 8, right: 64, top: 28, bottom: 8, containLabel: true },
+      xAxis: { type: "value", show: false, max: (v: { max: number }) => v.max * 1.05 },
+      yAxis: { type: "category", inverse: true, data: stages.map((c) => c.label), axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: p.ink, fontSize: 13, width: 150, overflow: "break" } },
+      series: [
+        {
+          type: "bar",
+          barWidth: "52%",
+          // Ein Akzent: die Stufe, die bindet (kleinster Wert der Kette)
+          data: stages.map((c) => ({ value: c.value, itemStyle: { color: c.id === v.binding ? p.accent : p.muted } })),
+          label: { show: true, position: "right", color: p.ink, fontFamily: p.mono, fontSize: 12, formatter: (x: any) => num(x.value, 1) },
+          markLine: be
+            ? {
+                symbol: "none",
+                silent: true,
+                lineStyle: { color: p.ink, type: [4, 4], width: 1 },
+                label: { formatter: `Break-even ${num(be.base)}`, color: p.ink, fontFamily: p.mono, fontSize: 11, position: "start" },
+                data: [{ xAxis: be.base }],
+              }
+            : undefined,
+        },
+      ],
+    },
+  };
+};
+
+const portfolioDemand: Builder = (data, _opts, p) => {
+  const items = data.sites.portfolios.items as any[];
+  const need = (x: any) => x.chain.find((c: any) => c.id === "nachfrage")?.value ?? null;
+  const be = items[0]?.break_even;
+  return {
+    height: 70 + items.length * 44,
+    table: {
+      columns: [["pf", "Portfolio"], ["need", "Gewinnbare Missionen 2030", "right"], ["be", "Break-even", "right"]],
+      rows: items.map((x) => ({ pf: x.label, need: need(x) === null ? "–" : num(need(x), 1), be: be ? num(be.base) : "–" })),
+    },
+    option: {
+      grid: { left: 8, right: 56, top: 28, bottom: 8, containLabel: true },
+      xAxis: { type: "value", show: false, min: 0, max: (v: { max: number }) => Math.max(v.max, be?.high ?? 0) * 1.05 },
+      yAxis: { type: "category", inverse: true, data: items.map((x) => x.label), axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: p.ink, fontSize: 13, width: 150, overflow: "break" } },
+      series: [
+        {
+          type: "bar",
+          barWidth: "52%",
+          data: items.map((x) => ({ value: need(x), itemStyle: { color: x.id === "A" ? p.accent : p.muted } })),
+          label: { show: true, position: "right", color: p.ink, fontFamily: p.mono, fontSize: 12, formatter: (x: any) => num(x.value, 1) },
+          markLine: be
+            ? {
+                symbol: "none",
+                silent: true,
+                lineStyle: { color: p.ink, type: [4, 4], width: 1 },
+                label: { formatter: `Break-even ${num(be.base)}`, color: p.ink, fontFamily: p.mono, fontSize: 11, position: "start" },
+                data: [{ xAxis: be.base }],
+              }
+            : undefined,
+        },
+      ],
+    },
+  };
+};
+
 export const KINDS: Record<string, Builder> = {
+  "factor-heatmap": factorHeatmap,
+  "factor-total": factorTotal,
+  "factor-table": factorTable,
+  chain,
+  "portfolio-demand": portfolioDemand,
   funnel,
   "funnel-table": (data) => ({ table: funnelTable(headlineRun(data.runs)) }),
   reasons,

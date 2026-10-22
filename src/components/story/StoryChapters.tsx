@@ -123,12 +123,13 @@ function Kpis({ items, t, run }: { items: Kpi[]; t: Tables; run: boolean }) {
           <div key={k.ref + i} className="flex flex-col border-t border-rule pt-5">
             <dt className="order-2 mt-3 text-[0.95rem] text-snow">{k.label}</dt>
             <dd
-              className={`order-1 num font-semibold leading-[0.92] tracking-[-0.035em] ${tone} ${
+              className={`order-1 num font-display font-semibold leading-[0.92] tracking-[-0.035em] ${tone} ${
                 i === 0 ? "text-[clamp(3.6rem,8vw,6.8rem)]" : "text-[clamp(2.2rem,3.6vw,3.2rem)]"
               }`}
             >
               {k.prefix && <span className="mb-[0.12em] block text-[0.3em] font-medium leading-tight tracking-normal text-mist">{k.prefix}</span>}
               {v ? <CountUp v={v.value} fmt={k.format ?? (k.of ? "pct" : defaultFmt(v))} digits={k.digits} run={run} /> : <span className="text-alert">[{k.ref} fehlt]</span>}
+              {k.suffix && <span className="ml-[0.08em]">{k.suffix}</span>}
             </dd>
             <dd className="order-3 mt-1.5 text-[0.82rem] text-mist">
               {k.note && (
@@ -182,7 +183,7 @@ function BlockView({ b, ctx }: { b: Block; ctx: StoryCtx }) {
       );
     case "quote":
       return (
-        <blockquote className="border-l-2 border-aurora pl-6 text-[clamp(1.5rem,2.8vw,2.3rem)] font-semibold leading-tight tracking-[-0.02em] text-snow">
+        <blockquote className="border-l-2 border-aurora pl-6 font-display text-[clamp(1.5rem,2.8vw,2.3rem)] font-semibold leading-tight tracking-[-0.02em] text-snow">
           <Tokens text={b.text} t={ctx.t} />
         </blockquote>
       );

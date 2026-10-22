@@ -15,6 +15,7 @@ export interface Kpi {
   label: string;
   note?: string;
   prefix?: string;
+  suffix?: string;
   digits?: number;
   format?: Fmt;
   tone?: "win" | "accent";
@@ -164,6 +165,8 @@ export interface SitesCompare {
     sso_launches_2025: number;
     note?: string;
   };
+  /** Engpass-Kette je Standort-Portfolio (Frage 3), Stufen von der Fabrik bis zur gewinnbaren Nachfrage. */
+  portfolios?: { items: { id: string; label: string; chain: { id: string; label: string; value: number | null; status: string }[] }[] };
 }
 
 /** Verweisbare Tabellen: Case-DB plus Standortvergleich (sites:<id>:<feld>, sites_meta:all:<feld>). */
@@ -175,6 +178,10 @@ export function buildTables(db: Tables, sc?: SitesCompare): Tables {
     // Die Kennzahlen je Standort sind gerechnet: Status aus der Provenienz, nicht der Stammdatenstatus des Standorts.
     sites: sc.sites.map((s) => ({ ...s, data_status: status })) as unknown as Row[],
     sites_meta: [{ id: "all", e0_count: sc.e0_count, union_e2_count: sc.union_e2_count, data_status: status }],
+    // portfolio_chain:<portfolio>_<stufe>:value, z. B. A_nachfrage (nur Andøya) oder D_fabrik.
+    portfolio_chain: (sc.portfolios?.items ?? []).flatMap((p) =>
+      p.chain.map((c) => ({ id: `${p.id}_${c.id}`, value: c.value, data_status: c.status, label: `${p.label}: ${c.label}` })),
+    ),
   };
 }
 

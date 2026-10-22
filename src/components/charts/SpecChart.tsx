@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { loadAsset, useAssetJSON } from "@/lib/data";
-import { CHART } from "./theme";
+import { CHART, alpha } from "./theme";
 import { EChart } from "./EChart";
 import { KINDS, viewOptions, type ChartsFile, type Palette, type PanelSpec, type Table } from "./panels/registry";
 
@@ -58,7 +58,7 @@ function useSources(sources: Record<string, string>) {
 function palette(): Palette {
   // Ein Akzent pro Diagramm (Design Guide §1.3). --chart-accent erlaubt der Seite, ihn zu setzen (z. B. Orbit-Rot).
   const accent = typeof document === "undefined" ? "" : getComputedStyle(document.documentElement).getPropertyValue("--chart-accent").trim();
-  return { accent: accent || CHART.ice, ink: CHART.ink, mist: CHART.mist, muted: CHART.deduct, rule: CHART.rule, font: CHART.font, mono: CHART.mono };
+  return { accent: accent || CHART.ice, ink: CHART.ink, mist: CHART.mist, muted: alpha(CHART.mist2, 0.6), rule: CHART.rule, font: CHART.font, mono: CHART.mono };
 }
 
 function Panel({ id, spec, initialView }: { id: string; spec: PanelSpec; initialView?: string }) {

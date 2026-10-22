@@ -8,10 +8,13 @@ importers:
 
   .:
     dependencies:
-      '@fontsource-variable/martian-mono':
+      '@fontsource-variable/geist':
         specifier: 5.3.0
         version: 5.3.0
-      '@fontsource-variable/schibsted-grotesk':
+      '@fontsource-variable/geist-mono':
+        specifier: 5.3.0
+        version: 5.3.0
+      '@fontsource-variable/red-hat-display':
         specifier: 5.3.0
         version: 5.3.0
       echarts:
@@ -76,11 +79,14 @@ packages:
   '@epic-web/invariant@1.0.0':
     resolution: {integrity: sha512-lrTPqgvfFQtR/eY/qkIzp98OGdNJu0m5ji3q/nJI8v3SXkRKEnWiOxMmbvcSoAIzv/cGiuvRy57k4suKQSAdwA==}
 
-  '@fontsource-variable/martian-mono@5.3.0':
-    resolution: {integrity: sha512-0wVODx9ILwNnaYC4XCuSaFRYtj1Prd89MRVaSuv2ng6zLiQkS4SepaWEPefs7vqCZS8sbEOA8jb/4F5KNMnGdg==}
+  '@fontsource-variable/geist-mono@5.3.0':
+    resolution: {integrity: sha512-vBbuwDEo9AkrqADMXOrlAR3DFcJi4/JxeuU43FoiQERnNwsfXNnvxvReZG02cQKmyk4DZkZdBZX3oTDvy2zBAw==}
 
-  '@fontsource-variable/schibsted-grotesk@5.3.0':
-    resolution: {integrity: sha512-ndS6H/KICWANchlHF3q4UdZD+xrZ3Ji0rUobIuXlgvDUzDfqZDsVuXPXZb636nJZMHE9zZ9Fmwgqazm8hMB50Q==}
+  '@fontsource-variable/geist@5.3.0':
+    resolution: {integrity: sha512-j0m+vLQuG5XAYoHtGCVu0spvlGreR3EzpECUVzkFmI1mTVnAO38l/NEPDCFgZ177JxzYJCLSmTQibIiYPilGrA==}
+
+  '@fontsource-variable/red-hat-display@5.3.0':
+    resolution: {integrity: sha512-8u4FI+i3fkB8erlN9lMGa7Hm7aBCRP34y/aPwriBUiDYoxmS/N1QvBrd/hghUBnHJKrVKRg3h4Oubpyl2H8smw==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -438,8 +444,8 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  caniuse-lite@1.0.30001818:
-    resolution: {integrity: sha512-XJbgo4adscw7R4MZU4/qVFkoMyPaNUAWmdNY4o/k9x7fFwmv4frIlndI9lWuaxviW9ObiZel9LuncnQPn6hQ5A==}
+  caniuse-lite@1.0.30001817:
+    resolution: {integrity: sha512-uZ1JG80BwhtMalIAGPxPfmNhHyd/B/nTdr3hITWlRamSyAdUStP1Gop01e7SD5q6J90ixJvWDbvmiFVfDgn4bw==}
 
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
@@ -730,9 +736,11 @@ snapshots:
 
   '@epic-web/invariant@1.0.0': {}
 
-  '@fontsource-variable/martian-mono@5.3.0': {}
+  '@fontsource-variable/geist-mono@5.3.0': {}
 
-  '@fontsource-variable/schibsted-grotesk@5.3.0': {}
+  '@fontsource-variable/geist@5.3.0': {}
+
+  '@fontsource-variable/red-hat-display@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true
@@ -988,7 +996,7 @@ snapshots:
 
   baseline-browser-mapping@2.11.30: {}
 
-  caniuse-lite@1.0.30001818: {}
+  caniuse-lite@1.0.30001817: {}
 
   client-only@0.0.1: {}
 
@@ -1110,7 +1118,7 @@ snapshots:
       '@next/env': 16.4.2
       '@swc/helpers': 0.5.23
       baseline-browser-mapping: 2.11.30
-      caniuse-lite: 1.0.30001818
+      caniuse-lite: 1.0.30001817
       postcss: 8.5.23
       react: 19.3.1
       react-dom: 19.3.1(react@19.3.1)

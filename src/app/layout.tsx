@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
-import "@fontsource-variable/schibsted-grotesk";
-import "@fontsource-variable/martian-mono";
+import "@fontsource-variable/red-hat-display";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
 import "./globals.css";
 import { SiteHeader, SiteHeaderStatic } from "@/components/shell/SiteHeader";
 import { SiteFooter } from "@/components/shell/SiteFooter";

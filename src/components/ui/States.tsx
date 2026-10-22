@@ -19,7 +19,7 @@ export function ErrorState({ error, retry }: { error: string; retry?: () => void
     <div role="alert" className="my-6 border border-alert/50 bg-alert/8 px-5 py-4 text-snow">
       <p className="font-medium">Diese Ansicht konnte ihre Daten nicht laden.</p>
       <p className="mt-1 text-[0.92rem] text-mist">
-        {error}. Die Seite läuft ohne Server; fehlt die Datei im Export, bitte den Build prüfen.
+        {error}. Bitte die Verbindung und den Datenstand prüfen. Im Live-Modus muss das Python-Backend laufen.
       </p>
       {retry && (
         <button type="button" onClick={retry} className="mt-3 border border-rule-strong px-3 py-1.5 text-[0.9rem] hover:border-ice">

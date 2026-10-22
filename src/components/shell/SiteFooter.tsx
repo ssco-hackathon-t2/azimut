@@ -26,14 +26,14 @@ export function SiteFooter() {
         </div>
         <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1">
           <dt>Datenstand</dt>
-          <dd className="text-snow">{p ? (p.status === "fixture" ? "UI-Fixture, keine aktuelle Fachberechnung" : "Fachlieferung") : "lädt …"}</dd>
+          <dd className="text-snow">{p ? p.label : "lädt …"}</dd>
           <dt>Engine-Commit</dt>
           <dd className="metric text-snow">{p ? p.source_commit.slice(0, 7) : "–"}</dd>
           <dt>GCAT-Katalog</dt>
           <dd className="text-snow">{p ? fmtDate(p.catalog_date) : "–"}</dd>
           {t && (
             <>
-              <dt>Prüfstand</dt>
+              <dt>Prüfstand (archiviert)</dt>
               <dd>
                 <Link href={`/belege/${q}#pruefstand`} className={t.failed > 0 ? "text-alert" : "text-snow"}>
                   {fmtNum(t.passed)} von {fmtNum(t.total)} Tests bestanden

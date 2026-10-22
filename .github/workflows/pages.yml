@@ -37,6 +37,7 @@ jobs:
         env:
           # z. B. "/azimut"; leer bei eigener Domain
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_API_URL: ${{ vars.ANDOYA_API_URL }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
