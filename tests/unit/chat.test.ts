@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { parseSSE, plainText } from "../../src/lib/chat-core.ts";
-import { allowRequest, originAllowed, parseHistory, MAX_HISTORY, RATE_LIMIT, RATE_WINDOW_MS } from "../../supabase/functions/azimut-chat/guard.ts";
+import { allowRequest, limitMessage, originAllowed, parseHistory, MAX_HISTORY, RATE_LIMIT, RATE_WINDOW_MS } from "../../supabase/functions/azimut-chat/guard.ts";
 
 test("Chat: SSE-Ereignisse über Chunk-Grenzen", () => {
   const a = parseSSE('data: {"text":"Hel"}\n\ndata: {"te');
@@ -30,6 +30,13 @@ test("Chat: Rate-Limit pro IP und Stunde", () => {
   assert.equal(allowRequest(hits, "1.2.3.4", 2000), false);
   assert.ok(allowRequest(hits, "5.6.7.8", 2000), "andere IP unabhängig");
   assert.ok(allowRequest(hits, "1.2.3.4", 1000 + RATE_WINDOW_MS + 1), "nach einer Stunde wieder frei");
+});
+
+test("Chat: eigene Meldung für IP- und globales Tageslimit", () => {
+  assert.equal(RATE_LIMIT, 60);
+  assert.equal(limitMessage("ok"), null);
+  assert.match(limitMessage("ip")!, /in an hour/);
+  assert.match(limitMessage("global")!, /daily limit/);
 });
 
 test("Chat: nur eigene Origin und localhost", () => {

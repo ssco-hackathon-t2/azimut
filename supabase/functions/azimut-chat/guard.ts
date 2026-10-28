@@ -2,8 +2,10 @@
 
 export const MAX_INPUT_CHARS = 1000;
 export const MAX_HISTORY = 8;
-export const RATE_LIMIT = 20;
+export const RATE_LIMIT = 60;
 export const RATE_WINDOW_MS = 60 * 60 * 1000;
+export const GLOBAL_LIMIT = 400;
+export const GLOBAL_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -51,4 +53,16 @@ export function allowRequest(hits: Map<string, number[]>, ip: string, now = Date
   // Speicher begrenzen: alte IPs fallen raus.
   if (hits.size > 5000) hits.delete(hits.keys().next().value!);
   return ok;
+}
+
+/** Ergebnis von chat_allow: "ok", "ip" (Limit pro IP) oder "global" (Tageslimit über alle IPs). */
+export type RateVerdict = "ok" | "ip" | "global";
+
+/** Nutzertext für ein Rate-Limit-Ergebnis; null, wenn die Anfrage durchgeht. */
+export function limitMessage(verdict: RateVerdict): string | null {
+  if (verdict === "ok") return null;
+  if (verdict === "global") {
+    return "The assistant has reached its daily limit. Please try again tomorrow; all figures and sources are on the page itself.";
+  }
+  return "Too many questions from this connection. Please try again in an hour.";
 }

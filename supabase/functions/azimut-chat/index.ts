@@ -1,7 +1,7 @@
 // Supabase Edge Function: Chat-Assistent der Azimut-Seite. Antwortet nur aus knowledge.md, gestreamt als SSE.
 // Deploy: npx supabase functions deploy azimut-chat --no-verify-jwt --use-api
 import Anthropic from "npm:@anthropic-ai/sdk";
-import { allowRequest, originAllowed, parseHistory, RATE_LIMIT, RATE_WINDOW_MS } from "./guard.ts";
+import { allowRequest, limitMessage, originAllowed, parseHistory, GLOBAL_LIMIT, GLOBAL_WINDOW_MS, RATE_LIMIT, RATE_WINDOW_MS, type RateVerdict } from "./guard.ts";
 
 const MODEL = "claude-sonnet-5-5";
 const MAX_TOKENS = 700;
@@ -26,10 +26,10 @@ const client = new Anthropic({ apiKey: Deno.env.get("ANTHROPIC_API_KEY") });
 const hits = new Map<string, number[]>();
 
 /**
- * Rate-Limit über die Datenbank (supabase/migrations/*_chat_rate_limit.sql): jede Anfrage kann auf einer
+ * Rate-Limit über die Datenbank (supabase/migrations/*_chat_rate_limit*.sql), pro IP und global pro Tag: jede Anfrage kann auf einer
  * neuen Function-Instanz landen, ein Zähler im Speicher allein greift daher nicht. Gespeichert wird nur ein Hash der IP.
  */
-async function allowed(ip: string): Promise<boolean> {
+async function rateVerdict(ip: string): Promise<RateVerdict> {
   try {
     const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(ip));
     const ipHash = Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
@@ -37,14 +37,22 @@ async function allowed(ip: string): Promise<boolean> {
     const res = await fetch(`${Deno.env.get("SUPABASE_URL")}/rest/v1/rpc/chat_allow`, {
       method: "POST",
       headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ p_ip_hash: ipHash, p_limit: RATE_LIMIT, p_window_s: RATE_WINDOW_MS / 1000 }),
+      body: JSON.stringify({
+        p_ip_hash: ipHash,
+        p_limit: RATE_LIMIT,
+        p_window_s: RATE_WINDOW_MS / 1000,
+        p_global_limit: GLOBAL_LIMIT,
+        p_global_window_s: GLOBAL_WINDOW_MS / 1000,
+      }),
     });
     if (!res.ok) throw new Error(`rate limit rpc ${res.status}`);
-    return (await res.json()) === true;
+    const verdict = await res.json();
+    if (verdict !== "ok" && verdict !== "ip" && verdict !== "global") throw new Error(`rate limit rpc returned ${verdict}`);
+    return verdict;
   } catch (e) {
     // Datenbank nicht erreichbar: wenigstens das Limit je Instanz anwenden, statt den Chat ganz zu sperren.
     console.error(e);
-    return allowRequest(hits, ip);
+    return allowRequest(hits, ip) ? "ok" : "ip";
   }
 }
 
@@ -68,9 +76,8 @@ Deno.serve(async (req) => {
   if (req.method !== "POST") return json(405, { error: "method not allowed" }, headers);
 
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
-  if (!(await allowed(ip))) {
-    return json(429, { error: "Too many questions from this connection. Please try again in an hour." }, headers);
-  }
+  const limited = limitMessage(await rateVerdict(ip));
+  if (limited) return json(429, { error: limited }, headers);
 
   const raw = await req.text();
   if (raw.length > 20000) return json(413, { error: "request too large" }, headers);
