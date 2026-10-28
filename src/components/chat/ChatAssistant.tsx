@@ -1,7 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { parseSSE, plainText } from "@/lib/chat-core";
+import {
+  loadVoiceLang,
+  parseSSE,
+  plainText,
+  saveVoiceLang,
+  SILENCE_MS,
+  transcriptOf,
+  VOICE_LOCALE,
+  voiceErrorMessage,
+  type VoiceLang,
+} from "@/lib/chat-core";
 
 // Supabase Edge Function azimut-chat (nicht geheim). Leer = Chat ausgeschaltet, die Seite bleibt unverändert.
 const CHAT_URL = process.env.NEXT_PUBLIC_CHAT_URL ?? "";
@@ -13,12 +23,14 @@ type Msg = { role: "user" | "assistant"; content: string; error?: boolean };
 // Web Speech API: nur der Teil, den der Chat nutzt (nicht in lib.dom enthalten).
 type Recognizer = {
   lang: string;
+  continuous: boolean;
   interimResults: boolean;
   onresult: ((e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
   onend: (() => void) | null;
-  onerror: (() => void) | null;
+  onerror: ((e: { error: string }) => void) | null;
   start: () => void;
   stop: () => void;
+  abort: () => void;
 };
 type RecognizerCtor = new () => Recognizer;
 
@@ -27,12 +39,23 @@ function recognizerCtor(): RecognizerCtor | undefined {
   return w.SpeechRecognition ?? w.webkitSpeechRecognition;
 }
 
-function speak(text: string) {
+function speak(text: string, lang: VoiceLang) {
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  // Antwortet in der Sprache der Frage: deutsche Antwort grob an Funktionswörtern erkennen.
-  u.lang = /\b(und|nicht|der|die|das|ist|eine?)\b/i.test(text) ? "de-DE" : "en-US";
+  u.lang = VOICE_LOCALE[lang];
+  // Passende Stimme ausdrücklich wählen; manche Browser ignorieren lang allein.
+  const voice = speechSynthesis.getVoices().find((v) => v.lang.replace("_", "-").startsWith(lang));
+  if (voice) u.voice = voice;
   speechSynthesis.speak(u);
+}
+
+/** localStorage kann im privaten Fenster oder bei gesperrten Website-Daten schon beim Zugriff werfen. */
+function browserStorage(): Storage | undefined {
+  try {
+    return window.localStorage;
+  } catch {
+    return undefined;
+  }
 }
 
 export function ChatAssistant() {
@@ -48,14 +71,22 @@ function Chat() {
   const [listening, setListening] = useState(false);
   const [voice, setVoice] = useState({ mic: false, tts: false });
   const [readAloud, setReadAloud] = useState(false);
+  const [lang, setLang] = useState<VoiceLang>("en");
+  const [voiceError, setVoiceError] = useState<string | null>(null);
   const abort = useRef<AbortController | null>(null);
   const rec = useRef<Recognizer | null>(null);
+  const heard = useRef("");
+  const silence = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const sendOnEnd = useRef(false);
   const list = useRef<HTMLDivElement>(null);
   const field = useRef<HTMLTextAreaElement>(null);
   const button = useRef<HTMLButtonElement>(null);
 
   // Sprachfunktionen erst im Browser prüfen (statischer Export rendert ohne window).
-  useEffect(() => setVoice({ mic: !!recognizerCtor(), tts: "speechSynthesis" in window }), []);
+  useEffect(() => {
+    setVoice({ mic: !!recognizerCtor(), tts: "speechSynthesis" in window });
+    setLang(loadVoiceLang(browserStorage()));
+  }, []);
 
   useEffect(() => {
     if (open) field.current?.focus();
@@ -68,7 +99,9 @@ function Chat() {
   useEffect(
     () => () => {
       abort.current?.abort();
-      rec.current?.stop();
+      clearTimeout(silence.current);
+      sendOnEnd.current = false;
+      rec.current?.abort();
       if ("speechSynthesis" in window) speechSynthesis.cancel();
     },
     [],
@@ -76,17 +109,25 @@ function Chat() {
 
   function close() {
     setOpen(false);
-    rec.current?.stop();
+    stopListening(false);
     if (voice.tts) speechSynthesis.cancel();
     requestAnimationFrame(() => button.current?.focus());
   }
 
-  async function ask(question: string) {
+  function switchLang() {
+    const next = lang === "en" ? "de" : "en";
+    setLang(next);
+    saveVoiceLang(browserStorage(), next);
+  }
+
+  // speakAnswer als Argument: ein per Stimme gestartetes ask sieht das eben eingeschaltete readAloud noch nicht.
+  async function ask(question: string, speakAnswer = readAloud) {
     const q = question.trim().slice(0, MAX_INPUT);
     if (!q || busy) return;
     const history = [...msgs.filter((m) => !m.error), { role: "user" as const, content: q }];
     setMsgs([...history, { role: "assistant", content: "" }]);
     setInput("");
+    setVoiceError(null);
     setBusy(true);
     const ctrl = new AbortController();
     abort.current = ctrl;
@@ -118,7 +159,7 @@ function Chat() {
         }
       }
       if (!answer) throw new Error("unavailable");
-      if (readAloud) speak(plainText(answer));
+      if (speakAnswer) speak(plainText(answer), lang);
     } catch (e) {
       if (ctrl.signal.aborted) return;
       // TypeError = Netzwerkfehler (Function nicht erreichbar); Server-Meldungen sind für Nutzer formuliert.
@@ -130,25 +171,58 @@ function Chat() {
     }
   }
 
+  // Aufnahme beenden; mit send schickt onend den erkannten Text ab, sonst wird er verworfen.
+  function stopListening(send: boolean) {
+    clearTimeout(silence.current);
+    sendOnEnd.current = send;
+    if (send) rec.current?.stop();
+    else rec.current?.abort();
+  }
+
   function toggleMic() {
-    if (listening) return rec.current?.stop();
+    // Zweiter Klick: aufhören und das bisher Erkannte absenden.
+    if (listening) return stopListening(true);
     const Ctor = recognizerCtor();
-    if (!Ctor) return;
+    if (!Ctor || busy) return;
     const r = new Ctor();
-    r.lang = navigator.language || "en-US";
-    r.interimResults = false;
+    r.lang = VOICE_LOCALE[lang];
+    r.continuous = true;
+    r.interimResults = true;
+    heard.current = "";
+    sendOnEnd.current = false;
     r.onresult = (e) => {
-      const text = Array.from(e.results).map((res) => res[0].transcript).join(" ");
-      // Gesprochene Frage direkt senden und die Antwort vorlesen.
-      if (voice.tts) setReadAloud(true);
-      setInput(text);
-      ask(text);
+      heard.current = transcriptOf(e.results);
+      setInput(heard.current);
+      // Nach SILENCE_MS ohne neues Ergebnis gilt die Frage als fertig.
+      clearTimeout(silence.current);
+      silence.current = setTimeout(() => stopListening(true), SILENCE_MS);
     };
-    r.onend = () => setListening(false);
-    r.onerror = () => setListening(false);
+    r.onerror = (e) => {
+      sendOnEnd.current = false;
+      setVoiceError(voiceErrorMessage(e.error, lang));
+    };
+    r.onend = () => {
+      clearTimeout(silence.current);
+      rec.current = null;
+      setListening(false);
+      if (sendOnEnd.current && heard.current) {
+        // Gesprochene Frage: Antwort vorlesen, auch für die folgenden Fragen.
+        if (voice.tts) setReadAloud(true);
+        ask(heard.current, voice.tts);
+      }
+      sendOnEnd.current = false;
+    };
     rec.current = r;
+    setVoiceError(null);
+    setInput("");
     setListening(true);
-    r.start();
+    try {
+      r.start();
+    } catch {
+      rec.current = null;
+      setListening(false);
+      setVoiceError(voiceErrorMessage("start-failed", lang));
+    }
   }
 
   return (
@@ -232,6 +306,12 @@ function Chat() {
             )}
           </div>
 
+          {voiceError && (
+            <p role="alert" className="border-t border-rule px-4 py-2 text-[0.82rem] leading-snug text-amber">
+              {voiceError}
+            </p>
+          )}
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -258,6 +338,18 @@ function Chat() {
               placeholder={listening ? "Listening …" : "Your question"}
               className="min-w-0 flex-1 resize-none border border-rule-strong bg-night px-3 py-2 text-[0.95rem] text-snow placeholder:text-mist-2 focus:border-ice focus:outline-none"
             />
+            {(voice.mic || voice.tts) && (
+              <button
+                type="button"
+                onClick={switchLang}
+                disabled={listening}
+                aria-label={lang === "en" ? "Voice language English, switch to German" : "Sprache Deutsch, auf Englisch umschalten"}
+                title={lang === "en" ? "Voice: English" : "Stimme: Deutsch"}
+                className="border border-rule-strong px-2 py-2 font-mono text-[0.8rem] text-mist hover:text-snow disabled:opacity-50"
+              >
+                {lang.toUpperCase()}
+              </button>
+            )}
             {voice.mic && (
               <button
                 type="button"
@@ -266,7 +358,7 @@ function Chat() {
                 disabled={busy}
                 className={`border px-3 py-2 ${listening ? "border-red text-red" : "border-rule-strong text-mist hover:text-snow"} disabled:opacity-50`}
               >
-                <span className="sr-only">{listening ? "Stop listening" : "Ask by voice"}</span>
+                <span className="sr-only">{listening ? "Stop and send" : "Ask by voice"}</span>
                 <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.8">
                   <rect x="9" y="3" width="6" height="11" rx="3" />
                   <path d="M5 11a7 7 0 0 0 14 0M12 18v3" strokeLinecap="round" />

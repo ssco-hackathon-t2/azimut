@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseSSE, plainText } from "../../src/lib/chat-core.ts";
+import { loadVoiceLang, parseSSE, plainText, saveVoiceLang, transcriptOf, voiceErrorMessage } from "../../src/lib/chat-core.ts";
 import { allowRequest, limitMessage, originAllowed, parseHistory, MAX_HISTORY, RATE_LIMIT, RATE_WINDOW_MS } from "../../supabase/functions/azimut-chat/guard.ts";
 
 test("Chat: SSE-Ereignisse über Chunk-Grenzen", () => {
@@ -10,6 +10,26 @@ test("Chat: SSE-Ereignisse über Chunk-Grenzen", () => {
   assert.deepEqual(b.events, [{ text: "lo" }, { done: true }]);
   assert.equal(b.rest, "");
   assert.equal(plainText("## Yes\n**Support** it"), "Yes\nSupport it");
+});
+
+test("Chat: Spracheingabe – Sprache merken, Text zusammensetzen, Fehlermeldungen", () => {
+  const store = new Map<string, string>();
+  const storage = { getItem: (k: string) => store.get(k) ?? null, setItem: (k: string, v: string) => void store.set(k, v) };
+  assert.equal(loadVoiceLang(storage), "en", "Standard Englisch");
+  saveVoiceLang(storage, "de");
+  assert.equal(loadVoiceLang(storage), "de");
+  const broken = { getItem: () => { throw new Error("blocked"); }, setItem: () => { throw new Error("blocked"); } };
+  assert.equal(loadVoiceLang(broken), "en", "gesperrter Speicher fällt auf Englisch zurück");
+  assert.doesNotThrow(() => saveVoiceLang(broken, "de"));
+  assert.equal(loadVoiceLang(undefined), "en");
+
+  assert.equal(transcriptOf([[{ transcript: "Should we" }], [{ transcript: " invest  now" }]]), "Should we invest now");
+  assert.equal(transcriptOf([]), "");
+
+  assert.match(voiceErrorMessage("not-allowed", "en")!, /Allow the microphone/);
+  assert.equal(voiceErrorMessage("no-speech", "de"), "Nichts gehört, bitte nochmal.");
+  assert.match(voiceErrorMessage("network", "en")!, /didn't work/);
+  assert.equal(voiceErrorMessage("aborted", "en"), null);
 });
 
 test("Chat: Verlauf auf die letzten Nachrichten kürzen, beginnt mit Nutzer", () => {
