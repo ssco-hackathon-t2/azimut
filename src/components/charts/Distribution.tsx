@@ -30,7 +30,7 @@ export function Distribution({
       grid: { left: 8, right: 16, top: 30, bottom: 8, containLabel: true },
       tooltip: {
         trigger: "item",
-        formatter: (p: { value: number[] }) => `${fmtNum(p.value[0], log ? 0 : 0)}–${fmtNum(p.value[1], log ? 0 : 0)} ${xName}<br/><b>${fmtNum(p.value[2])}</b> Nutzlasten`,
+        formatter: (p: { value: number[] }) => `${fmtNum(p.value[0], log ? 0 : 0)}–${fmtNum(p.value[1], log ? 0 : 0)} ${xName}<br/><b>${fmtNum(p.value[2])}</b> payloads`,
       },
       dataZoom: [{ type: "inside", filterMode: "none" }],
       xAxis: {
@@ -43,7 +43,7 @@ export function Distribution({
         ...valueAxis(),
         splitLine: { show: false },
       },
-      yAxis: { type: "value", name: "Nutzlasten", ...valueAxis() },
+      yAxis: { type: "value", name: "Payloads", ...valueAxis() },
       series: [
         {
           type: "custom",

@@ -8,7 +8,7 @@ export function ChartFrame({
   controls,
   note,
   table,
-  tableLabel = "Werte als Tabelle",
+  tableLabel = "Values as table",
   children,
 }: {
   controls?: ReactNode;

@@ -65,7 +65,7 @@ export function PadMap({
     <figure className={`relative ${className}`}>
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-full w-full" role="img" aria-labelledby="padmap-t">
         <title id="padmap-t">
-          Lageplan Andøya Spaceport Pad A, Sentinel-2-Aufnahme 2025 mit OpenStreetMap-Geometrie{sector ? ` und genehmigtem Startsektor ${sector.min}° bis ${sector.max}°` : ""}.
+          Site plan Andøya Spaceport Pad A, Sentinel-2 imagery 2025 with OpenStreetMap geometry{sector ? ` and licensed launch sector ${sector.min}° to ${sector.max}°` : ""}.
         </title>
         <defs>
           <filter id="grade" colorInterpolationFilters="sRGB">
@@ -98,14 +98,14 @@ export function PadMap({
         <circle cx={px} cy={py} r="5" fill="none" stroke="#e9edf2" strokeWidth="1.2" />
         {sector && mid && (
           <text x={x(mid[1])} y={y(mid[0])} fill="#7ee0b5" fontSize="22" textAnchor="middle" style={{ fontFamily: "var(--font-sans)" }}>
-            Startsektor {sector.min}–{sector.max}°
+            Launch sector {sector.min}–{sector.max}°
           </text>
         )}
         {showScale && (
           <g transform={`translate(${W - barPx - 40}, ${H - 46})`}>
             <rect x="0" y="0" width={barPx} height="3" fill="#e9edf2" />
             <text x={barPx / 2} y="-8" fill="#e9edf2" fontSize="20" textAnchor="middle" style={{ fontFamily: "var(--font-mono)" }}>
-              {barKm.toLocaleString("de-DE")} km
+              {barKm.toLocaleString("en-US")} km
             </text>
           </g>
         )}
@@ -118,9 +118,9 @@ export function PadMap({
       </svg>
       <figcaption className={caption ? "absolute bottom-1 left-2 text-[0.7rem] text-mist" : "sr-only"}>
         <span className="sr-only">
-          Pad A bei {fmtCoord(geo.pad.lat, geo.pad.lon, 5)}, Genauigkeit etwa {geo.pad.accuracy_m} m ({geo.pad.basis}).{" "}
+          Pad A at {fmtCoord(geo.pad.lat, geo.pad.lon, 5)}, accuracy approx. {geo.pad.accuracy_m} m ({geo.pad.basis}).{" "}
         </span>
-        {caption && "Enthält veränderte Copernicus-Sentinel-Daten 2025 · © OpenStreetMap-Mitwirkende"}
+        {caption && "Contains modified Copernicus Sentinel data 2025 · © OpenStreetMap contributors"}
       </figcaption>
     </figure>
   );

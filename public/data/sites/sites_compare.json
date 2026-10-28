@@ -30,8 +30,8 @@
    "isar_status": "operativ",
    "isar_first_launch_year": "2025",
    "permitted_launches_per_year": "30",
-   "constraints": "30 Starts pro Jahr fuer den Standort, max. 4 nachts; Genehmigung pro Start; 2,3 km Sicherheitszone; Fischerei",
-   "business_cases": "SSO-Erdbeobachtung, Aufklaerung Bundeswehr, ESA/DLR, polare Kommunikation",
+   "constraints": "30 launches per year for the site, max. 4 at night; approval per launch; 2.3 km safety zone; fisheries",
+   "business_cases": "SSO Earth observation, Bundeswehr reconnaissance, ESA/DLR, polar communications",
    "data_status": "belegt",
    "source_ids": "src_18;src_19;src_20",
    "segments": {
@@ -63,8 +63,8 @@
    "isar_status": "vertrag",
    "isar_first_launch_year": "2028",
    "permitted_launches_per_year": "8",
-   "constraints": "Kein kanadisches Startgesetz in Kraft (Bill C-28); US-TSA nicht bestaetigt; Umweltgenehmigung 8 Starts",
-   "business_cases": "Kanadische Souveraenitaet, NATO, TKMS-U-Boot-Gegengeschaeft, mittlere Neigungen",
+   "constraints": "No Canadian launch law in force (Bill C-28); US TSA not confirmed; environmental approval for 8 launches",
+   "business_cases": "Canadian sovereignty, NATO, TKMS submarine offset deal, mid inclinations",
    "data_status": "belegt",
    "source_ids": "src_21;src_22;src_23;src_24",
    "segments": {
@@ -89,15 +89,15 @@
    "e2_share_mass": 0.008564404203375058,
    "missions_per_year": 10.203477396920023,
    "e2_extra_vs_andoya": 45,
-   "name": "CSG Kourou, Startkomplex ELM (ex Diamant)",
+   "name": "CSG Kourou, ELM launch complex (ex Diamant)",
    "country": "FR (GF)",
    "lat": "5.2335",
    "lon": "-52.7526",
    "isar_status": "term_sheet",
    "isar_first_launch_year": "",
    "permitted_launches_per_year": "",
-   "constraints": "Geteilt mit PLD, RFA, Latitude, Sirius Space; Kadenzgrenze unbekannt; franzoesisches LOS",
-   "business_cases": "Aequatornahe und niedrige Bahnen, schwere Einzelmissionen, ESA",
+   "constraints": "Shared with PLD, RFA, Latitude, Sirius Space; cadence limit unknown; French LOS",
+   "business_cases": "Near-equatorial and low-inclination orbits, heavy single missions, ESA",
    "data_status": "belegt",
    "source_ids": "src_25;src_26",
    "segments": {
@@ -122,15 +122,15 @@
    "e2_share_mass": 0.006627665517077695,
    "missions_per_year": 9.626810730253355,
    "e2_extra_vs_andoya": 0,
-   "name": "SaxaVord Spaceport, Rampe fuer Isar (Option)",
+   "name": "SaxaVord Spaceport, pad for Isar (option)",
    "country": "UK",
    "lat": "60.8184",
    "lon": "-0.7692",
    "isar_status": "option",
    "isar_first_launch_year": "2029",
    "permitted_launches_per_year": "30",
-   "constraints": "Spaceport-Lizenz 30 Starts pro Jahr fuer alle Betreiber; RFA-Lizenz 10 pro Jahr, max. 2 pro Monat; britische Betreiberlizenz und Seegenehmigung je Betreiber noetig; Fischerei; noch kein Orbitalstart (RFA verschoben)",
-   "business_cases": "Ersatz fuer Andoya bei polar und SSO ohne Norwegen; Kunden UK MoD und NATO; Grundlage UK-deutsche Kooperation",
+   "constraints": "Spaceport license 30 launches per year for all operators; RFA license 10 per year, max. 2 per month; UK operator license and marine license required per operator; fisheries; no orbital launch yet (RFA postponed)",
+   "business_cases": "Substitute for Andøya for polar and SSO without Norway; customers UK MoD and NATO; basis: UK-German cooperation",
    "data_status": "abgeleitet",
    "source_ids": "src_sr01_01;src_sr01_02;src_sr01_03;src_sr01_04;src_43",
    "segments": {
@@ -155,15 +155,15 @@
    "e2_share_mass": 0.006627665517077695,
    "missions_per_year": 9.626810730253355,
    "e2_extra_vs_andoya": 0,
-   "name": "Esrange Space Center, Spaceport (Option)",
+   "name": "Esrange Space Center, spaceport (option)",
    "country": "SE",
    "lat": "67.88",
    "lon": "21.1",
    "isar_status": "option",
    "isar_first_launch_year": "",
    "permitted_launches_per_year": "",
-   "constraints": "Flugbahn ueber Norwegen (Tromsoe 220 km); Norwegen prueft Risiken (CAA-Bericht Feb. 2025); Erststufen-Einschlag an Land im Esrange-Gebiet; LC-3C fuer Firefly gebaut",
-   "business_cases": "Polar und SSO, schwedische Streitkraefte (FMV 209 Mio. SEK), EU-Boden",
+   "constraints": "Trajectory over Norway (Tromsø 220 km); Norway assessing risks (CAA report Feb. 2025); first-stage impact on land within the Esrange area; LC-3C built for Firefly",
+   "business_cases": "Polar and SSO, Swedish Armed Forces (FMV 209 million SEK), EU soil",
    "data_status": "abgeleitet",
    "source_ids": "src_sr01_05;src_sr01_06;src_sr01_14",
    "segments": {
@@ -178,7 +178,7 @@
   },
   {
    "id": "santa_maria",
-   "label": "Santa Maria, Azoren (PT)",
+   "label": "Santa Maria, Azores (PT)",
    "inc_min": 37,
    "inc_max": 100,
    "e1_share_count": 0.8945518453427065,
@@ -188,15 +188,15 @@
    "e2_share_mass": 0.008560709533257474,
    "missions_per_year": 10.153477396920023,
    "e2_extra_vs_andoya": 44,
-   "name": "Atlantic Spaceport, Startzentrum Malbusca (Santa Maria, Azoren)",
+   "name": "Atlantic Spaceport, Malbusca launch centre (Santa Maria, Azores)",
    "country": "PT",
    "lat": "36.94",
    "lon": "-25.1",
    "isar_status": "kein_bezug",
    "isar_first_launch_year": "",
    "permitted_launches_per_year": "",
-   "constraints": "Betriebslizenz ANACOM Aug. 2025 fuer 5 Jahre, jede Mission eigene Genehmigung; bisher nur suborbitale Starts (Aug. 2026); Innospace mit Vorrang; lokale politische Kritik; Neigungen geschaetzt (Breite als Untergrenze, SSO nach Sueden)",
-   "business_cases": "Mittlere Neigungen und SSO nach Sueden von EU-Boden, Portugal und ESA",
+   "constraints": "ANACOM operating license Aug. 2025 for 5 years, each mission requires separate approval; so far only suborbital launches (Aug. 2026); Innospace has priority; local political criticism; inclinations estimated (latitude as lower bound, SSO to the south)",
+   "business_cases": "Medium inclinations and SSO southward from EU soil, Portugal and ESA",
    "data_status": "annahme",
    "source_ids": "src_sr01_07;src_sr01_08;src_sr01_09",
    "segments": {
@@ -350,7 +350,7 @@
   },
   "global_launches_2025": 329,
   "sso_launches_2025": 72,
-  "note": "Startregler: Anteil = Starts / 329 (alle Orbitalstarts 2025, assumptions.global_launches_2025) bzw. / 72 (erfolgreiche SSO-Starts 2025, McDowell Tabelle 14, src_qt01_08)"
+  "note": "Launch slider: share = launches / 329 (all orbital launches 2025, assumptions.global_launches_2025) or / 72 (successful SSO launches 2025, McDowell table 14, src_qt01_08)"
  },
  "histogram_inc_2deg": [
   {
@@ -617,39 +617,39 @@
   "factors": [
    {
     "id": "markt",
-    "label": "Neigungsfenster / Markt",
-    "source": "offen adressierbare Nutzlasten 2025 (Engine)",
-    "unit": "Nutzlasten"
+    "label": "Inclination window / market",
+    "source": "openly addressable payloads 2025 (engine)",
+    "unit": "Payloads"
    },
    {
     "id": "nutzlast",
-    "label": "Nutzlast",
-    "source": "Nutzlastfaktor SSO ggü. 1.000 kg LEO (site_orbit_access)",
-    "unit": "Faktor"
+    "label": "Payload",
+    "source": "SSO payload factor vs. 1,000 kg LEO (site_orbit_access)",
+    "unit": "Factor"
    },
    {
     "id": "wetter",
-    "label": "Wetter",
-    "source": "wetterfähige Tage (weather_availability_<id>)",
-    "unit": "Anteil"
+    "label": "Weather",
+    "source": "weather-suitable days (weather_availability_<id>)",
+    "unit": "Share"
    },
    {
     "id": "geopolitik",
-    "label": "Geopolitik / Recht",
-    "source": "Team-Bewertung 1 bis 5 (score_geopolitik_<id>)",
-    "unit": "Punkte"
+    "label": "Geopolitics / law",
+    "source": "Team rating 1 to 5 (score_geopolitik_<id>)",
+    "unit": "Points"
    },
    {
     "id": "kosten",
-    "label": "Kosten",
-    "source": "Team-Bewertung 1 bis 5 (score_kosten_<id>)",
-    "unit": "Punkte"
+    "label": "Cost",
+    "source": "Team rating 1 to 5 (score_kosten_<id>)",
+    "unit": "Points"
    },
    {
     "id": "kapazitaet",
-    "label": "Kapazität / Reife",
-    "source": "Team-Bewertung 1 bis 5 (score_kapazitaet_<id>)",
-    "unit": "Punkte"
+    "label": "Capacity / maturity",
+    "source": "Team rating 1 to 5 (score_kapazitaet_<id>)",
+    "unit": "Points"
    }
   ],
   "values": [
@@ -721,7 +721,7 @@
     "high": null,
     "score": 4.929577464788733,
     "status": "belegt",
-    "note": "Faktor relativ zu 1.000 kg LEO; nur SSO = 0,70 ist Isar-Angabe, Rest physikalische Schaetzung"
+    "note": "Factor relative to 1,000 kg LEO; only SSO = 0.70 is an Isar figure, the rest is a physical estimate"
    },
    {
     "site": "nova_scotia",
@@ -731,7 +731,7 @@
     "high": null,
     "score": 5.0,
     "status": "annahme",
-    "note": "Faktor relativ zu 1.000 kg LEO; nur SSO = 0,70 ist Isar-Angabe, Rest physikalische Schaetzung"
+    "note": "Factor relative to 1,000 kg LEO; only SSO = 0.70 is an Isar figure, the rest is a physical estimate"
    },
    {
     "site": "kourou_elm",
@@ -741,7 +741,7 @@
     "high": null,
     "score": 4.929577464788733,
     "status": "annahme",
-    "note": "Faktor relativ zu 1.000 kg LEO; nur SSO = 0,70 ist Isar-Angabe, Rest physikalische Schaetzung"
+    "note": "Factor relative to 1,000 kg LEO; only SSO = 0.70 is an Isar figure, the rest is a physical estimate"
    },
    {
     "site": "saxavord_isar",
@@ -751,7 +751,7 @@
     "high": null,
     "score": 5.0,
     "status": "annahme",
-    "note": "Faktor relativ zu 1.000 kg LEO, physikalische Schaetzung analog Andoya. Neigung aus cos i = cos(Breite) x sin(Azimut)."
+    "note": "Factor relative to 1,000 kg LEO, physical estimate analogous to Andøya. Inclination from cos i = cos(latitude) x sin(azimuth)."
    },
    {
     "site": "esrange_isar",
@@ -761,7 +761,7 @@
     "high": null,
     "score": 4.859154929577465,
     "status": "annahme",
-    "note": "Faktor relativ zu 1.000 kg LEO, physikalische Schaetzung analog Andoya. Neigung aus cos i = cos(Breite) x sin(Azimut). Per Dogleg aus 346 bis 350 Grad, etwas Verlust"
+    "note": "Factor relative to 1,000 kg LEO, physical estimate analogous to Andøya. Inclination from cos i = cos(latitude) x sin(azimuth). Dogleg from 346 to 350 degrees, some loss"
    },
    {
     "site": "santa_maria",
@@ -771,7 +771,7 @@
     "high": null,
     "score": 4.929577464788733,
     "status": "annahme",
-    "note": "Faktor relativ zu 1.000 kg LEO, physikalische Schaetzung. SSO nach Sueden ueber den Atlantik."
+    "note": "Factor relative to 1,000 kg LEO, physical estimate. SSO southbound over the Atlantic."
    },
    {
     "site": "andoya",
@@ -781,7 +781,7 @@
     "high": 0.75,
     "score": 3.5294117647058822,
     "status": "annahme",
-    "note": "Mittelwind 12 kn, mittlere Boeen ca. 25 kn liegen nahe der aus dem Scrub am 04.09.2026 (24 kn) abgeleiteten Spectrum-Bodenwindgrenze von ca. 20 bis 24 kn. Herbst/Winter mit Stuermen und Vereisung schlechter, Sommer besser. Belege: Flug 1 rund 6 Tage Windverzug, Flug 2 mindestens 2 Windabbrueche. Keine Tagesstatistik, daher Experteneinschaetzung."
+    "note": "Mean wind 12 kn, mean gusts about 25 kn, close to the Spectrum ground wind limit of about 20 to 24 kn derived from the scrub on 4 Sep 2026 (24 kn). Autumn/winter worse with storms and icing, summer better. Evidence: flight 1 about 6 days of wind delay, flight 2 at least 2 wind scrubs. No daily statistics, hence expert estimate."
    },
    {
     "site": "nova_scotia",
@@ -791,7 +791,7 @@
     "high": 0.8,
     "score": 3.823529411764706,
     "status": "annahme",
-    "note": "Treiber: Hurrikansaison Juni bis November (3 bis 4 Ereignisse pro Jahr fuer Kanada), Winterstuerme und Vereisung, Nebel an ca. 115 Tagen (Sicht, Bahnverfolgung, Seeraum). Keine Windstatistik fuer Canso, daher weite Spanne."
+    "note": "Drivers: hurricane season June to November (3 to 4 events per year for Canada), winter storms and icing, fog on about 115 days (visibility, tracking, sea area). No wind statistics for Canso, hence a wide range."
    },
    {
     "site": "kourou_elm",
@@ -801,7 +801,7 @@
     "high": 0.92,
     "score": 5.0,
     "status": "annahme",
-    "note": "Bodenwind praktisch nie limitierend (Maximum 83 km/h seit 1968), kein Hurrikanrisiko. Treiber sind Gewitter/Starkregen in der Regenzeit (191 Niederschlagstage, 80 mit >= 10 mm) und Hoehenwinde Mitte Juni bis Mitte August (Vega VV16 rund 13 Tage Wartezeit). Gewittertage sind eine Luecke."
+    "note": "Ground wind practically never limiting (maximum 83 km/h since 1968), no hurricane risk. Drivers are thunderstorms/heavy rain in the rainy season (191 days with precipitation, 80 with >= 10 mm) and upper-level winds from mid June to mid August (Vega VV16 waited about 13 days). Thunderstorm days are a gap."
    },
    {
     "site": "saxavord_isar",
@@ -811,7 +811,7 @@
     "high": 0.85,
     "score": 3.5294117647058822,
     "status": "annahme",
-    "note": "High = Betreiberangabe 95 Prozent der Tage mit 3-h-Fenster unter 30 kn in Fruehjahr/Herbst, abgeschlagen fuer Winter und fuer eine strengere Spectrum-Grenze (ca. 20 bis 24 kn). Base wie Andoya, da aehnliche Nordatlantik-Lage; 204 Regentage. Betreiberzahl nicht unabhaengig geprueft."
+    "note": "High = operator figure of 95% of days with a 3 h window below 30 kn in spring/autumn, discounted for winter and for a stricter Spectrum limit (about 20 to 24 kn). Base as Andøya, given a similar North Atlantic location; 204 rain days. Operator figure not independently verified."
    },
    {
     "site": "esrange_isar",
@@ -821,7 +821,7 @@
     "high": 0.8,
     "score": 3.823529411764706,
     "status": "annahme",
-    "note": "Binnenlandlage mit vermutlich weniger Bodenwind als die Kuestenplaetze (Luecke: keine Windstatistik). Treiber sind Kaelte bis -42 C und Vereisung (Schneedecke Ende Sept. bis Mitte Mai), Hoehenwinde und Sommergewitter. Beleg Windabbruch BROR 2023 mit 1 Tag Verzug."
+    "note": "Inland location with probably less ground wind than the coastal sites (gap: no wind statistics). Drivers are cold down to -42 C and icing (snow cover from late Sept. to mid May), upper-level winds and summer thunderstorms. Evidence: wind scrub BROR 2023 with 1 day of delay."
    },
    {
     "site": "santa_maria",
@@ -831,7 +831,7 @@
     "high": 0.85,
     "score": 4.11764705882353,
     "status": "annahme",
-    "note": "Mittelwind 11 kn, aber mittlere Boeen 27 kn (Atlantiklage). Sommer sehr guenstig (Juni/Juli je 4 Regentage), Winter mit Atlantiktiefs schlechter, seltene Hurrikane (Gordon 2012). Keine Kampagnenerfahrung, daher Experteneinschaetzung."
+    "note": "Mean wind 11 kn, but mean gusts 27 kn (Atlantic location). Summer very favourable (June/July 4 rain days each), winter worse with Atlantic lows, rare hurricanes (Gordon 2012). No campaign experience, hence expert estimate."
    },
    {
     "site": "andoya",
@@ -841,7 +841,7 @@
     "high": 5.0,
     "score": 5.0,
     "status": "team_annahme",
-    "note": "Regime in Kraft, Isar zweimal gestartet, Staat Mehrheitseigner, Verteidigung finanziert Pad 2, NATO; Abzug im Low-Fall fuer Sabotageverdacht, Militaernaehe und Single Point of Failure im Case-Schock"
+    "note": "Regime in force, Isar has launched twice, state is majority owner, defence funds pad 2, NATO; deduction in the low case for suspected sabotage, military proximity and single point of failure in the case shock"
    },
    {
     "site": "nova_scotia",
@@ -851,7 +851,7 @@
     "high": 4.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "Vertrag und DND/NATO-Anker, aber C-28 nicht in Kraft (Royal Assent eher 2027), Notfall-Stoppbefugnis, lokale Opposition, Abhaengigkeit TKMS-Abschluss"
+    "note": "Contract and DND/NATO anchor, but C-28 not in force (Royal Assent more likely 2027), emergency stop powers, local opposition, dependence on the TKMS deal"
    },
    {
     "site": "kourou_elm",
@@ -861,7 +861,7 @@
     "high": 4.0,
     "score": 4.0,
     "status": "team_annahme",
-    "note": "EU-Boden, etabliertes franzoesisches Regime und ESA-Rahmen; Abzug fuer Vorrang Ariane 6/Vega-C, nur Term Sheet, Streik-Praezedenz 2017, Unterstuetzung lokaler Regierungen noetig"
+    "note": "EU soil, established French regime and ESA framework; deduction for Ariane 6/Vega-C priority, term sheet only, strike precedent 2017, support of local governments needed"
    },
    {
     "site": "saxavord_isar",
@@ -871,7 +871,7 @@
     "high": 4.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "Space Industry Act 2018 und Spaceport-/Range-Lizenz in Kraft, NATO, UK-DE-Erklaerung 08.10.2026; aber UK nicht EU, Startlizenz je Betreiber (RFA-Meereslizenz 31 Monate), Gefahrengebiet bis nahe Jan Mayen, Fischerei"
+    "note": "Space Industry Act 2018 and spaceport/range licence in force, NATO, UK-DE declaration 8 Oct 2026; but UK not EU, launch licence per operator (RFA marine licence 31 months), hazard area reaching near Jan Mayen, fisheries"
    },
    {
     "site": "esrange_isar",
@@ -881,7 +881,7 @@
     "high": 3.0,
     "score": 2.0,
     "status": "team_annahme",
-    "note": "EU und NATO, starker Staatsrueckhalt; aber neue Rymdlag fehlt und orbitale Flugbahn braucht norwegische Zustimmung je Start, Norwegen skeptisch; bei Norwegen-Sperre kaum nutzbar"
+    "note": "EU and NATO, strong state backing; but the new space act (Rymdlag) is missing and the orbital trajectory needs Norwegian consent for each launch, Norway sceptical; hardly usable if Norway blocks"
    },
    {
     "site": "santa_maria",
@@ -891,7 +891,7 @@
     "high": 4.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "EU und NATO, Spaceport-Lizenz 2025 in Kraft; aber jede Operation einzeln zu genehmigen, INNOSPACE-Vorrang bis 2030, politische Kritik auf den Azoren, kein Isar-Bezug"
+    "note": "EU and NATO, spaceport licence in force since 2025; but every operation needs individual approval, INNOSPACE priority until 2030, political criticism in the Azores, no link to Isar"
    },
    {
     "site": "andoya",
@@ -901,7 +901,7 @@
     "high": 5.0,
     "score": 4.0,
     "status": "team_annahme",
-    "note": "Pad bestehend und mit NOK 200 Mio. oeffentlich gefoerdert, kurze Strassenlogistik 5 bis 8 Tage; Pacht und Gebuehren unveroeffentlicht"
+    "note": "Existing pad, publicly funded with NOK 200m, short road logistics of 5 to 8 days; lease and fees unpublished"
    },
    {
     "site": "nova_scotia",
@@ -911,7 +911,7 @@
     "high": 3.0,
     "score": 2.0,
     "status": "team_annahme",
-    "note": "Hohe Fixgebuehr ca. 10 Mio. EUR/Jahr unabhaengig von Kadenz plus cost-plus-Startgebuehren und Transatlantik-Logistik ab 14 Tage See; 30 Monate Gebuehrenverzicht mildert Anlauf"
+    "note": "High fixed fee of about EUR 10m/year regardless of cadence, plus cost-plus launch fees and transatlantic logistics from 14 days at sea; 30-month fee waiver eases the start"
    },
    {
     "site": "kourou_elm",
@@ -921,7 +921,7 @@
     "high": 3.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "Gemeinsame Infrastruktur staatlich (50 Mio. EUR), aber eigener Isar-Pad noetig (PLD-Referenz 35 Mio. EUR, ungeprueft) und Seefracht ca. 10 bis 21 Tage"
+    "note": "Shared infrastructure state funded (EUR 50m), but a dedicated Isar pad is needed (PLD reference EUR 35m, unverified) and sea freight of about 10 to 21 days"
    },
    {
     "site": "saxavord_isar",
@@ -931,7 +931,7 @@
     "high": 3.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "Neuer Pad noetig (Fredo exklusiv RFA), Infrastruktur teils oeffentlich gefoerdert (Pathfinder 23,5 Mio. GBP), Logistik ca. 6,5 Tage inkl. Faehren; Gebuehren Luecke"
+    "note": "New pad needed (Fredo exclusive to RFA), infrastructure partly publicly funded (Pathfinder GBP 23.5m), logistics about 6.5 days incl. ferries; fees are a gap"
    },
    {
     "site": "esrange_isar",
@@ -941,7 +941,7 @@
     "high": 4.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "Neuer Pad noetig, aber Isar-Teststandort und Transportkette vorhanden (Synergie Abnahme und Start), Strasse ca. 5 Tage, Staat kapitalisiert SSC; Gebuehren Luecke"
+    "note": "New pad needed, but Isar test site and transport chain in place (synergy between acceptance testing and launch), road about 5 days, state capitalises SSC; fees are a gap"
    },
    {
     "site": "santa_maria",
@@ -951,7 +951,7 @@
     "high": 3.0,
     "score": 2.0,
     "status": "team_annahme",
-    "note": "Neuer Pad und unreife Infrastruktur, Inselstandort mit Seetransport; keinerlei Kosten- oder Gebuehrendaten"
+    "note": "New pad and immature infrastructure, island site with sea transport; no cost or fee data at all"
    },
    {
     "site": "andoya",
@@ -961,7 +961,7 @@
     "high": 5.0,
     "score": 5.0,
     "status": "team_annahme",
-    "note": "Einziger Standort mit Spectrum-Orbitalflug, exklusiver Pad, bis 30 Starts/Jahr; Low wegen nur einem Pad, 4 Nachtstarts und Wind-Scrubs"
+    "note": "Only site with a Spectrum orbital flight, exclusive pad, up to 30 launches/year; low case because of a single pad, 4 night launches and wind scrubs"
    },
    {
     "site": "nova_scotia",
@@ -971,7 +971,7 @@
     "high": 4.0,
     "score": 4.0,
     "status": "team_annahme",
-    "note": "Vertrag, SOW und Pad-Uebergabe 01.11.2026, Erststart 2028 geplant; Umweltgenehmigung nur 8/Jahr, Standort ohne Orbitalstart und mit minimaler Infrastruktur"
+    "note": "Contract, SOW and pad handover 1 Nov 2026, first launch planned for 2028; environmental permit only 8/year, site without an orbital launch and with minimal infrastructure"
    },
    {
     "site": "kourou_elm",
@@ -981,7 +981,7 @@
     "high": 4.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "Reifste Range Europas (CSG 30 bis 40 Starts/Jahr), Isar-Pad bis 10/Jahr geplant; aber nur Term Sheet, kein Isar-Bau, Range-Vorrang Ariane/Vega"
+    "note": "Most mature range in Europe (CSG 30 to 40 launches/year), Isar pad planned for up to 10/year; but term sheet only, no Isar construction, range priority for Ariane/Vega"
    },
    {
     "site": "saxavord_isar",
@@ -991,7 +991,7 @@
     "high": 3.0,
     "score": 3.0,
     "status": "team_annahme",
-    "note": "Lizenzierter Spaceport bis 30/Jahr mit freien Pad-Plaetzen (Orbex insolvent), aber noch kein Orbitalstart, kein Isar-Vertrag; Erststart Isar fruehestens 2029"
+    "note": "Licensed spaceport for up to 30/year with free pad slots (Orbex insolvent), but no orbital launch yet, no Isar contract; first Isar launch 2029 at the earliest"
    },
    {
     "site": "esrange_isar",
@@ -1001,7 +1001,7 @@
     "high": 3.0,
     "score": 2.0,
     "status": "team_annahme",
-    "note": "LC-3C fuer Firefly im Bau, Orbitalstart fruehestens 2028, kein Isar-Startrecht oder Pad; Plus: Isar-Teststandort vor Ort"
+    "note": "LC-3C for Firefly under construction, orbital launch 2028 at the earliest, no Isar launch rights or pad; plus: Isar test site on location"
    },
    {
     "site": "santa_maria",
@@ -1011,7 +1011,7 @@
     "high": 2.0,
     "score": 2.0,
     "status": "team_annahme",
-    "note": "Nur suborbitale Starts bisher, INNOSPACE priorisiert, Orbital fruehestens 2027, kein Isar-Bezug"
+    "note": "Only suborbital launches so far, INNOSPACE prioritised, orbital 2027 at the earliest, no link to Isar"
    }
   ]
  },
@@ -1019,7 +1019,7 @@
   "items": [
    {
     "id": "A",
-    "label": "Nur Andøya",
+    "label": "Andøya only",
     "sites": [
      "andoya"
     ],
@@ -1029,36 +1029,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 30.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 31.285714285714285,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 7 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 7 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 10.769716930359477,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1069,36 +1069,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 30.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 7.3,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 10.769716930359477,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "rampe_wetter",
@@ -1109,36 +1109,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 30.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 2.433333333333333,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 90 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 90 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 10.769716930359477,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "rampe_wetter",
@@ -1154,36 +1154,36 @@
     "chain": [
      {
       "id": "fabrik",
-      "label": "Fabrik (Auslegung)",
+      "label": "Factory (design capacity)",
       "value": 40.0,
       "status": "abgeleitet"
      },
      {
       "id": "genehmigung",
-      "label": "Genehmigte Starts an den Standorten",
+      "label": "Licensed launches at the sites",
       "value": 30.0,
       "status": "belegt",
-      "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+      "note": "Site licence for all operators; missing values not counted"
      },
      {
       "id": "rampe_wetter",
-      "label": "Rampen, wetterbereinigt",
+      "label": "Pads, weather-adjusted",
       "value": 7.3,
       "status": "abgeleitet",
-      "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+      "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
      },
      {
       "id": "plan",
-      "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+      "label": "Isar ramp-up 2030 (plan cap)",
       "value": 18,
       "status": "team_annahme"
      },
      {
       "id": "nachfrage",
-      "label": "Gewinnbare Nachfrage 2030",
+      "label": "Winnable demand 2030",
       "value": 10.769716930359477,
       "status": "abgeleitet",
-      "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+      "note": "engine/multisite.py, base 2030, no double counting"
      }
     ],
     "binding": "rampe_wetter",
@@ -1203,36 +1203,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 38.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 65.17857142857143,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 7 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 7 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.110835199155728,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1243,36 +1243,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 38.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 15.208333333333332,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.110835199155728,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1283,36 +1283,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 38.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 5.069444444444445,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 90 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 90 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.110835199155728,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "rampe_wetter",
@@ -1328,36 +1328,36 @@
     "chain": [
      {
       "id": "fabrik",
-      "label": "Fabrik (Auslegung)",
+      "label": "Factory (design capacity)",
       "value": 40.0,
       "status": "abgeleitet"
      },
      {
       "id": "genehmigung",
-      "label": "Genehmigte Starts an den Standorten",
+      "label": "Licensed launches at the sites",
       "value": 38.0,
       "status": "belegt",
-      "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+      "note": "Site licence for all operators; missing values not counted"
      },
      {
       "id": "rampe_wetter",
-      "label": "Rampen, wetterbereinigt",
+      "label": "Pads, weather-adjusted",
       "value": 15.208333333333332,
       "status": "abgeleitet",
-      "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+      "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
      },
      {
       "id": "plan",
-      "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+      "label": "Isar ramp-up 2030 (plan cap)",
       "value": 18,
       "status": "team_annahme"
      },
      {
       "id": "nachfrage",
-      "label": "Gewinnbare Nachfrage 2030",
+      "label": "Winnable demand 2030",
       "value": 11.110835199155728,
       "status": "abgeleitet",
-      "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+      "note": "engine/multisite.py, base 2030, no double counting"
      }
     ],
     "binding": "nachfrage",
@@ -1378,36 +1378,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 38.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 109.5,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 7 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 7 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.564986450204227,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1418,36 +1418,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 38.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 25.55,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.564986450204227,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1458,36 +1458,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 38.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 8.516666666666666,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 90 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 90 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.564986450204227,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "rampe_wetter",
@@ -1503,36 +1503,36 @@
     "chain": [
      {
       "id": "fabrik",
-      "label": "Fabrik (Auslegung)",
+      "label": "Factory (design capacity)",
       "value": 40.0,
       "status": "abgeleitet"
      },
      {
       "id": "genehmigung",
-      "label": "Genehmigte Starts an den Standorten",
+      "label": "Licensed launches at the sites",
       "value": 38.0,
       "status": "belegt",
-      "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+      "note": "Site licence for all operators; missing values not counted"
      },
      {
       "id": "rampe_wetter",
-      "label": "Rampen, wetterbereinigt",
+      "label": "Pads, weather-adjusted",
       "value": 25.55,
       "status": "abgeleitet",
-      "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+      "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
      },
      {
       "id": "plan",
-      "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+      "label": "Isar ramp-up 2030 (plan cap)",
       "value": 18,
       "status": "team_annahme"
      },
      {
       "id": "nachfrage",
-      "label": "Gewinnbare Nachfrage 2030",
+      "label": "Winnable demand 2030",
       "value": 11.564986450204227,
       "status": "abgeleitet",
-      "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+      "note": "engine/multisite.py, base 2030, no double counting"
      }
     ],
     "binding": "nachfrage",
@@ -1541,7 +1541,7 @@
    },
    {
     "id": "R",
-    "label": "+ SaxaVord (Ersatz ohne Norwegen)",
+    "label": "+ SaxaVord (replacement without Norway)",
     "sites": [
      "andoya",
      "saxavord_isar"
@@ -1552,36 +1552,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 60.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 62.57142857142857,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 7 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 7 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 10.769716930359477,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1592,36 +1592,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 60.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 14.6,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 10.769716930359477,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1632,36 +1632,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 60.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 4.866666666666666,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 90 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 90 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 10.769716930359477,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "rampe_wetter",
@@ -1677,36 +1677,36 @@
     "chain": [
      {
       "id": "fabrik",
-      "label": "Fabrik (Auslegung)",
+      "label": "Factory (design capacity)",
       "value": 40.0,
       "status": "abgeleitet"
      },
      {
       "id": "genehmigung",
-      "label": "Genehmigte Starts an den Standorten",
+      "label": "Licensed launches at the sites",
       "value": 60.0,
       "status": "belegt",
-      "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+      "note": "Site licence for all operators; missing values not counted"
      },
      {
       "id": "rampe_wetter",
-      "label": "Rampen, wetterbereinigt",
+      "label": "Pads, weather-adjusted",
       "value": 14.6,
       "status": "abgeleitet",
-      "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+      "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
      },
      {
       "id": "plan",
-      "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+      "label": "Isar ramp-up 2030 (plan cap)",
       "value": 18,
       "status": "team_annahme"
      },
      {
       "id": "nachfrage",
-      "label": "Gewinnbare Nachfrage 2030",
+      "label": "Winnable demand 2030",
       "value": 10.769716930359477,
       "status": "abgeleitet",
-      "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+      "note": "engine/multisite.py, base 2030, no double counting"
      }
     ],
     "binding": "nachfrage",
@@ -1715,7 +1715,7 @@
    },
    {
     "id": "D",
-    "label": "Alle sechs",
+    "label": "All six",
     "sites": [
      "andoya",
      "nova_scotia",
@@ -1730,36 +1730,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 68.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 211.17857142857142,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 7 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 7 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.564986450204227,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1770,36 +1770,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 68.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 49.275,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.564986450204227,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1810,36 +1810,36 @@
       "chain": [
        {
         "id": "fabrik",
-        "label": "Fabrik (Auslegung)",
+        "label": "Factory (design capacity)",
         "value": 40.0,
         "status": "abgeleitet"
        },
        {
         "id": "genehmigung",
-        "label": "Genehmigte Starts an den Standorten",
+        "label": "Licensed launches at the sites",
         "value": 68.0,
         "status": "belegt",
-        "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+        "note": "Site licence for all operators; missing values not counted"
        },
        {
         "id": "rampe_wetter",
-        "label": "Rampen, wetterbereinigt",
+        "label": "Pads, weather-adjusted",
         "value": 16.425,
         "status": "abgeleitet",
-        "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 90 Tage zwischen zwei Starts"
+        "note": "One pad per site: 365 x weather-capable days / 90 days between two launches"
        },
        {
         "id": "plan",
-        "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+        "label": "Isar ramp-up 2030 (plan cap)",
         "value": 18,
         "status": "team_annahme"
        },
        {
         "id": "nachfrage",
-        "label": "Gewinnbare Nachfrage 2030",
+        "label": "Winnable demand 2030",
         "value": 11.564986450204227,
         "status": "abgeleitet",
-        "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+        "note": "engine/multisite.py, base 2030, no double counting"
        }
       ],
       "binding": "nachfrage",
@@ -1855,36 +1855,36 @@
     "chain": [
      {
       "id": "fabrik",
-      "label": "Fabrik (Auslegung)",
+      "label": "Factory (design capacity)",
       "value": 40.0,
       "status": "abgeleitet"
      },
      {
       "id": "genehmigung",
-      "label": "Genehmigte Starts an den Standorten",
+      "label": "Licensed launches at the sites",
       "value": 68.0,
       "status": "belegt",
-      "note": "Standortgenehmigung für alle Betreiber; fehlende Werte nicht gezählt"
+      "note": "Site licence for all operators; missing values not counted"
      },
      {
       "id": "rampe_wetter",
-      "label": "Rampen, wetterbereinigt",
+      "label": "Pads, weather-adjusted",
       "value": 49.275,
       "status": "abgeleitet",
-      "note": "Je Standort eine Rampe: 365 x wetterfähige Tage / 30 Tage zwischen zwei Starts"
+      "note": "One pad per site: 365 x weather-capable days / 30 days between two launches"
      },
      {
       "id": "plan",
-      "label": "Isar-Hochlauf 2030 (Plan-Deckel)",
+      "label": "Isar ramp-up 2030 (plan cap)",
       "value": 18,
       "status": "team_annahme"
      },
      {
       "id": "nachfrage",
-      "label": "Gewinnbare Nachfrage 2030",
+      "label": "Winnable demand 2030",
       "value": 11.564986450204227,
       "status": "abgeleitet",
-      "note": "engine/multisite.py, Basis 2030, ohne Doppelzählung"
+      "note": "engine/multisite.py, base 2030, no double counting"
      }
     ],
     "binding": "nachfrage",
@@ -1899,7 +1899,7 @@
     "high": 0.1,
     "unit": "fraction",
     "status": "team_annahme",
-    "note": "Base = Seradata-Tail 0,05 (config); Low nahe NASA-Kurve nach 10 Fluegen (0,013); High = Stresstest-Wert 0,10 aus config/scenarios.yaml",
+    "note": "Base = Seradata tail 0.05 (config); Low close to NASA curve after 10 flights (0.013); High = stress-test value 0.10 from config/scenarios.yaml",
     "source_id": "src_fs01_46;src_fs01_47"
    },
    "standdown_months": {
@@ -1908,7 +1908,7 @@
     "high": 18.0,
     "unit": "months",
     "status": "team_annahme",
-    "note": "Median der Analoga ca. 9 Monate (Falcon 1 2, Electron 3, LauncherOne 8, KAIROS 9/14,5, Alpha 10, Vega 5/14, Spectrum 17, Vega-C 24); Low = Electron-Fall, High = Spectrum Flug 1 bis 2",
+    "note": "Median of analogues approx. 9 months (Falcon 1 2, Electron 3, LauncherOne 8, KAIROS 9/14.5, Alpha 10, Vega 5/14, Spectrum 17, Vega-C 24); Low = Electron case, High = Spectrum flight 1 to 2",
     "source_id": "src_fs01_56;src_fs01_51;src_fs01_53;src_fs01_52;src_fs01_60;src_fs01_57"
    },
    "turnaround_days_pad": {
@@ -1917,7 +1917,7 @@
     "high": 90.0,
     "unit": "days",
     "status": "team_annahme",
-    "note": "Low: Analoga Rocket Lab (7 Tage Firmenrekord, LC-1 unter 48 h mit zwei Pads), CSG-Range 5 Tage; Base: reifer Einzelpad ca. 12 Starts/Jahr; High: Isar-Plan 2027 vier Fluege von einem Pad = ca. 90 Tage",
+    "note": "Low: analogues Rocket Lab (7-day company record, LC-1 under 48 h with two pads), CSG range 5 days; Base: mature single pad approx. 12 launches/year; High: Isar plan 2027 four flights from one pad = approx. 90 days",
     "source_id": "src_fs01_58;src_fs01_59;src_fs01_27;src_fs01_03"
    },
    "factory": {
@@ -1926,7 +1926,7 @@
     "high": 40.0,
     "unit": "vehicles/year",
     "status": "abgeleitet",
-    "note": "40 = veroeffentlichte Auslegung (belegt); Low 20 = Team-Annahme fuer verzoegerten Ramp-up (Fabrik Sept. 2026 noch nicht eroeffnet); kein Zweitwerk belegt",
+    "note": "40 = published design capacity (documented); Low 20 = team assumption for delayed ramp-up (factory not yet opened as of Sept. 2026); no second plant documented",
     "source_id": "src_fs01_01;src_fs01_02;src_fs01_03"
    }
   }

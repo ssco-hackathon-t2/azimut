@@ -41,7 +41,7 @@ test("Baukasten: englisches Zahlformat", () => {
   assert.equal(pct(0.089), "8.9%");
 });
 
-test("Baukasten: deutsche Texte aus sites_compare.json haben eine englische Fassung", () => {
+test("Baukasten: Texte aus sites_compare.json sind englisch", () => {
   const s = read("data/sites/sites_compare.json");
   const names = new Set(["+ Nova Scotia", "+ Nova Scotia + Kourou"]);
   const chains = (it: any) => [it, ...Object.values(it.variants ?? {})].flatMap((v: any) => (v.chain ?? []).flatMap((c: any) => [c.label, c.note]));
@@ -50,5 +50,6 @@ test("Baukasten: deutsche Texte aus sites_compare.json haben eine englische Fass
     ...s.factors.values.map((v: any) => v.note),
     ...s.portfolios.items.flatMap((it: any) => [it.label, ...chains(it)]),
   ].filter((x) => x && !names.has(x));
-  assert.deepEqual([...new Set(texts.filter((x) => en(x) === x))], []);
+  const de = /[äöüß]|\b(und|der|die|das|nicht|mit|für|fuer|ueber|bei)\b/i;
+  assert.deepEqual([...new Set(texts.map(en).filter((x) => de.test(x)))], []);
 });

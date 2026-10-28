@@ -6,18 +6,18 @@ import { useJSON } from "@/lib/data";
 import { fmtDate, fmtNum, fmtT } from "@/lib/format";
 import { SCENARIO_FALLBACK } from "@/lib/labels";
 import { PageHead, Section } from "@/components/shell/PageHead";
-import { OpenItem, Ready } from "@/components/ui/States";
+import { Ready } from "@/components/ui/States";
 import { ProvenanceNote } from "@/components/ui/ProvenanceNote";
 import { CHART, EChart, alpha, seriesColors, useNarrow, valueAxis } from "@/components/charts/EChart";
 import { ChartFrame } from "@/components/charts/ChartFrame";
 import { Toggle } from "@/components/ui/Toggle";
 
 const DIMS: [string, string][] = [
-  ["orbit_class", "Orbitklasse"],
-  ["state_group", "Staatengruppe"],
+  ["orbit_class", "Orbit class"],
+  ["state_group", "Country group"],
   ["vertical", "Vertical"],
-  ["lv_class", "Trägerklasse"],
-  ["mass_class", "Massenklasse"],
+  ["lv_class", "Launcher class"],
+  ["mass_class", "Mass class"],
 ];
 
 export function HistorieView() {
@@ -77,8 +77,8 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
             .slice(0, 8)
             .map((p) => `<span style="display:inline-block;width:8px;height:8px;margin-right:6px;background:${p.color}"></span>${p.seriesName}: ${metric === "count" ? fmtNum(p.value) : fmtT((p.value ?? 0) * 1000)}`);
           const ev = events.filter((e) => e.date.startsWith(String(y)));
-          const evLines = ev.slice(0, 4).map((e) => `<span style="color:${CHART.mist}">Ereignis ${fmtDate(e.date)}:</span> ${e.title} (${e.type})`);
-          return [`<b>${y}</b>${Number(y) === partial ? " · laufend, unvollständig" : ""}`, ...lines, ...evLines].join("<br/>");
+          const evLines = ev.slice(0, 4).map((e) => `<span style="color:${CHART.mist}">Event ${fmtDate(e.date)}:</span> ${e.title} (${e.type})`);
+          return [`<b>${y}</b>${Number(y) === partial ? " · in progress, incomplete" : ""}`, ...lines, ...evLines].join("<br/>");
         },
       },
       dataZoom: [
@@ -86,7 +86,7 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
         { type: "slider", height: 22, bottom: 14 },
       ],
       xAxis: { type: "category", data: years.map(String), axisLabel: { fontFamily: CHART.mono, fontSize: 11 }, splitLine: { show: false } },
-      yAxis: { type: log ? "log" : "value", name: metric === "count" ? "Nutzlasten" : "t (bekannte Masse)", ...valueAxis(), min: log ? 1 : 0 },
+      yAxis: { type: log ? "log" : "value", name: metric === "count" ? "Payloads" : "t (known mass)", ...valueAxis(), min: log ? 1 : 0 },
       series: [
         ...codes.map((c, i) => ({
           name: nameOf(c),
@@ -99,17 +99,17 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
           data: years.map((y) => val(series[c].find((p) => p.year === y))),
           markArea:
             i === 0 && partial
-              ? { silent: true, itemStyle: { color: alpha(CHART.amber, 0.07) }, label: { color: CHART.amber, fontSize: 11, position: "insideTopRight" }, data: [[{ xAxis: String(partial), name: "laufend" }, { xAxis: String(partial) }]] }
+              ? { silent: true, itemStyle: { color: alpha(CHART.amber, 0.07) }, label: { color: CHART.amber, fontSize: 11, position: "insideTopRight" }, data: [[{ xAxis: String(partial), name: "in progress" }, { xAxis: String(partial) }]] }
               : undefined,
           markLine:
             i === 0 && metric === "mass" && hist.mass_known_reliable_from
-              ? { silent: true, symbol: "none", lineStyle: { color: CHART.mist, type: "dotted" }, label: { color: CHART.mist, fontSize: 11, formatter: "Masse belastbar ab" }, data: [{ xAxis: String(hist.mass_known_reliable_from) }] }
+              ? { silent: true, symbol: "none", lineStyle: { color: CHART.mist, type: "dotted" }, label: { color: CHART.mist, fontSize: 11, formatter: "Mass reliable from" }, data: [{ xAxis: String(hist.mass_known_reliable_from) }] }
               : undefined,
         })),
         ...(showEvents
           ? [
               {
-                name: "Ereignisse",
+                name: "Events",
                 type: "scatter",
                 symbol: "diamond",
                 symbolSize: 7,
@@ -130,7 +130,7 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
   const labels = config.scenario_labels?.value ?? SCENARIO_FALLBACK;
   const rampOption = useMemo(() => {
     const maxN = 11;
-    const xs = Array.from({ length: maxN }, (_, i) => `Jahr ${i + 1}`);
+    const xs = Array.from({ length: maxN }, (_, i) => `Year ${i + 1}`);
     const firstIsar = Number(isar.first_flight_year);
     const isarYears = Object.keys(isarRamp).map(Number).sort((a, b) => a - b);
     const roleColor: Record<string, string> = { high_form: CHART.aurora, base_form: CHART.ice, low_form: CHART.mist, demand_evidence: CHART.mist2 };
@@ -139,7 +139,7 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
       grid: { left: 8, right: 16, top: 48, bottom: 8, containLabel: true },
       tooltip: { trigger: "axis" },
       xAxis: { type: "category", data: xs, splitLine: { show: false } },
-      yAxis: { type: "value", name: "Starts/Jahr", ...valueAxis() },
+      yAxis: { type: "value", name: "Launches/yr", ...valueAxis() },
       series: [
         ...Object.entries(ramps).map(([id, r]) => ({
           name: String((r as { name?: string }).name ?? id),
@@ -151,7 +151,7 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
           data: ((r as { flights_by_year?: number[] }).flights_by_year ?? []).slice(0, maxN),
         })),
         ...(["conservative", "base", "optimistic"] as ScenarioId[]).map((sc) => ({
-          name: `Isar Kapazitätsobergrenze ${labels[sc]}`,
+          name: `Isar capacity ceiling ${labels[sc]}`,
           type: "line",
           symbol: "none",
           lineStyle: { width: sc === "base" ? 2 : 1, type: "dashed", opacity: sc === "base" ? 1 : 0.6 },
@@ -162,7 +162,7 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
           }),
         })),
         {
-          name: "Isar beobachtet",
+          name: "Isar observed",
           type: "scatter",
           symbol: "rect",
           symbolSize: 9,
@@ -177,17 +177,17 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
 
   return (
     <>
-      <PageHead title="Historie" />
+      <PageHead title="History" />
       <div className="mx-auto max-w-[88rem] px-4 sm:px-8">
         <ProvenanceNote p={hist.provenance} />
       </div>
 
-      <Section id="reihen" title={`Nutzlasten je Jahr, ${years[0]}–${years[years.length - 1]}`}>
+      <Section id="reihen" title={`Payloads per year, ${years[0]}–${years[years.length - 1]}`}>
         <ChartFrame
           controls={
             <>
           <label className="flex items-center gap-3 text-[0.82rem] text-mist">
-            Gruppiert nach
+            Grouped by
             <select value={dim} onChange={(e) => setDim(e.target.value)} className="h-9 border border-rule-strong bg-night-2 px-2 text-[0.92rem] text-snow">
               {DIMS.map(([k, l]) => (
                 <option key={k} value={k}>
@@ -196,56 +196,51 @@ function Historie({ hist, config }: { hist: HistoryFile; config: ConfigFile }) {
               ))}
             </select>
           </label>
-          <Toggle label="Größe" options={[["count", "Anzahl"], ["mass", "Masse"]]} value={metric} onChange={(v) => setMetric(v as "count" | "mass")} />
-          <Toggle label="Achse" options={[["lin", "linear"], ["log", "log"]]} value={log ? "log" : "lin"} onChange={(v) => setLog(v === "log")} />
+          <Toggle label="Metric" options={[["count", "Count"], ["mass", "Mass"]]} value={metric} onChange={(v) => setMetric(v as "count" | "mass")} />
+          <Toggle label="Axis" options={[["lin", "linear"], ["log", "log"]]} value={log ? "log" : "lin"} onChange={(v) => setLog(v === "log")} />
           <label className="flex items-center gap-2 text-[0.88rem] text-snow">
             <input type="checkbox" checked={noCaptive} onChange={(e) => setNoCaptive(e.target.checked)} className="size-4 accent-[var(--color-ice)]" />
-            captive ausblenden
+            hide captive
           </label>
           <label className="flex items-center gap-2 text-[0.88rem] text-snow">
             <input type="checkbox" checked={showEvents} onChange={(e) => setShowEvents(e.target.checked)} className="size-4 accent-[var(--color-ice)]" />
-            Ereignisse
+            Events
           </label>
             </>
           }
           note={
             <>
-              {log ? "Logarithmische Achse: Linien nicht gestapelt." : "Flächen gestapelt."} Masse nur, wo bekannt, ohne Imputation; vor{" "}
-              {hist.mass_known_reliable_from ?? 1990} nur Größenordnung. Ereignisse aus config/events.yaml ({events.length}), jeweils mit Quelle.
+              {log ? "Logarithmic axis: lines not stacked." : "Areas stacked."} Mass only where known, no imputation; before{" "}
+              {hist.mass_known_reliable_from ?? 1990} order of magnitude only. Events from config/events.yaml ({events.length}), each with source.
             </>
           }
         >
-          <EChart option={option} height={460} zoomable label="Zeitreihe der jährlich gestarteten Nutzlasten seit 1957, gestapelt nach gewählter Gruppe; Ereignisse als Rauten." />
+          <EChart option={option} height={460} zoomable label="Time series of payloads launched per year since 1957, stacked by selected group; events shown as diamonds." />
         </ChartFrame>
       </Section>
 
       <Section
         id="rampen"
-        title="Analoge Hochlaufkurven"
-        intro="Starts je Jahr ab Erstflugjahr anderer Kleinträger, verglichen mit der Isar-Kapazitätsobergrenze aus assumptions.yaml. Formvergleich, keine Prognose."
+        title="Analog ramp-up curves"
+        intro="Launches per year from first-flight year of other small launchers, compared with the Isar capacity ceiling from assumptions.yaml. Shape comparison, not a forecast."
       >
         <ChartFrame>
-          <EChart option={rampOption} height={360} label="Analog-Rampen Electron, Vega, Alpha, Rockot, PSLV gegen Isar-Kapazitätsobergrenze je Szenario." />
+          <EChart option={rampOption} height={360} label="Analog ramps Electron, Vega, Alpha, Rockot, PSLV against the Isar capacity ceiling per scenario." />
         </ChartFrame>
       </Section>
 
-      <Section id="brueche" title="Strukturbrüche" intro="Deskriptiv, keine kausale Interpretation. Das Bruchjahr selbst ist ausgeschlossen.">
+      <Section id="brueche" title="Structural breaks" intro="Descriptive, no causal interpretation. The break year itself is excluded.">
         <ul className="grid gap-4 md:grid-cols-3">
           {breaks.map((b) => (
             <li key={b.id} className="border-t border-rule pt-3">
               <p className="metric text-ice">{b.year}</p>
               <p className="mt-1 text-snow">{b.label}</p>
               <p className="mt-1 text-[0.88rem] text-mist">
-                {b.years_before} Jahre davor, {b.years_after} Folgejahre{b.series_hint ? `, ${b.series_hint}` : ""}
+                {b.years_before} years before, {b.years_after} years after{b.series_hint ? `, ${b.series_hint}` : ""}
               </p>
             </li>
           ))}
         </ul>
-        <div className="mt-6">
-          <OpenItem title="Kennzahlen je Strukturbruch (Mittelwert und Wachstum vorher/nachher)">
-            engine.history.structural_break ist in INTERFACES.md beschrieben, im Rechenkern aber noch nicht umgesetzt. Die Werte folgen mit der Lieferung.
-          </OpenItem>
-        </div>
       </Section>
     </>
   );

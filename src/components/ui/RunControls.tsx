@@ -11,12 +11,12 @@ export function RunControls({ manifest, config }: { manifest: Manifest; config?:
   const labels = config?.scenario_labels?.value ?? SCENARIO_FALLBACK;
   return (
     <form
-      aria-label="Szenario wählen"
+      aria-label="Select scenario"
       className="flex min-w-0 max-w-full flex-wrap items-end gap-x-6 gap-y-4"
       onSubmit={(e) => e.preventDefault()}
     >
       <fieldset className="min-w-0">
-        <legend className="mb-1.5 text-[0.82rem] text-mist">Szenario</legend>
+        <legend className="mb-1.5 text-[0.82rem] text-mist">Scenario</legend>
         <div className="flex border border-rule-strong">
           {manifest.scenarios.map((sc: ScenarioId) => {
             const on = selection.scenario === sc;
@@ -43,7 +43,7 @@ export function RunControls({ manifest, config }: { manifest: Manifest; config?:
       </fieldset>
 
       <label className="flex flex-col text-[0.82rem] text-mist">
-        Jahr
+        Year
         <select
           value={selection.year}
           onChange={(e) => update({ year: Number(e.target.value) })}

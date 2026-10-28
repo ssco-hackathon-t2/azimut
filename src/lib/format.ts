@@ -1,9 +1,10 @@
 // Deutsche Zahlformate wie app/common.py (fmt_num, fmt_pct, fmt_t, fmt_eur_mio). Reine Darstellung.
 
 const nf = (d: number) =>
-  new Intl.NumberFormat("de-DE", { minimumFractionDigits: d, maximumFractionDigits: d });
+  new Intl.NumberFormat("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 
 export const DASH = "–";
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const ok = (x: number | null | undefined): x is number => typeof x === "number" && Number.isFinite(x);
 
@@ -13,7 +14,7 @@ export function fmtNum(x: number | null | undefined, d = 0): string {
 
 /** Anteil (0..1) als Prozent. */
 export function fmtPct(x: number | null | undefined, d = 1): string {
-  return ok(x) ? `${nf(d).format(x * 100)} %` : DASH;
+  return ok(x) ? `${nf(d).format(x * 100)}%` : DASH;
 }
 
 export function fmtT(kg: number | null | undefined, d = 1): string {
@@ -21,13 +22,13 @@ export function fmtT(kg: number | null | undefined, d = 1): string {
 }
 
 export function fmtEurMio(eur: number | null | undefined, d = 1): string {
-  return ok(eur) ? `${nf(d).format(eur / 1e6)} Mio. €` : DASH;
+  return ok(eur) ? `€${nf(d).format(eur / 1e6)}m` : DASH;
 }
 
 export function fmtDate(iso: string | null | undefined): string {
   if (!iso) return DASH;
   const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
-  return m ? `${m[3]}.${m[2]}.${m[1]}` : iso;
+  return m ? `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}` : iso;
 }
 
 /** Wert mit Engine-Einheit wie fmt_value in app/common.py. */
@@ -40,9 +41,9 @@ export function fmtValue(v: number | null | undefined, unit: string): string {
     case "EUR":
       return fmtEurMio(v, 1);
     case "missions/year":
-      return `${fmtNum(v, 1)} Missionen/Jahr`;
+      return `${fmtNum(v, 1)} missions/yr`;
     case "flights":
-      return `${fmtNum(v, 1)} Flüge`;
+      return `${fmtNum(v, 1)} flights`;
     case "count":
       return ok(v) && !Number.isInteger(v) ? fmtNum(v, 1) : fmtNum(v, 0);
     default:
@@ -63,6 +64,6 @@ export const urlOf = (s: string) => s.match(/https?:\/\/\S+?(?=[\s;,)]|$)/)?.[0]
 /** Grad mit Hemisphäre für Koordinaten. */
 export function fmtCoord(lat: number, lon: number, d = 4): string {
   const la = `${nf(d).format(Math.abs(lat))}° ${lat >= 0 ? "N" : "S"}`;
-  const lo = `${nf(d).format(Math.abs(lon))}° ${lon >= 0 ? "O" : "W"}`;
+  const lo = `${nf(d).format(Math.abs(lon))}° ${lon >= 0 ? "E" : "W"}`;
   return `${la}  ${lo}`;
 }

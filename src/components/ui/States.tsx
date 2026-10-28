@@ -2,7 +2,7 @@
 
 import type { Loadable } from "@/lib/data";
 
-export function Loading({ label = "Daten werden geladen" }: { label?: string }) {
+export function Loading({ label = "Loading data" }: { label?: string }) {
   return (
     <div role="status" aria-live="polite" className="flex items-center gap-3 py-8 text-mist">
       <span className="h-px w-10 overflow-hidden bg-rule">
@@ -17,13 +17,13 @@ export function Loading({ label = "Daten werden geladen" }: { label?: string }) 
 export function ErrorState({ error, retry }: { error: string; retry?: () => void }) {
   return (
     <div role="alert" className="my-6 border border-alert/50 bg-alert/8 px-5 py-4 text-snow">
-      <p className="font-medium">Diese Ansicht konnte ihre Daten nicht laden.</p>
+      <p className="font-medium">This view could not load its data.</p>
       <p className="mt-1 text-[0.92rem] text-mist">
-        {error}. Bitte die Verbindung und den Datenstand prüfen. Im Live-Modus muss das Python-Backend laufen.
+        {error}. Please check the connection and the data version. In live mode, the Python backend must be running.
       </p>
       {retry && (
         <button type="button" onClick={retry} className="mt-3 border border-rule-strong px-3 py-1.5 text-[0.9rem] hover:border-ice">
-          Erneut laden
+          Reload
         </button>
       )}
     </div>
@@ -47,7 +47,7 @@ export function Ready<T extends unknown[]>({
 
 /** Sichtbar offene Funktion: nicht geliefert, nicht durch eigene Daten ersetzt. */
 /** prefix: Sprache der Seite (Startseite Englisch „Open“, übrige Seiten „Offen“). */
-export function OpenItem({ title, children, prefix = "Offen" }: { title: string; children: React.ReactNode; prefix?: string }) {
+export function OpenItem({ title, children, prefix = "Open" }: { title: string; children: React.ReactNode; prefix?: string }) {
   return (
     <div className="border border-dashed border-amber/60 px-5 py-4">
       <p className="text-[0.95rem] font-medium text-amber">{prefix}: {title}</p>

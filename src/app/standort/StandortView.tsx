@@ -4,9 +4,9 @@ import { useState } from "react";
 import type { ConfigFile, DistributionsFile, Leaf, Manifest, RunsFile } from "@/lib/contract";
 import { useAssetJSON, useJSON } from "@/lib/data";
 import { distanceKm } from "@/lib/geo";
-import { fmtCoord, fmtNum, fmtPct } from "@/lib/format";
+import { fmtCoord, fmtDate, fmtNum, fmtPct } from "@/lib/format";
 import { PageHead, Section } from "@/components/shell/PageHead";
-import { OpenItem, Ready } from "@/components/ui/States";
+import { Ready } from "@/components/ui/States";
 import { ProvenanceNote } from "@/components/ui/ProvenanceNote";
 import { PadMap } from "@/components/scene/PadMap";
 import type { GeoManifest } from "@/components/scene/OrbitScene";
@@ -31,20 +31,20 @@ export function StandortView() {
 
 const SITE_FIELDS: [string, string][] = [
   ["status", "Status"],
-  ["inc_min", "Inklination min."],
-  ["inc_max", "Inklination max."],
-  ["site_cap_per_year", "Starts/Jahr (Genehmigung)"],
-  ["site_cap_target", "Ausbauziel"],
-  ["night_cap", "Nachtstarts/Jahr"],
-  ["first_launch_year", "Erster Start"],
-  ["payload_cap_kg", "Nutzlastklasse"],
-  ["lease_until", "Pacht bis"],
+  ["inc_min", "Inclination min."],
+  ["inc_max", "Inclination max."],
+  ["site_cap_per_year", "Launches/yr (licensed)"],
+  ["site_cap_target", "Expansion target"],
+  ["night_cap", "Night launches/yr"],
+  ["first_launch_year", "First launch"],
+  ["payload_cap_kg", "Payload class"],
+  ["lease_until", "Lease until"],
 ];
 
 function leafText(l?: Leaf): string {
   if (!l) return "–";
   const v = l.value;
-  if (v === null || v === undefined) return "unbelegt";
+  if (v === null || v === undefined) return "not sourced";
   if (typeof v === "number") {
     if (l.unit === "year" || (Number.isInteger(v) && v >= 1900 && v <= 2100)) return String(v);
     return `${fmtNum(v, Number.isInteger(v) ? 0 : 1)}${l.unit === "deg" ? "°" : l.unit === "kg" ? " kg" : ""}`;
@@ -70,21 +70,21 @@ function Standort({ config, dist, runs, geo, osm }: { manifest: Manifest; config
 
   return (
     <>
-      <PageHead title="Standort" />
+      <PageHead title="Site" />
       <div className="mx-auto max-w-[88rem] px-4 sm:px-8">
         <ProvenanceNote p={runs.provenance} />
       </div>
 
-      <Section id="lageplan" title="Lageplan Pad A">
+      <Section id="lageplan" title="Site plan Pad A">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
           <div>
             <div className="mb-3">
               <Toggle
-                label="Ausschnitt"
+                label="Extent"
                 options={[
                   ["lod_14.jpg", "14 km"],
-                  ["lod_4_5.jpg", "4,5 km"],
-                  ["lod_1_5.jpg", "1,5 km"],
+                  ["lod_4_5.jpg", "4.5 km"],
+                  ["lod_1_5.jpg", "1.5 km"],
                 ]}
                 value={lod}
                 onChange={setLod}
@@ -92,38 +92,38 @@ function Standort({ config, dist, runs, geo, osm }: { manifest: Manifest; config
             </div>
             <PadMap geo={geo} osm={osm} sector={sector ?? null} lod={lod} className="aspect-square w-full border border-rule" />
             <p className="mt-2 text-[0.82rem] text-mist">
-              Sentinel-2 L2A, Aufnahme {(lodFile?.acquired ?? []).map((d) => `${d.slice(6, 8)}.${d.slice(4, 6)}.${d.slice(0, 4)}`).join(", ")}, 10 m
-              Auflösung, farblich gedämpft. Linien: OpenStreetMap. Fächer: genehmigter Startsektor, Radius schematisch.
+              Sentinel-2 L2A, acquired {(lodFile?.acquired ?? []).map((d) => fmtDate(`${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6, 8)}`)).join(", ")}, 10 m
+              resolution, colors muted. Lines: OpenStreetMap. Fan: licensed launch sector, radius schematic.
             </p>
           </div>
           <dl className="grid content-start gap-x-6 gap-y-4 text-[0.95rem] sm:grid-cols-[auto_1fr]">
-            <dt className="text-mist">Koordinaten Pad A</dt>
+            <dt className="text-mist">Coordinates Pad A</dt>
             <dd className="metric text-[0.9rem] text-snow">{fmtCoord(geo.pad.lat, geo.pad.lon, 5)}</dd>
-            <dt className="text-mist">Genauigkeit</dt>
+            <dt className="text-mist">Accuracy</dt>
             <dd>
-              etwa ±{geo.pad.accuracy_m} m; {geo.pad.basis}. Keine amtliche Koordinate veröffentlicht.
+              approx. ±{geo.pad.accuracy_m} m; {geo.pad.basis}. No official coordinate published.
             </dd>
-            <dt className="text-mist">Startsektor</dt>
+            <dt className="text-mist">Launch sector</dt>
             <dd>
               {sector
-                ? `${sector.min}–${sector.max}° (Betriebsgenehmigung 22.08.2024, Quelle ${andoya.sector_deg?.source?.replace(/^https?:\/\//, "") ?? "–"}). Die Broschüre von Andøya Space nennt 300° bis 005°; die Genehmigung gilt.`
-                : "nicht geliefert"}
+                ? `${sector.min}–${sector.max}° (operating license 22 Aug 2024, source ${andoya.sector_deg?.source?.replace(/^https?:\/\//, "") ?? "–"}). The Andøya Space brochure states 300° to 005°; the license prevails.`
+                : "not delivered"}
             </dd>
-            <dt className="text-mist">Inklinationsfenster</dt>
+            <dt className="text-mist">Inclination window</dt>
             <dd>
-              {incMin != null && incMax != null ? `${incMin}–${incMax}° Basis` : "Fenster unbelegt"}
-              {alt ? `, ${alt.inc_min}–${alt.inc_max}° Alternativfenster` : ""}
+              {incMin != null && incMax != null ? `${incMin}–${incMax}° base` : "Window not sourced"}
+              {alt ? `, ${alt.inc_min}–${alt.inc_max}° alternative window` : ""}
               {andoya.inc_window_source?.value ? ` (${String(andoya.inc_window_source.value)})` : ""}
             </dd>
-            <dt className="text-mist">Abgleich Fachdaten</dt>
+            <dt className="text-mist">Cross-check with model data</dt>
             <dd>
               {gap != null ? (
                 <>
-                  <span className="text-amber">config/sites.yaml</span> führt {fmtCoord(plannedLat!, plannedLon!, 1)} als Planwert; das echte Pad liegt{" "}
-                  {fmtNum(gap, 1)} km entfernt. Für die Rechnung ist das ohne Wirkung, die Anzeige nutzt die geprüfte Pad-Koordinate. Integrationswunsch IR-04.
+                  <span className="text-amber">config/sites.yaml</span> lists {fmtCoord(plannedLat!, plannedLon!, 1)} as the planning value; the actual pad is{" "}
+                  {fmtNum(gap, 1)} km away. This has no effect on the calculation; the display uses the verified pad coordinate.
                 </>
               ) : (
-                "Keine Standortkoordinate in config/sites.yaml geliefert."
+                "No site coordinate delivered in config/sites.yaml."
               )}
             </dd>
           </dl>
@@ -132,47 +132,47 @@ function Standort({ config, dist, runs, geo, osm }: { manifest: Manifest; config
 
       <Section
         id="fenster"
-        title="Inklination der E0-Nutzlasten"
-        intro={`Basisjahr 2025, alle Nutzlasten (${fmtNum(dist.inc_deg.e0_rows_with_inc)} von ${fmtNum(dist.inc_deg.e0_rows)} mit bekannter Inklination). Das Fenster bestimmt den größten Teil des Ausschlusses vor E1.`}
+        title="Inclination of E0 payloads"
+        intro={`Base year 2025, all payloads (${fmtNum(dist.inc_deg.e0_rows_with_inc)} of ${fmtNum(dist.inc_deg.e0_rows)} with known inclination). The window accounts for most of the exclusion before E1.`}
       >
         <Distribution
           edges={dist.inc_deg.edges}
           counts={dist.inc_deg.e0_count}
-          xName="Inklination [°]"
-          label="Histogramm der Inklination aller 2025 gestarteten Nutzlasten mit aktivem Fenster 90 bis 108 Grad."
+          xName="Inclination [°]"
+          label="Histogram of inclination for all payloads launched in 2025, with active window 90 to 108 degrees."
           bands={[
             ...(alt ? [{ from: alt.inc_min, to: alt.inc_max, name: "" }] : []),
-            ...(incMin != null && incMax != null ? [{ from: incMin, to: incMax, name: "aktives Fenster", strong: true }] : []),
+            ...(incMin != null && incMax != null ? [{ from: incMin, to: incMax, name: "active window", strong: true }] : []),
           ]}
         />
         {e1 && (
           <p className="mt-3 text-[0.92rem] text-mist">
-            Technisch erreichbar (E1, zusätzlich Masse und Höhe): <span className="num text-snow">{fmtPct(e1.share_count, 2)}</span> der Nutzlasten,{" "}
-            <span className="num text-snow">{fmtPct(e1.share_mass, 2)}</span> der Masse.{alt ? ` Gepunktet: Alternativfenster ${alt.inc_min}–${alt.inc_max}°.` : ""}
+            Technically reachable (E1, also mass and altitude): <span className="num text-snow">{fmtPct(e1.share_count, 2)}</span> of payloads,{" "}
+            <span className="num text-snow">{fmtPct(e1.share_mass, 2)}</span> of mass.{alt ? ` Dotted: alternative window ${alt.inc_min}–${alt.inc_max}°.` : ""}
           </p>
         )}
       </Section>
 
-      <Section id="masse" title="Masse der E0-Nutzlasten" intro="Logarithmische Klassen. Die Linie markiert die nutzbare Spectrum-Nutzlast für SSO aus vehicles.yaml.">
+      <Section id="masse" title="Mass of E0 payloads" intro="Logarithmic bins. The line marks the usable Spectrum SSO payload from vehicles.yaml.">
         <Distribution
           edges={dist.mass_kg.edges}
           counts={dist.mass_kg.e0_count}
-          xName="Masse [kg] (log)"
+          xName="Mass [kg] (log)"
           log
-          label="Histogramm der Nutzlastmasse 2025 mit Spectrum-SSO-Schwelle und Smallsat-Grenze."
+          label="Histogram of 2025 payload mass with Spectrum SSO threshold and smallsat limit."
           lines={[
             ...(ssoKg ? [{ at: ssoKg, name: `Spectrum SSO ${fmtNum(ssoKg)} kg` }] : []),
-            { at: 1200, name: "Smallsat 1.200 kg", dashed: true },
+            { at: 1200, name: "Smallsat 1,200 kg", dashed: true },
           ]}
         />
       </Section>
 
-      <Section id="vergleich" title="Standorte im Vergleich" intro="Felder aus config/sites.yaml, unverändert. Ohne belegtes Fenster rechnet der Rechenkern einen Standort nicht.">
+      <Section id="vergleich" title="Site comparison" intro="Fields from config/sites.yaml, unmodified. Without a sourced window, the engine does not compute a site.">
         <div className="overflow-x-auto">
           <table className="stack-sm num w-full border-collapse text-left text-[0.92rem] md:min-w-[720px]">
             <thead className="text-mist">
               <tr className="border-b border-rule">
-                <th className="py-2 pr-4 font-normal">Feld</th>
+                <th className="py-2 pr-4 font-normal">Field</th>
                 {Object.keys(config.sites ?? {}).map((id) => (
                   <th key={id} className="py-2 pr-4 font-normal text-snow">
                     {String(config.sites[id].name?.value ?? id)}
@@ -196,12 +196,6 @@ function Standort({ config, dist, runs, geo, osm }: { manifest: Manifest; config
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="mt-6">
-          <OpenItem title="Standortvergleich mit deduplizierter Union und gemeinsamen Kapazitätsgrenzen">
-            Erwartete Lieferung des Fachlaufs (Prompt 11, Aufgabe 7). Die Ansicht zeigt dann je Standort E1 bis E3 und die gemeinsame Obergrenze; bis
-            dahin nur die Stammdaten oben.
-          </OpenItem>
         </div>
       </Section>
     </>

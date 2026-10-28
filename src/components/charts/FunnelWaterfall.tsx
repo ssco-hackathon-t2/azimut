@@ -20,25 +20,25 @@ const REASON_ORDER: Record<StageName, string[]> = {
 // Kurzformen für schmale Bildschirme; volle Bezeichnung im Tooltip und in der Tabelle.
 const SHORT: Record<string, string> = {
   ORBIT_UNKNOWN: "Orbit ?",
-  INC_OUT: "Inklin.",
-  ALT_OUT: "Höhe",
-  MASS_OUT: "Masse",
+  INC_OUT: "Incl.",
+  ALT_OUT: "Alt.",
+  MASS_OUT: "Mass",
   CAPTIVE: "Captive",
-  GEO_BLOCK: "Staat",
-  US_NATSEC: "US-NatSec",
-  WINRATE: "Win-Rate",
-  CAPACITY: "Kapaz.",
+  GEO_BLOCK: "Country",
+  US_NATSEC: "US NatSec",
+  WINRATE: "Win rate",
+  CAPACITY: "Capac.",
 };
 const LONG: Record<string, string> = {
-  ORBIT_UNKNOWN: "Orbit\nunbekannt",
-  INC_OUT: "Inklination",
-  ALT_OUT: "Höhe",
-  MASS_OUT: "Masse",
+  ORBIT_UNKNOWN: "Orbit\nunknown",
+  INC_OUT: "Inclination",
+  ALT_OUT: "Altitude",
+  MASS_OUT: "Mass",
   CAPTIVE: "Captive",
-  GEO_BLOCK: "Staat",
-  US_NATSEC: "US-NatSec",
-  WINRATE: "Win-Rate",
-  CAPACITY: "Kapazität",
+  GEO_BLOCK: "Country",
+  US_NATSEC: "US NatSec",
+  WINRATE: "Win rate",
+  CAPACITY: "Capacity",
 };
 
 interface Bar {
@@ -99,8 +99,8 @@ export function FunnelWaterfall({ run, metric: initial = "mass" }: { run: Run; m
         axisPointer: { type: "shadow" },
         formatter: (ps: { dataIndex: number }[]) => {
           const b = data[ps[0].dataIndex];
-          const head = b.kind === "stage" ? b.label : `Abzug: ${b.label}`;
-          const extra = b.share !== undefined ? `<br/>Anteil an E0: ${fmtPct(b.share, 2)}` : "";
+          const head = b.kind === "stage" ? b.label : `Deduction: ${b.label}`;
+          const extra = b.share !== undefined ? `<br/>Share of E0: ${fmtPct(b.share, 2)}` : "";
           return `${head}<br/><b>${fmt(b.value)}</b>${extra}`;
         },
       },
@@ -120,7 +120,7 @@ export function FunnelWaterfall({ run, metric: initial = "mass" }: { run: Run; m
         type: "value",
         max: yMax,
         min: 0,
-        name: metric === "mass" ? "t" : "Nutzlasten",
+        name: metric === "mass" ? "t" : "Payloads",
         axisLabel: { formatter: (x: number) => (metric === "mass" ? fmtNum(x / 1000, 0) : fmtNum(x, 0)) },
       },
       series: [
@@ -161,34 +161,34 @@ export function FunnelWaterfall({ run, metric: initial = "mass" }: { run: Run; m
       controls={
         <>
           <Toggle
-            label="Größe"
+            label="Metric"
             options={[
-              ["mass", "Masse"],
-              ["count", "Anzahl"],
+              ["mass", "Mass"],
+              ["count", "Count"],
             ]}
             value={metric}
             onChange={(v) => setMetric(v as Metric)}
           />
           <Toggle
-            label="Maßstab"
+            label="Scale"
             options={[
-              ["all", "Gesamt"],
-              ["lens", "Ab E1 vergrößert"],
+              ["all", "Full"],
+              ["lens", "Zoomed from E1"],
             ]}
             value={lens ? "lens" : "all"}
             onChange={(v) => setLens(v === "lens")}
           />
         </>
       }
-      note={lens && "Vergrößerte Ansicht: Balken über E1 sind abgeschnitten, die Beschriftung zeigt den vollen Wert."}
-      tableLabel="Wasserfall als Tabelle"
+      note={lens && "Zoomed view: bars above E1 are cut off; labels show the full value."}
+      tableLabel="Waterfall as table"
       table={
         <table className="w-full border-collapse text-left num">
           <thead className="text-mist">
             <tr className="border-b border-rule">
-              <th className="py-2 pr-4 font-normal">Schritt</th>
-              <th className="py-2 pr-4 text-right font-normal">{metric === "mass" ? "Masse" : "Anzahl"}</th>
-              <th className="py-2 text-right font-normal">Anteil an E0</th>
+              <th className="py-2 pr-4 font-normal">Step</th>
+              <th className="py-2 pr-4 text-right font-normal">{metric === "mass" ? "Mass" : "Count"}</th>
+              <th className="py-2 text-right font-normal">Share of E0</th>
             </tr>
           </thead>
           <tbody>
@@ -208,7 +208,7 @@ export function FunnelWaterfall({ run, metric: initial = "mass" }: { run: Run; m
       <EChart
         option={option}
         height={380}
-        label={`Wasserfall E0 bis E3 nach ${metric === "mass" ? "Masse" : "Anzahl"}; Werte auch in der Tabelle darunter.`}
+        label={`Waterfall E0 to E3 by ${metric === "mass" ? "mass" : "count"}; values also in the table below.`}
       />
     </ChartFrame>
   );

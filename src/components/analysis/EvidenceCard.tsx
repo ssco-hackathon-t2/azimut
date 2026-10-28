@@ -42,10 +42,10 @@ export function EvidenceCard({ id, kpi, run }: { id: string; kpi: string; run: R
     >
       <div className="flex items-start justify-between gap-4 border-b border-rule px-5 py-3">
         <p id={`${id}-h`} className="text-[0.86rem] text-mist">
-          Woher kommt diese Zahl?
+          Where does this number come from?
         </p>
         <button ref={close} type="button" popoverTarget={id} popoverTargetAction="hide" className="-my-1 border border-rule px-2.5 py-1 text-[0.86rem] text-snow hover:border-ice">
-          Schließen
+          Close
         </button>
       </div>
       {open && <CardBody kpi={kpi} run={run} />}
@@ -69,15 +69,15 @@ function Body({ kpi, run, traces, assumptions }: { kpi: string; run: Run; traces
   const fallback = !traces.traces[runId(sel)]?.[kpi];
   const t = traces.traces[runId(fallback ? { ...sel, scope: "all_payloads" } : sel)]?.[kpi];
   const rows = new Map(assumptions.rows.map((r) => [r.key, r]));
-  if (!t) return <p className="pt-4 text-mist">Für diese Kennzahl liegt im gelieferten Satz kein Beleg vor.</p>;
+  if (!t) return <p className="pt-4 text-mist">No evidence for this metric in the delivered dataset.</p>;
 
   return (
     <>
       <p className="pt-4 text-[1.05rem] text-snow">{t.label}</p>
       <p className="num mt-1 text-[2rem] font-semibold leading-tight text-snow">{fmtValue(t.value, t.unit)}</p>
-      {fallback && <p className="mt-1 text-[0.88rem] text-amber">Für diesen Scope liegen keine Belege vor; gezeigt wird „alle Nutzlasten“ desselben Szenarios und Jahres.</p>}
+      {fallback && <p className="mt-1 text-[0.88rem] text-amber">No evidence for this scope; showing “all payloads” for the same scenario and year.</p>}
 
-      <h3 className="mt-5 text-[0.86rem] font-medium text-mist">Formel</h3>
+      <h3 className="mt-5 text-[0.86rem] font-medium text-mist">Formula</h3>
       <pre className="mt-1.5 whitespace-pre-wrap border border-rule bg-night px-3 py-2 font-mono text-[0.8rem] text-snow">{t.formula}</pre>
       {Object.keys(t.inputs).length > 0 && (
         <table className="num mt-3 w-full border-collapse text-left text-[0.9rem]">
@@ -92,9 +92,9 @@ function Body({ kpi, run, traces, assumptions }: { kpi: string; run: Run; traces
         </table>
       )}
 
-      <h3 className="mt-5 text-[0.86rem] font-medium text-mist">Annahmen</h3>
+      <h3 className="mt-5 text-[0.86rem] font-medium text-mist">Assumptions</h3>
       {t.assumption_keys.length === 0 ? (
-        <p className="mt-1.5 text-[0.9rem] text-mist">Keine YAML-Annahme geht in diese Kennzahl ein.</p>
+        <p className="mt-1.5 text-[0.9rem] text-mist">No YAML assumption feeds into this metric.</p>
       ) : (
         <ul className="mt-1.5 divide-y divide-rule/50 border-y border-rule/70 text-[0.9rem]">
           {t.assumption_keys.map((k) => {
@@ -111,7 +111,7 @@ function Body({ kpi, run, traces, assumptions }: { kpi: string; run: Run; traces
                   {team && (
                     <span className="mr-2 inline-flex items-center gap-1.5 text-alert">
                       <span aria-hidden="true" className="size-1.5 rounded-full bg-alert" />
-                      Team-Annahme
+                      Team assumption
                     </span>
                   )}
                   {team && r?.source?.trim() === "Team-Annahme" ? null : u ? <a href={u}>{new URL(u).hostname}</a> : (r?.source ?? "–")}
@@ -124,7 +124,7 @@ function Body({ kpi, run, traces, assumptions }: { kpi: string; run: Run; traces
 
       {t.references.length > 0 && (
         <>
-          <h3 className="mt-5 text-[0.86rem] font-medium text-mist">Vergleichswerte</h3>
+          <h3 className="mt-5 text-[0.86rem] font-medium text-mist">Benchmarks</h3>
           <ul className="mt-1.5 divide-y divide-rule/50 border-y border-rule/70 text-[0.9rem]">
             {t.references.map((r) => (
               <li key={r.key} className="grid gap-0.5 py-2">
@@ -141,7 +141,7 @@ function Body({ kpi, run, traces, assumptions }: { kpi: string; run: Run; traces
       <div className="mt-5 flex flex-wrap items-baseline justify-between gap-3">
         <ProvenanceNote p={traces.provenance} compact />
         <Link href={belegeHref(kpi, sel)} className="text-[0.9rem]">
-          Alle Details
+          All details
         </Link>
       </div>
     </>

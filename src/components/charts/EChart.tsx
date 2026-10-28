@@ -47,7 +47,7 @@ function ensureTheme() {
   themed = true;
 }
 
-const deNum = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 });
+const deNum = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
 
 /** Wertachse mit deutschem Zahlformat (ECharts nutzt sonst „1,500“). Optik kommt aus dem Theme. */
 export function valueAxis(extra: Record<string, unknown> = {}) {
@@ -132,14 +132,14 @@ export function EChart({ option, height, label, zoomable = false, className = ""
     <div className={className}>
       {zoomable && (
         <div className="mb-2 flex items-center justify-end gap-3 text-[0.8rem] text-mist">
-          <span className="hidden sm:inline">Zoomen mit Mausrad oder zwei Fingern</span>
+          <span className="hidden sm:inline">Zoom with mouse wheel or two fingers</span>
           <button
             type="button"
             onClick={reset}
             disabled={!zoomed}
             className="border border-rule-strong px-2.5 py-1 text-snow transition-opacity disabled:cursor-default disabled:opacity-40"
           >
-            Ansicht zurücksetzen
+            Reset view
           </button>
         </div>
       )}

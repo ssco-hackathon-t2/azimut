@@ -251,7 +251,7 @@ export function OrbitScene(props: Props) {
     // Prüfkontext sofort freigeben, sonst sammeln sich Kontexte bei wiederholten Besuchen.
     probeCtx?.getExtension("WEBGL_lose_context")?.loseContext();
     if (!probeCtx) {
-      cb.current.onFail?.("WebGL2 nicht verfügbar");
+      cb.current.onFail?.("WebGL2 not available");
       return;
     }
     let disposed = false;
@@ -261,7 +261,7 @@ export function OrbitScene(props: Props) {
     try {
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, logarithmicDepthBuffer: true, powerPreference: "high-performance" });
     } catch {
-      cb.current.onFail?.("WebGL konnte nicht gestartet werden");
+      cb.current.onFail?.("WebGL could not be started");
       return;
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, isSmall ? 1.5 : 2));
@@ -541,7 +541,7 @@ export function OrbitScene(props: Props) {
       } else kick();
     };
     manager.onError = (url) => {
-      if (!disposed) cb.current.onFail?.(`Kartendatei fehlt: ${url.split("/").pop()}`);
+      if (!disposed) cb.current.onFail?.(`Map file missing: ${url.split("/").pop()}`);
     };
 
     const onMove = (e: PointerEvent) => {

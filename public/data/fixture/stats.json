@@ -17,11 +17,11 @@
     "skipped": 17,
     "skip_reasons": [
       {
-        "reason": "DATABASE_URL_TEST nicht gesetzt",
+        "reason": "DATABASE_URL_TEST not set",
         "count": 16
       },
       {
-        "reason": "Rohdaten oder Artefakte fehlen",
+        "reason": "Raw data or artefacts missing",
         "count": 1
       }
     ],

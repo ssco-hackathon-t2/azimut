@@ -49,17 +49,17 @@ export function VerticalBars({ run, labels }: { run: Run; labels: Record<string,
     }),
     [rows, labels, stage, metric],
   );
-  if (!run.by_vertical) return <p className="text-mist">Keine Vertical-Aufteilung in diesem Run geliefert.</p>;
+  if (!run.by_vertical) return <p className="text-mist">No vertical breakdown delivered in this run.</p>;
   return (
     <ChartFrame
       controls={
         <>
-          <Toggle label="Stufe" options={(["E0", "E1", "E2", "E3"] as StageName[]).map((s) => [s, s])} value={stage} onChange={(v) => setStage(v as StageName)} />
-          <Toggle label="Größe" options={[["mass", "Masse"], ["count", "Anzahl"]]} value={metric} onChange={(v) => setMetric(v as "mass" | "count")} />
+          <Toggle label="Stage" options={(["E0", "E1", "E2", "E3"] as StageName[]).map((s) => [s, s])} value={stage} onChange={(v) => setStage(v as StageName)} />
+          <Toggle label="Metric" options={[["mass", "Mass"], ["count", "Count"]]} value={metric} onChange={(v) => setMetric(v as "mass" | "count")} />
         </>
       }
     >
-      <EChart option={option} height={Math.max(220, rows.length * 30 + 20)} label={`Verticals der Stufe ${stage} nach ${metric === "mass" ? "Masse" : "Anzahl"}.`} />
+      <EChart option={option} height={Math.max(220, rows.length * 30 + 20)} label={`Verticals of stage ${stage} by ${metric === "mass" ? "mass" : "count"}.`} />
     </ChartFrame>
   );
 }

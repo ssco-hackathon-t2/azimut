@@ -62,14 +62,14 @@ export function Globe(props: Props) {
     const probe = document.createElement("canvas").getContext("webgl2");
     probe?.getExtension("WEBGL_lose_context")?.loseContext();
     if (!probe) {
-      cb.current.onFail?.("WebGL2 nicht verfügbar");
+      cb.current.onFail?.("WebGL2 not available");
       return;
     }
     let renderer: THREE.WebGLRenderer;
     try {
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, logarithmicDepthBuffer: true });
     } catch {
-      cb.current.onFail?.("WebGL konnte nicht gestartet werden");
+      cb.current.onFail?.("WebGL could not be started");
       return;
     }
     let disposed = false;
@@ -237,7 +237,7 @@ export function Globe(props: Props) {
       kick();
     };
     manager.onError = (url) => {
-      if (!disposed) cb.current.onFail?.(`Kartendatei fehlt: ${url.split("/").pop()}`);
+      if (!disposed) cb.current.onFail?.(`Map file missing: ${url.split("/").pop()}`);
     };
 
     // Ziehen: Erdoberfläche folgt dem Zeiger (Grad je Pixel aus dem sichtbaren Globusradius).

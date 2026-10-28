@@ -15,15 +15,15 @@ export function KostenView() {
   return <Ready items={[db] as const}>{(d) => <Kosten db={d} />}</Ready>;
 }
 
-const eur = (x: number) => `${fmtNum(x, Number.isInteger(x) ? 0 : 2)} Mio. €`;
+const eur = (x: number) => `€${fmtNum(x, Number.isInteger(x) ? 0 : 2)}m`;
 
 // Zeilen, deren Herkunft die Seite offenlegt; Beschriftung hier, Werte und Status aus der DB.
 const INPUTS = [
-  ["price_per_launch_eur_m", "Preis pro Start", "Mio. €"],
-  ["fixed_cost_eur_m", "Fixkosten Betrieb pro Jahr", "Mio. €"],
-  ["variable_cost_unit20_eur_m", "Variable Kosten je Rakete bei Stück 20", "Mio. €"],
-  ["learning_rate", "Lernkurve (Wright)", ""],
-  ["dev_cost_eur_m", "Entwicklung pro Jahr", "Mio. €"],
+  ["price_per_launch_eur_m", "Price per launch", "€m"],
+  ["fixed_cost_eur_m", "Fixed operating cost per year", "€m"],
+  ["variable_cost_unit20_eur_m", "Variable cost per vehicle at unit 20", "€m"],
+  ["learning_rate", "Learning curve (Wright)", ""],
+  ["dev_cost_eur_m", "Development per year", "€m"],
 ] as const;
 
 /**
@@ -63,12 +63,12 @@ function Kosten({ db }: { db: IsarDb }) {
       animation: false,
       grid: { left: 8, right: 24, top: 52, bottom: 36, containLabel: true },
       tooltip: { trigger: "axis", valueFormatter: (v: number) => eur(v) },
-      xAxis: { type: "value", min: curve[0]?.n, max: curve.at(-1)?.n, ...valueAxis(), name: "Starts pro Jahr", nameLocation: "middle", nameGap: 26 },
+      xAxis: { type: "value", min: curve[0]?.n, max: curve.at(-1)?.n, ...valueAxis(), name: "Launches per year", nameLocation: "middle", nameGap: 26 },
       // Schmal: Achsenname und lange Linienbeschriftungen würden sich überlagern; die Bildunterschrift erklärt sie.
-      yAxis: { type: "value", ...valueAxis(), name: narrow ? "" : "Mio. € pro Start", nameLocation: "end", nameTextStyle: { align: "left" } },
+      yAxis: { type: "value", ...valueAxis(), name: narrow ? "" : "€m per launch", nameLocation: "end", nameTextStyle: { align: "left" } },
       series: [
         {
-          name: "Kosten pro Start",
+          name: "Cost per launch",
           type: "line",
           color: CHART.ice,
           symbol: "circle",
@@ -80,14 +80,14 @@ function Kosten({ db }: { db: IsarDb }) {
             lineStyle: { type: "dashed", color: CHART.mist },
             label: { color: CHART.ink, fontSize: 12 },
             data: [
-              { yAxis: p, label: { formatter: `Preis ${fmtNum(p, 0)} Mio. €`, position: "insideEndTop" } },
+              { yAxis: p, label: { formatter: `Price €${fmtNum(p, 0)}m`, position: "insideEndTop" } },
               { xAxis: be, label: { formatter: narrow ? fmtNum(be) : `Break-even ${fmtNum(be)}`, position: "end" } },
-              { xAxis: beD, lineStyle: { color: alpha(CHART.mist, 0.6) }, label: { formatter: narrow ? fmtNum(beD) : `inkl. Entwicklung ${fmtNum(beD)}`, position: "end" } },
+              { xAxis: beD, lineStyle: { color: alpha(CHART.mist, 0.6) }, label: { formatter: narrow ? fmtNum(beD) : `incl. development ${fmtNum(beD)}`, position: "end" } },
             ],
           },
         },
         {
-          name: "Gewählt",
+          name: "Selected",
           type: "scatter",
           symbolSize: 16,
           z: 5,
@@ -103,9 +103,9 @@ function Kosten({ db }: { db: IsarDb }) {
   if (!ready || !row) {
     return (
       <>
-        <PageHead title="Kosten pro Start" />
-        <Section id="kipppunkt" title="Kostenkurve fehlt">
-          <OpenItem title="Isar Case DB">Kostenkurve, Break-even oder Preis fehlen in data/isar/isar_data.json.</OpenItem>
+        <PageHead title="Cost per launch" />
+        <Section id="kipppunkt" title="Cost curve missing">
+          <OpenItem title="Isar Case DB">Cost curve, break-even or price missing in data/isar/isar_data.json.</OpenItem>
         </Section>
       </>
     );
@@ -113,19 +113,19 @@ function Kosten({ db }: { db: IsarDb }) {
 
   return (
     <>
-      <PageHead title="Kosten pro Start" />
+      <PageHead title="Cost per launch" />
       <div className="mx-auto max-w-[88rem] px-4 sm:px-8">
         <p className="flex items-baseline gap-2 text-[0.86rem] text-amber">
           <span aria-hidden="true" className="inline-block size-1.5 shrink-0 translate-y-[-0.1em] rounded-full bg-amber" />
-          Quelle: Kopie der Isar Case DB (Tabellen cost_curve, derived_kpis, scenarios, assumptions). Nicht vom Python-Rechenkern berechnet und nicht im Prüfstand.
+          Source: copy of the Isar Case DB (tables cost_curve, derived_kpis, scenarios, assumptions). Not computed by the Python engine.
         </p>
       </div>
 
-      <Section id="kipppunkt" title={`Ab ${fmtNum(be)} Starts pro Jahr deckt der Preis die Betriebskosten`}>
+      <Section id="kipppunkt" title={`From ${fmtNum(be)} launches per year, the price covers operating costs`}>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)]">
           <div>
             <label htmlFor="kadenz" className="text-[0.92rem] text-mist">
-              Starts pro Jahr, alle Standorte
+              Launches per year, all sites
             </label>
             <div className="mt-2 flex items-center gap-4">
               <input
@@ -136,52 +136,52 @@ function Kosten({ db }: { db: IsarDb }) {
                 step={1}
                 value={idx}
                 onChange={(e) => setIdx(Number(e.target.value))}
-                aria-valuetext={`${row.n} Starts pro Jahr`}
+                aria-valuetext={`${row.n} launches per year`}
                 className="h-2 w-full cursor-pointer accent-[var(--color-ice)]"
               />
               <span className="num w-10 text-right text-[1.4rem] font-semibold text-snow">{row.n}</span>
             </div>
             <p className="mt-1 text-[0.8rem] text-mist">
-              Springt zwischen den {curve.length} Stützstellen der Kostenkurve ({curve[0].n} bis {curve.at(-1)!.n}).
+              Steps through the {curve.length} data points of the cost curve ({curve[0].n} to {curve.at(-1)!.n}).
             </p>
 
-            <p className="mt-8 text-[0.92rem] text-mist">Kosten pro Start bei {row.n} Starts pro Jahr</p>
+            <p className="mt-8 text-[0.92rem] text-mist">Cost per launch at {row.n} launches per year</p>
             <p className="num font-display text-[clamp(2.4rem,5vw,3.6rem)] font-semibold leading-[1.05] text-snow">{eur(row.cost)}</p>
             <p aria-live="polite" className={`mt-2 text-[1.05rem] ${covered ? "text-aurora" : "text-alert"}`}>
-              <span className="font-semibold">{covered ? "Deckt die Betriebskosten" : "Verlust je Start"}</span>: {covered ? "unter" : "über"} dem Preis von {eur(p)}, vor
-              Entwicklung.
+              <span className="font-semibold">{covered ? "Covers operating costs" : "Loss per launch"}</span>: {covered ? "below" : "above"} the price of {eur(p)}, before
+              development.
             </p>
             <p className="mt-3 text-[0.95rem] text-mist">
-              Mit Entwicklung{dev ? ` (${fmtNum(Number(dev.value_base))} Mio. € pro Jahr)` : ""} erst ab {fmtNum(beD)} Starts:{" "}
-              <span className="text-snow">{row.n >= beD ? "erreicht" : "noch nicht erreicht"}</span>.
+              Including development{dev ? ` (€${fmtNum(Number(dev.value_base))}m per year)` : ""}, only from {fmtNum(beD)} launches:{" "}
+              <span className="text-snow">{row.n >= beD ? "reached" : "not yet reached"}</span>.
             </p>
             {scenario && (
               <p className="mt-3 border-l-2 border-rule-strong pl-3 text-[0.95rem] text-snow">
-                Szenario „{scenario.name}“ {scenario.year}: Ergebnis vor Entwicklung {Number(scenario.result_eur_m) > 0 ? "+" : ""}
-                {fmtNum(Number(scenario.result_eur_m))} Mio. € <span className="text-mist">({STATUS_LABELS[scenario.data_status] ?? scenario.data_status})</span>
+                Scenario “{scenario.name}” {scenario.year}: result before development {Number(scenario.result_eur_m) > 0 ? "+" : ""}
+                €{fmtNum(Number(scenario.result_eur_m))}m <span className="text-mist">({STATUS_LABELS[scenario.data_status] ?? scenario.data_status})</span>
               </p>
             )}
             <button type="button" onClick={() => setIdx(startIdx)} className="mt-6 border border-rule-strong px-3 py-1.5 text-[0.9rem] text-snow hover:border-ice">
-              Zurück auf realistische Nachfrage ({curve[startIdx].n} Starts)
+              Reset to realistic demand ({curve[startIdx].n} launches)
             </button>
           </div>
 
           <ChartFrame
             note={
               <>
-                Kosten pro Start in Mio. € = variable Kosten mit Lernkurve plus Fixkosten je Start, als fertige Kurve aus der DB ({STATUS_LABELS[row.status] ?? row.status}).
-                Senkrechte Linien: Break-even Betrieb ({fmtNum(be)}) und inklusive Entwicklung ({fmtNum(beD)}). Break-even laut DB
-                zwischen {fmtNum(Number(beOps!.value_low))} und {fmtNum(Number(beOps!.value_high))} Starts, je nach Annahmen.
+                Cost per launch in €m = variable cost with learning curve plus fixed cost per launch, taken as a finished curve from the DB ({STATUS_LABELS[row.status] ?? row.status}).
+                Vertical lines: operating break-even ({fmtNum(be)}) and including development ({fmtNum(beD)}). Per the DB, break-even lies
+                between {fmtNum(Number(beOps!.value_low))} and {fmtNum(Number(beOps!.value_high))} launches, depending on assumptions.
               </>
             }
             table={
               <table className="num w-full border-collapse text-left text-[0.9rem]">
                 <thead className="text-mist">
                   <tr className="border-b border-rule">
-                    <th className="py-2 pr-3 font-normal">Starts pro Jahr</th>
-                    <th className="py-2 pr-3 text-right font-normal">Variabel</th>
-                    <th className="py-2 pr-3 text-right font-normal">Fix je Start</th>
-                    <th className="py-2 text-right font-normal">Kosten pro Start</th>
+                    <th className="py-2 pr-3 font-normal">Launches per year</th>
+                    <th className="py-2 pr-3 text-right font-normal">Variable</th>
+                    <th className="py-2 pr-3 text-right font-normal">Fixed per launch</th>
+                    <th className="py-2 text-right font-normal">Cost per launch</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -197,12 +197,12 @@ function Kosten({ db }: { db: IsarDb }) {
               </table>
             }
           >
-            <EChart option={option} height={340} label={`Kosten pro Start über Starts pro Jahr, Preislinie ${fmtNum(p, 0)} Mio. €, gewählt ${row.n} Starts.`} />
+            <EChart option={option} height={340} label={`Cost per launch vs. launches per year, price line €${fmtNum(p, 0)}m, selected ${row.n} launches.`} />
           </ChartFrame>
         </div>
       </Section>
 
-      <Section id="herkunft" title="Die Kurve steht auf Annahmen, jede mit Status">
+      <Section id="herkunft" title="The curve rests on assumptions, each with a status">
         <dl className="divide-y divide-rule/60 border-y border-rule text-[0.92rem]">
           {INPUTS.map(([id, label, unit]) => {
             const a = assumption(id);
@@ -212,21 +212,21 @@ function Kosten({ db }: { db: IsarDb }) {
               <div key={id} className="grid gap-1 py-3 md:grid-cols-[18rem_12rem_1fr]">
                 <dt className="text-snow">{label}</dt>
                 <dd className="num text-snow">
-                  {fmtNum(Number(a.value_base), 2)} {unit} <span className="text-mist">({fmtNum(Number(a.value_low), 2)} bis {fmtNum(Number(a.value_high), 2)})</span>
+                  {fmtNum(Number(a.value_base), 2)} {unit} <span className="text-mist">({fmtNum(Number(a.value_low), 2)} to {fmtNum(Number(a.value_high), 2)})</span>
                 </dd>
                 <dd className="text-mist">
                   {STATUS_LABELS[a.data_status] ?? a.data_status}
                   {" · "}
-                  {src ? <a href={src.url}>{src.publisher || src.title}</a> : "ohne Quelle"}
+                  {src ? <a href={src.url}>{src.publisher || src.title}</a> : "no source"}
                 </dd>
               </div>
             );
           })}
           {[beOps!, beDev!].map((k) => (
             <div key={k.id} className="grid gap-1 py-3 md:grid-cols-[18rem_12rem_1fr]">
-              <dt className="text-snow">{k.id === "break_even_ops" ? "Break-even Betrieb" : "Break-even inkl. Entwicklung"}</dt>
+              <dt className="text-snow">{k.id === "break_even_ops" ? "Operating break-even" : "Break-even incl. development"}</dt>
               <dd className="num text-snow">
-                {fmtNum(Number(k.value_base))} Starts <span className="text-mist">({fmtNum(Number(k.value_low))} bis {fmtNum(Number(k.value_high))})</span>
+                {fmtNum(Number(k.value_base))} launches <span className="text-mist">({fmtNum(Number(k.value_low))} to {fmtNum(Number(k.value_high))})</span>
               </dd>
               <dd className="text-mist">
                 {STATUS_LABELS[k.data_status] ?? k.data_status} · <span className="metric">{k.formula}</span>

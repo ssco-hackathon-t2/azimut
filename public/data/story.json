@@ -191,11 +191,6 @@
       "lead": "Every number comes from a data file and carries its status and source.",
       "blocks": [
         {
-          "kind": "placeholder",
-          "text": "Architecture and data flow diagram to follow (knowledge/06_architektur.md).",
-          "title": "Architecture and data flow"
-        },
-        {
           "kind": "links",
           "title": "Further pages"
         }

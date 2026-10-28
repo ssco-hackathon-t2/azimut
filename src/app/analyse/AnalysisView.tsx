@@ -38,13 +38,13 @@ function Analysis({ manifest, runs, timeline, config }: { manifest: Manifest; ru
     // Fehlender Run: Steuerung bleibt bedienbar, damit eine andere Kombination wählbar ist.
     return (
       <>
-        <PageHead title="Analyse" />
+        <PageHead title="Analysis" />
         <div className="mx-auto max-w-[88rem] px-4 sm:px-8">
           <RunControls manifest={manifest} config={config} />
           <div className="mt-8">
-            <OpenItem title={`Kein vorbereiteter Run für ${labels[selection.scenario] ?? selection.scenario}, ${selection.year}, ${SCOPE_LABELS[selection.scope]}`}>
-              {!base ? "Auch der Headline-Run (Basisjahr, alle Nutzlasten) fehlt im Datensatz. " : ""}Bitte eine andere Kombination wählen; der Fachlauf
-              liefert nur das Raster aus manifest.json.
+            <OpenItem title={`No prepared run for ${labels[selection.scenario] ?? selection.scenario}, ${selection.year}, ${SCOPE_LABELS[selection.scope]}`}>
+              {!base ? "The headline run (base year, all payloads) is also missing from the dataset. " : ""}Please choose another combination; the model run
+              only delivers the grid defined in manifest.json.
             </OpenItem>
           </div>
         </div>
@@ -57,13 +57,13 @@ function Analysis({ manifest, runs, timeline, config }: { manifest: Manifest; ru
 
   return (
     <>
-      <PageHead title="Analyse" />
+      <PageHead title="Analysis" />
 
       <div className="border-y border-rule/70 bg-night/92 lg:sticky lg:top-[var(--header-h)] lg:z-30 lg:backdrop-blur-md">
         <div className="mx-auto flex max-w-[88rem] flex-col gap-3 px-4 py-4 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
           <RunControls manifest={manifest} config={config} />
           <p className="text-[0.82rem] text-mist">
-            Aktiver Run <span className="metric text-snow">{run.run_id}</span>
+            Active run <span className="metric text-snow">{run.run_id}</span>
           </p>
         </div>
       </div>
@@ -72,7 +72,7 @@ function Analysis({ manifest, runs, timeline, config }: { manifest: Manifest; ru
         <ProvenanceNote p={runs.provenance} />
       </div>
 
-      <Section id="ergebnis" title="Ergebnis">
+      <Section id="ergebnis" title="Result">
         <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr]">
           <KeyStatement base={base} current={run} scenarioLabels={labels} size="md" />
           <dl className="grid grid-cols-2 gap-x-6 gap-y-5 self-start border-l border-rule pl-6 text-[0.95rem]">
@@ -88,49 +88,49 @@ function Analysis({ manifest, runs, timeline, config }: { manifest: Manifest; ru
               </div>
             ))}
             <div>
-              <dt className="text-[0.82rem] text-mist">Missionen/Jahr ({run.params.year})</dt>
+              <dt className="text-[0.82rem] text-mist">Missions/yr ({run.params.year})</dt>
               <dd className="num mt-0.5">
-                {fmtNum(run.e3.missions_served, 1)} <span className="text-mist">von {fmtNum(run.e3.missions_demanded, 1)} nachgefragt</span>
+                {fmtNum(run.e3.missions_served, 1)} <span className="text-mist">of {fmtNum(run.e3.missions_demanded, 1)} demanded</span>
               </dd>
             </div>
             <div>
-              <dt className="text-[0.82rem] text-mist">Umsatz E3</dt>
+              <dt className="text-[0.82rem] text-mist">E3 revenue</dt>
               <dd className="num mt-0.5">{fmtEurMio(run.e3.revenue_eur)}</dd>
             </div>
           </dl>
         </div>
         <p className="mt-6 text-[0.85rem] text-mist">
-          Satz 1–2: Basisjahr 2025, alle Nutzlasten (Headline). Satz 3 und Kennzahlen rechts: aktiver Run ({SCOPE_LABELS[run.params.scope]},{" "}
+          Sentences 1–2: base year 2025, all payloads (headline). Sentence 3 and metrics on the right: active run ({SCOPE_LABELS[run.params.scope]},{" "}
           {run.basis.label}
-          {run.params.year > 2025 ? `, Szenario-Jahr ${run.params.year}` : ""}).
+          {run.params.year > 2025 ? `, scenario year ${run.params.year}` : ""}).
         </p>
       </Section>
 
       <Section
         id="trichter"
-        title="Trichter E0 → E3"
-        intro="Jeder Satellit fällt am ersten zutreffenden Filter heraus und trägt genau einen Ausschlussgrund. Die grauen Balken sind diese Gründe, die farbigen die verbleibenden Stufen."
+        title="Funnel E0 → E3"
+        intro="Each satellite drops out at the first applicable filter and carries exactly one exclusion reason. Grey bars show these reasons; colored bars show the remaining stages."
       >
         <FunnelWaterfall run={run} />
       </Section>
 
       <Section
         id="zeitachse"
-        title={tl?.rows.length ? `Zeitachse ${Math.min(...tl.rows.map((r) => r.year))}–${Math.max(...tl.rows.map((r) => r.year))}` : "Zeitachse"}
-        intro="Szenario gewählt, Band über alle drei vorbereiteten Szenarien. Anteil = E2 / fortgeschriebenes E0 (Szenario, keine Prognose)."
+        title={tl?.rows.length ? `Timeline ${Math.min(...tl.rows.map((r) => r.year))}–${Math.max(...tl.rows.map((r) => r.year))}` : "Timeline"}
+        intro="Selected scenario, with band across all three prepared scenarios. Share = E2 / projected E0 (scenario, not a forecast)."
       >
         {tl?.rows.length ? (
           <TimelineChart rows={tl.rows} scenario={run.params.scenario} scenarioLabels={labels} highlightYear={run.params.year} />
         ) : (
-          <OpenItem title="Zeitachse für diesen Scope">Im Datensatz ist keine Zeitachse für diesen Scope geliefert.</OpenItem>
+          <OpenItem title="Timeline for this scope">No timeline for this scope is delivered in the dataset.</OpenItem>
         )}
       </Section>
 
-      <Section id="szenarien" title={`Szenarien im Vergleich, ${run.params.year}`} intro={`Drei Modellszenarien aus dem Python-Rechenkern, ${SCOPE_LABELS[run.params.scope]}.`}>
+      <Section id="szenarien" title={`Scenario comparison, ${run.params.year}`} intro={`Three model scenarios from the Python engine, ${SCOPE_LABELS[run.params.scope]}.`}>
         <ScenarioCompare runs={sameYearScope} active={run.params.scenario} labels={labels} />
       </Section>
 
-      <Section id="verticals" title="Geschäftsfelder (Verticals)" intro="Aufteilung je Stufe aus dem Rechenkern. Die Auswertung je Vertical × Staatengruppe aus dem Fachlauf ist noch nicht geliefert.">
+      <Section id="verticals" title="Business segments (verticals)" intro="Breakdown per stage from the engine.">
         <VerticalBars run={run} labels={verticalLabels} />
       </Section>
     </>

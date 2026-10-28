@@ -4,7 +4,7 @@
   "lon": 15.58929,
   "accuracy_m": 5,
   "label": "Andøya Spaceport, Pad A (Isar Aerospace)",
-  "basis": "Flächenschwerpunkt OSM way 1372369263, gegen Satellitenbild geprüft",
+  "basis": "centroid of OSM way 1372369263, checked against satellite imagery",
   "crs": "WGS84"
  },
  "files": {
@@ -22,15 +22,15 @@
    ],
    "crs": "EPSG:4326",
    "source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography-bathymetry/july/world.topo.bathy.200407.3x21600x10800.jpg",
-   "title": "NASA Blue Marble NG Juli 2004, Ausschnitt Nordeuropa (500 m-Produkt, 1,85 km/px)",
+   "title": "NASA Blue Marble NG July 2004, Northern Europe crop (500 m product, 1.85 km/px)",
    "credit": "NASA Earth Observatory (Blue Marble Next Generation, R. Stöckli)",
-   "license": "NASA-Bildmaterial, frei nutzbar mit Quellenangabe (keine Billigung durch NASA)"
+   "license": "NASA imagery, free to use with attribution (no endorsement by NASA)"
   },
   "globe_day.jpg": {
    "source": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography-bathymetry/july/world.topo.bathy.200407.3x5400x2700.jpg",
-   "title": "NASA Blue Marble Next Generation, Topographie und Bathymetrie, Juli 2004",
+   "title": "NASA Blue Marble Next Generation, topography and bathymetry, July 2004",
    "credit": "NASA Earth Observatory (Blue Marble Next Generation, R. Stöckli)",
-   "license": "NASA-Bildmaterial, frei nutzbar mit Quellenangabe (keine Billigung durch NASA)",
+   "license": "NASA imagery, free to use with attribution (no endorsement by NASA)",
    "crs": "EPSG:4326 equirectangular",
    "px": [
     4096,
@@ -39,9 +39,9 @@
   },
   "globe_night.jpg": {
    "source": "https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144898/BlackMarble_2016_3km.jpg",
-   "title": "NASA Black Marble 2016 (Nachtlichter)",
+   "title": "NASA Black Marble 2016 (night lights)",
    "credit": "NASA Earth Observatory / Suomi NPP VIIRS",
-   "license": "NASA-Bildmaterial, frei nutzbar mit Quellenangabe (keine Billigung durch NASA)",
+   "license": "NASA imagery, free to use with attribution (no endorsement by NASA)",
    "crs": "EPSG:4326 equirectangular",
    "px": [
     4096,
@@ -50,7 +50,7 @@
   },
   "pad_osm.json": {
    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=15.54,69.09,15.62,69.13",
-   "title": "OpenStreetMap-Ausschnitt um Andøya Spaceport Pad A",
+   "title": "OpenStreetMap extract around Andøya Spaceport Pad A",
    "bbox_wsen": [
     15.54,
     69.09,
@@ -92,9 +92,9 @@
     "S2B_33WWS_20250714_0_L2A"
    ],
    "coverage": 1.0,
-   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "source": "Sentinel-2 L2A True Colour (TCI) via Earth Search / AWS Open Data",
    "credit": "Contains modified Copernicus Sentinel data 2025",
-   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "license": "Copernicus Sentinel Data, free and open (Legal Notice on the use of Copernicus Sentinel Data)",
    "acquired": [
     "20250706",
     "20250714",
@@ -122,9 +122,9 @@
     "S2B_33WWS_20250714_0_L2A"
    ],
    "coverage": 1.0,
-   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "source": "Sentinel-2 L2A True Colour (TCI) via Earth Search / AWS Open Data",
    "credit": "Contains modified Copernicus Sentinel data 2025",
-   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "license": "Copernicus Sentinel Data, free and open (Legal Notice on the use of Copernicus Sentinel Data)",
    "acquired": [
     "20250714"
    ]
@@ -148,9 +148,9 @@
     "S2B_33WWS_20250714_0_L2A"
    ],
    "coverage": 1.0,
-   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "source": "Sentinel-2 L2A True Colour (TCI) via Earth Search / AWS Open Data",
    "credit": "Contains modified Copernicus Sentinel data 2025",
-   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "license": "Copernicus Sentinel Data, free and open (Legal Notice on the use of Copernicus Sentinel Data)",
    "acquired": [
     "20250714"
    ]
@@ -174,9 +174,9 @@
     "S2B_33WWS_20250714_0_L2A"
    ],
    "coverage": 1.0,
-   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "source": "Sentinel-2 L2A True Colour (TCI) via Earth Search / AWS Open Data",
    "credit": "Contains modified Copernicus Sentinel data 2025",
-   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "license": "Copernicus Sentinel Data, free and open (Legal Notice on the use of Copernicus Sentinel Data)",
    "acquired": [
     "20250714"
    ]
@@ -200,18 +200,18 @@
     "S2B_33WWS_20250714_0_L2A"
    ],
    "coverage": 1.0,
-   "source": "Sentinel-2 L2A True Colour (TCI) über Earth Search / AWS Open Data",
+   "source": "Sentinel-2 L2A True Colour (TCI) via Earth Search / AWS Open Data",
    "credit": "Contains modified Copernicus Sentinel data 2025",
-   "license": "Copernicus Sentinel Data, frei und offen (Legal Notice on the use of Copernicus Sentinel Data)",
+   "license": "Copernicus Sentinel Data, free and open (Legal Notice on the use of Copernicus Sentinel Data)",
    "acquired": [
     "20250714"
    ]
   },
   "stars_bsc5.json": {
    "source": "https://cdsarc.cds.unistra.fr/ftp/V/50/catalog.gz",
-   "title": "Yale Bright Star Catalogue, 5. Ausgabe (9096 Sterne, J2000, V, B-V)",
-   "credit": "Hoffleit & Warren 1991, über CDS VizieR V/50",
-   "license": "frei nutzbar mit Quellenangabe (CDS-Nutzungsbedingungen)"
+   "title": "Yale Bright Star Catalogue, 5th edition (9096 stars, J2000, V, B-V)",
+   "credit": "Hoffleit & Warren 1991, via CDS VizieR V/50",
+   "license": "free to use with attribution (CDS terms of use)"
   }
  }
 }

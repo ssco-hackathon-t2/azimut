@@ -10,11 +10,11 @@ import { ChartFrame } from "./ChartFrame";
 // Zeitzonen wie scenarios.yaml v2 (zones/zone_labels, origin/main nach 95ca89d). Werte gibt es nur dort,
 // wo der Fachlauf sie liefert; mit Lieferung kommen die Beschriftungen aus meta.zone_labels.
 export const ZONES = [
-  { from: 1957, to: 2025, label: "beobachtet (GCAT)" },
-  { from: 2026, to: 2026, label: "laufend, unvollständig" },
-  { from: 2026, to: 2035, label: "modelliert" },
-  { from: 2036, to: 2040, label: "Korridor, keine Prognose" },
-  { from: 2041, to: 2050, label: "Treiber 2041–2050, keine Zahlen" },
+  { from: 1957, to: 2025, label: "observed (GCAT)" },
+  { from: 2026, to: 2026, label: "in progress, incomplete" },
+  { from: 2026, to: 2035, label: "modeled" },
+  { from: 2036, to: 2040, label: "corridor, not a forecast" },
+  { from: 2041, to: 2050, label: "drivers 2041–2050, no figures" },
 ];
 
 /** Zone eines Jahres: geliefertes `zone`-Feld (scenarios.yaml v2) vor Jahresgrenzen als Rückfall. */
@@ -65,10 +65,10 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
     });
     const label = scenarioLabels[scenario] ?? scenario;
     const markZones = [
-      [{ xAxis: "2025", itemStyle: { color: alpha(CHART.ink, 0.035) }, name: "beobachtet" }, { xAxis: "2025" }],
+      [{ xAxis: "2025", itemStyle: { color: alpha(CHART.ink, 0.035) }, name: "observed" }, { xAxis: "2025" }],
       ...(horizon === "2050"
         ? [
-            [{ xAxis: "2036", name: `${ZONES[3].label}: nicht geliefert`, itemStyle: { color: alpha(CHART.amber, 0.06) } }, { xAxis: "2040" }],
+            [{ xAxis: "2036", name: `${ZONES[3].label}: not delivered`, itemStyle: { color: alpha(CHART.amber, 0.06) } }, { xAxis: "2040" }],
             [{ xAxis: "2041", name: ZONES[4].label, itemStyle: { color: alpha(CHART.amber, 0.035) } }, { xAxis: "2050" }],
           ]
         : []),
@@ -80,15 +80,15 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
         formatter: (ps: { axisValue: string }[]) => {
           const y = Number(ps[0].axisValue);
           const r = cur.get(y);
-          if (!r) return `${y}<br/>Keine gelieferten Werte`;
-          const unit = metric === "mass" ? fmtT(r.e2_mass_kg) : `${fmtNum(r.e2_count, 0)} Nutzlasten`;
-          const cap = r.ramp_cap === null ? "nur Standort-Cap" : `Rampen-Cap ${fmtNum(r.ramp_cap, 0)}`;
+          if (!r) return `${y}<br/>No delivered values`;
+          const unit = metric === "mass" ? fmtT(r.e2_mass_kg) : `${fmtNum(r.e2_count, 0)} payloads`;
+          const cap = r.ramp_cap === null ? "site cap only" : `Ramp cap ${fmtNum(r.ramp_cap, 0)}`;
           return [
-            `<b>${y}</b> · ${label} · ${zoneLabel(y, r)}${y === 2026 ? " (Beobachtung 2026 läuft noch, siehe Historie)" : ""}`,
-            `E2 adressierbar: ${unit}`,
-            `Anteil an E0 (Nenner fortgeschrieben): ${fmtPct(share(r), 2)}`,
-            `E3 Missionen bedient: ${fmtNum(r.e3_missions_served, 1)} (nachgefragt ${fmtNum(r.e3_missions_demanded, 1)})`,
-            `E3 Umsatz: ${fmtEurMio(r.e3_revenue_eur)} · ${cap}`,
+            `<b>${y}</b> · ${label} · ${zoneLabel(y, r)}${y === 2026 ? " (2026 observation still in progress, see History)" : ""}`,
+            `E2 addressable: ${unit}`,
+            `Share of E0 (denominator projected): ${fmtPct(share(r), 2)}`,
+            `E3 missions served: ${fmtNum(r.e3_missions_served, 1)} (demanded ${fmtNum(r.e3_missions_demanded, 1)})`,
+            `E3 revenue: ${fmtEurMio(r.e3_revenue_eur)} · ${cap}`,
           ].join("<br/>");
         },
       },
@@ -108,19 +108,19 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
         splitLine: { show: false },
       })),
       yAxis: [
-        { gridIndex: 0, type: "value", name: metric === "mass" ? "E2 [t]" : "E2 Nutzlasten", ...valueAxis(), nameGap: 10 },
+        { gridIndex: 0, type: "value", name: metric === "mass" ? "E2 [t]" : "E2 payloads", ...valueAxis(), nameGap: 10 },
         {
           gridIndex: 1,
           type: "value",
-          name: "Anteil",
+          name: "Share",
           axisLabel: { fontSize: 11, formatter: (x: number) => fmtPct(x, 1) },
           splitNumber: 2,
         },
-        { gridIndex: 2, type: "value", name: "E3 Missionen", ...valueAxis(), splitNumber: 2 },
+        { gridIndex: 2, type: "value", name: "E3 missions", ...valueAxis(), splitNumber: 2 },
       ],
       series: [
         {
-          name: "Band konservativ–optimistisch",
+          name: "Band conservative–optimistic",
           type: "line",
           xAxisIndex: 0,
           yAxisIndex: 0,
@@ -134,7 +134,7 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
           markArea: { silent: true, label: { color: CHART.mist, fontSize: 11, position: "insideTop" }, data: markZones },
         },
         {
-          name: "Band konservativ–optimistisch",
+          name: "Band conservative–optimistic",
           type: "line",
           xAxisIndex: 0,
           yAxisIndex: 0,
@@ -161,7 +161,7 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
             : undefined,
         },
         {
-          name: "Anteil (Szenario, Nenner fortgeschrieben, keine Prognose)",
+          name: "Share (scenario, denominator projected, not a forecast)",
           type: "line",
           xAxisIndex: 1,
           yAxisIndex: 1,
@@ -171,7 +171,7 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
           itemStyle: { color: CHART.mist },
         },
         {
-          name: `E3 Missionen bedient ${label}`,
+          name: `E3 missions served ${label}`,
           type: "bar",
           color: CHART.aurora,
           xAxisIndex: 2,
@@ -187,7 +187,7 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
           }),
         },
         {
-          name: "Rampen-Cap (Kapazitätsobergrenze)",
+          name: "Ramp cap (capacity ceiling)",
           type: "scatter",
           xAxisIndex: 2,
           yAxisIndex: 2,
@@ -205,12 +205,12 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
     <ChartFrame
       controls={
         <>
-          <Toggle label="Größe" options={[["mass", "Masse"], ["count", "Anzahl"]]} value={metric} onChange={(v) => setMetric(v as "mass" | "count")} />
+          <Toggle label="Metric" options={[["mass", "Mass"], ["count", "Count"]]} value={metric} onChange={(v) => setMetric(v as "mass" | "count")} />
           <Toggle
-            label="Zeitraum"
+            label="Period"
             options={[
               ["model", `2025–${years[years.length - 1]}`],
-              ["2050", "bis 2050"],
+              ["2050", "to 2050"],
             ]}
             value={horizon}
             onChange={(v) => setHorizon(v as "model" | "2050")}
@@ -219,16 +219,16 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
       }
       note={
         <>
-          2025 beobachtet, ab 2026 Szenario (Rechenkern fortgeschrieben, keine Prognose). Gestrichelte Balken: Jahr ohne Isar-Rampe, nur Standort-Cap.
-          {horizon === "2050" && " 2036–2040 (Korridor) und 2041–2050 (qualitative Treiber) liefert der Fachlauf noch nicht; hier stehen bewusst keine Werte."}
+          2025 observed, from 2026 scenario (engine projection, not a forecast). Dashed bars: year without Isar ramp, site cap only.
+          {horizon === "2050" && " The model run covers values up to 2035; 2036–2050 is shown without values by design."}
         </>
       }
-      tableLabel="Zeitachse als Tabelle"
+      tableLabel="Timeline as table"
       table={
           <table className="w-full min-w-[640px] border-collapse text-left num">
             <thead className="text-mist">
               <tr className="border-b border-rule">
-                {["Jahr", "E2 Masse", "E2 Anzahl", "Anteil Masse", "Missionen bedient", "Umsatz", "Rampen-Cap"].map((h) => (
+                {["Year", "E2 mass", "E2 count", "Mass share", "Missions served", "Revenue", "Ramp cap"].map((h) => (
                   <th key={h} className="py-2 pr-4 font-normal">
                     {h}
                   </th>
@@ -247,7 +247,7 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
                     <td className="py-1.5 pr-4">{fmtPct(r.share_mass, 2)}</td>
                     <td className="py-1.5 pr-4">{fmtNum(r.e3_missions_served, 1)}</td>
                     <td className="py-1.5 pr-4">{fmtEurMio(r.e3_revenue_eur)}</td>
-                    <td className="py-1.5 pr-4">{r.ramp_cap === null ? "nur Standort-Cap" : fmtNum(r.ramp_cap, 0)}</td>
+                    <td className="py-1.5 pr-4">{r.ramp_cap === null ? "site cap only" : fmtNum(r.ramp_cap, 0)}</td>
                   </tr>
                 );
               })}
@@ -255,7 +255,7 @@ export function TimelineChart({ rows, scenario, scenarioLabels, highlightYear }:
           </table>
       }
     >
-      <EChart option={option} height={560} zoomable label="Zeitachse: E2 adressierbar mit Szenarioband, Anteil an E0 und E3 Missionen je Jahr; Werte in der Tabelle darunter." />
+      <EChart option={option} height={560} zoomable label="Timeline: E2 addressable with scenario band, share of E0 and E3 missions per year; values in the table below." />
     </ChartFrame>
   );
 }

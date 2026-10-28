@@ -18,7 +18,7 @@ export function ScenarioCompare({ runs, active, labels }: { runs: Run[]; active:
       legend: { top: 0, left: 0 },
       grid: { left: 8, right: 24, top: 34, bottom: 30, containLabel: true },
       tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
-      xAxis: { type: "value", ...valueAxis(), name: "Missionen/Jahr", nameLocation: "middle", nameGap: 26 },
+      xAxis: { type: "value", ...valueAxis(), name: "Missions/yr", nameLocation: "middle", nameGap: 26 },
       yAxis: {
         type: "category",
         inverse: true,
@@ -28,7 +28,7 @@ export function ScenarioCompare({ runs, active, labels }: { runs: Run[]; active:
       },
       series: [
         {
-          name: "E3 bedient",
+          name: "E3 served",
           type: "bar",
           color: CHART.aurora,
           barMaxWidth: 16,
@@ -39,7 +39,7 @@ export function ScenarioCompare({ runs, active, labels }: { runs: Run[]; active:
           label: { show: true, position: "right", color: CHART.ink, formatter: (p: { value: number }) => fmtNum(p.value, 1) },
         },
         {
-          name: "E3 nachgefragt",
+          name: "E3 demanded",
           type: "scatter",
           color: CHART.ink,
           symbol: "rect",
@@ -57,19 +57,19 @@ export function ScenarioCompare({ runs, active, labels }: { runs: Run[]; active:
     <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr]">
       {identical && (
         <p className="text-[0.88rem] text-amber lg:col-span-2">
-          Im Jahr {rows[0].params.year} sind die vorbereiteten Szenarien identisch: Szenarien wirken erst ab 2026 (Fortschreibung). Für einen Vergleich ein späteres Jahr wählen.
+          In {rows[0].params.year} the prepared scenarios are identical: scenarios only take effect from 2026 (projection). Choose a later year for a comparison.
         </p>
       )}
-      <EChart option={option} height={200} label="E3 Missionen je vorbereitetem Szenario; Strich = nachgefragt." />
+      <EChart option={option} height={200} label="E3 missions per prepared scenario; tick = demanded." />
       <div className="overflow-x-auto">
         <table className="stack-sm num w-full border-collapse text-left text-[0.92rem] md:min-w-[480px]">
           <thead className="text-mist">
             <tr className="border-b border-rule">
-              <th className="py-2 pr-3 font-normal">Szenario</th>
-              <th className="py-2 pr-3 text-right font-normal">E2 Masse</th>
-              <th className="py-2 pr-3 text-right font-normal">E2-Anteil</th>
-              <th className="py-2 pr-3 text-right font-normal">Missionen</th>
-              <th className="py-2 text-right font-normal">Umsatz</th>
+              <th className="py-2 pr-3 font-normal">Scenario</th>
+              <th className="py-2 pr-3 text-right font-normal">E2 mass</th>
+              <th className="py-2 pr-3 text-right font-normal">E2 share</th>
+              <th className="py-2 pr-3 text-right font-normal">Missions</th>
+              <th className="py-2 text-right font-normal">Revenue</th>
             </tr>
           </thead>
           <tbody>
@@ -80,12 +80,12 @@ export function ScenarioCompare({ runs, active, labels }: { runs: Run[]; active:
                 <tr key={r.run_id} className={`border-b border-rule/50 ${on ? "text-snow" : "text-mist"}`}>
                   <td className="py-2 pr-3">
                     {labels[r.params.scenario]}
-                    {on && <span className="sr-only"> (aktiv)</span>}
+                    {on && <span className="sr-only"> (active)</span>}
                   </td>
-                  <td className="py-2 pr-3 md:text-right" data-label="E2 Masse">{fmtT(e2.mass_kg)}</td>
-                  <td className="py-2 pr-3 md:text-right" data-label="E2-Anteil">{fmtPct(e2.share_mass, 2)}</td>
-                  <td className="py-2 pr-3 md:text-right" data-label="Missionen">{fmtNum(r.e3.missions_served, 1)}</td>
-                  <td className="py-2 md:text-right" data-label="Umsatz">{fmtEurMio(r.e3.revenue_eur)}</td>
+                  <td className="py-2 pr-3 md:text-right" data-label="E2 mass">{fmtT(e2.mass_kg)}</td>
+                  <td className="py-2 pr-3 md:text-right" data-label="E2 share">{fmtPct(e2.share_mass, 2)}</td>
+                  <td className="py-2 pr-3 md:text-right" data-label="Missions">{fmtNum(r.e3.missions_served, 1)}</td>
+                  <td className="py-2 md:text-right" data-label="Revenue">{fmtEurMio(r.e3.revenue_eur)}</td>
                 </tr>
               );
             })}

@@ -2,13 +2,13 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { AssumptionsFile, Manifest, Provenance, StatsFile, Trace, TracesFile } from "@/lib/contract";
-import { type Loadable, useAssetJSON, useJSON } from "@/lib/data";
+import type { AssumptionsFile, Manifest, Provenance, Trace, TracesFile } from "@/lib/contract";
+import { useAssetJSON, useJSON } from "@/lib/data";
 import { fmtDate, fmtNum, fmtRaw, fmtValue, urlOf } from "@/lib/format";
 import { SCOPE_LABELS } from "@/lib/labels";
 import { runId, useSelection } from "@/lib/selection";
 import { PageHead, Section } from "@/components/shell/PageHead";
-import { ErrorState, Loading, Ready } from "@/components/ui/States";
+import { Ready } from "@/components/ui/States";
 import { ProvenanceNote } from "@/components/ui/ProvenanceNote";
 import { RunControls } from "@/components/ui/RunControls";
 import type { GeoManifest } from "@/components/scene/OrbitScene";
@@ -18,11 +18,9 @@ export function BelegeView() {
   const traces = useJSON<TracesFile>("traces.json");
   const assumptions = useJSON<AssumptionsFile>("assumptions.json");
   const geo = useAssetJSON<GeoManifest>("geo/manifest.json");
-  // Prüfstand ist optional: Laden oder Fehlen von stats.json betrifft nur seinen Abschnitt, nicht die Seite.
-  const stats = useJSON<StatsFile>("stats.json");
   return (
     <Ready items={[manifest, traces, assumptions, geo] as const}>
-      {(m, t, a, g) => <Belege manifest={m} traces={t} assumptions={a} geo={g} stats={stats} />}
+      {(m, t, a, g) => <Belege manifest={m} traces={t} assumptions={a} geo={g} />}
     </Ready>
   );
 }
@@ -32,13 +30,11 @@ function Belege({
   traces,
   assumptions,
   geo,
-  stats,
 }: {
   manifest: Manifest;
   traces: TracesFile;
   assumptions: AssumptionsFile;
   geo: GeoManifest;
-  stats: Loadable<StatsFile>;
 }) {
   const { selection } = useSelection(manifest);
   const sp = useSearchParams();
@@ -67,12 +63,12 @@ function Belege({
 
   return (
     <>
-      <PageHead title="Belege" />
+      <PageHead title="Evidence" />
       <div className="border-y border-rule/70 bg-night/92 lg:sticky lg:top-[var(--header-h)] lg:z-30 lg:backdrop-blur-md">
         <div className="mx-auto flex max-w-[88rem] flex-wrap items-end gap-x-8 gap-y-3 px-4 py-4 sm:px-8">
           <RunControls manifest={manifest} />
           <label className="flex min-w-0 flex-col text-[0.82rem] text-mist">
-            Kennzahl
+            Metric
             <select value={kpi} onChange={(e) => choose(e.target.value)} className="mt-1.5 h-[2.6rem] max-w-full border border-rule-strong bg-night-2 px-3 text-[0.95rem] text-snow">
               {ids.map((k) => (
                 <option key={k} value={k}>
@@ -86,7 +82,7 @@ function Belege({
       <div className="mx-auto max-w-[88rem] px-4 pt-6 sm:px-8">
         <ProvenanceNote p={traces.provenance} />
         {fallback && selection.scope !== "all_payloads" && (
-          <p className="mt-2 text-[0.88rem] text-amber">Für diesen Scope liegen keine Belege vor; angezeigt wird „alle Nutzlasten“ desselben Szenarios und Jahres.</p>
+          <p className="mt-2 text-[0.88rem] text-amber">No evidence available for this scope; showing “all payloads” for the same scenario and year.</p>
         )}
       </div>
 
@@ -99,7 +95,7 @@ function Belege({
             </p>
             {t.note && <p className="mt-3 max-w-[68ch] text-mist">{t.note}</p>}
           </Section>
-          <Section id="formel" title="Formel und Eingangszahlen">
+          <Section id="formel" title="Formula and inputs">
             <pre className="overflow-x-auto whitespace-pre-wrap border border-rule bg-night-2 px-4 py-3 font-mono text-[0.85rem] text-snow">{t.formula}</pre>
             <table className="mt-5 w-full border-collapse text-left text-[0.92rem] num">
               <tbody>
@@ -112,17 +108,17 @@ function Belege({
               </tbody>
             </table>
           </Section>
-          <Section id="annahmen" title="Annahmen">
+          <Section id="annahmen" title="Assumptions">
             {t.assumption_keys.length === 0 ? (
-              <p className="text-mist">Keine YAML-Annahme geht in diese Kennzahl ein.</p>
+              <p className="text-mist">No YAML assumption feeds into this metric.</p>
             ) : (
               <div className="overflow-x-auto">
                 <table className="stack-sm w-full border-collapse text-left text-[0.9rem] md:min-w-[720px]">
                   <thead className="text-mist">
                     <tr className="border-b border-rule">
-                      <th className="py-2 pr-4 font-normal">Annahme</th>
-                      <th className="py-2 pr-4 font-normal">Wert</th>
-                      <th className="py-2 pr-4 font-normal">Quelle</th>
+                      <th className="py-2 pr-4 font-normal">Assumption</th>
+                      <th className="py-2 pr-4 font-normal">Value</th>
+                      <th className="py-2 pr-4 font-normal">Source</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -132,15 +128,15 @@ function Belege({
                       const u = r?.source ? urlOf(r.source) : undefined;
                       return (
                         <tr key={k} className="border-b border-rule/50 align-top">
-                          <td className="metric py-2 pr-4 text-snow" data-label="Annahme">{k}</td>
-                          <td className="max-w-[22rem] break-words py-2 pr-4" data-label="Wert">
+                          <td className="metric py-2 pr-4 text-snow" data-label="Assumption">{k}</td>
+                          <td className="max-w-[22rem] break-words py-2 pr-4" data-label="Value">
                             {r ? fmtRaw(r.value, r.unit) : "–"} {r?.unit}
                           </td>
-                          <td className="py-2 pr-4 text-mist" data-label="Quelle">
+                          <td className="py-2 pr-4 text-mist" data-label="Source">
                             {team && (
                               <span className="mr-2 inline-flex items-center gap-1.5 text-[0.8rem] text-alert">
                                 <span aria-hidden="true" className="size-1.5 rounded-full bg-alert" />
-                                Team-Annahme
+                                Team assumption
                               </span>
                             )}
                             {team && r?.source?.trim() === "Team-Annahme" ? null : u ? (
@@ -159,9 +155,9 @@ function Belege({
               </div>
             )}
           </Section>
-          <Section id="vergleich" title="Vergleichswerte">
+          <Section id="vergleich" title="Benchmarks">
             {t.references.length === 0 ? (
-              <p className="text-mist">Kein externer Vergleichswert in config/references.yaml für diese Kennzahl.</p>
+              <p className="text-mist">No external benchmark in config/references.yaml for this metric.</p>
             ) : (
               <ul className="divide-y divide-rule/60 border-y border-rule">
                 {t.references.map((r) => (
@@ -178,48 +174,34 @@ function Belege({
           </Section>
         </>
       ) : (
-        <Section id="kennzahl" title="Kein Beleg">
-          <p className="text-mist">Für diesen Run liegen keine Belege vor.</p>
+        <Section id="kennzahl" title="No evidence">
+          <p className="text-mist">No evidence available for this run.</p>
         </Section>
       )}
 
-      <Section
-        id="pruefstand"
-        title="Gerechnet wird im getesteten Rechenkern, die Seite zeigt nur"
-        intro="Gezählt aus einem echten Testlauf und aus den gelieferten Belegen (scripts/write-stats.mjs), nicht von Hand eingetragen."
-      >
-        {stats.state === "ready" ? (
-          <Pruefstand s={stats.data} p={traces.provenance} />
-        ) : stats.state === "loading" ? (
-          <Loading label="Prüfstand wird geladen" />
-        ) : (
-          <ErrorState error={stats.error.endsWith("HTTP 404") ? "stats.json fehlt im Export, erzeugen mit node scripts/write-stats.mjs" : stats.error} retry={stats.retry} />
-        )}
-      </Section>
-
-      <Section id="datenstand" title="Datenstand">
+      <Section id="datenstand" title="Data status">
         <ProvenanceTable p={traces.provenance} />
       </Section>
 
-      <Section id="karten" title="Karten, Bilder und Schriften">
+      <Section id="karten" title="Maps, images and fonts">
         <ul className="divide-y divide-rule/60 border-y border-rule text-[0.92rem]">
           {Object.entries(geo.files).map(([name, f]) => (
             <li key={name} className="grid gap-1 py-3 md:grid-cols-[14rem_1fr]">
               <span className="metric text-snow">{name}</span>
               <span className="text-mist">
-                {f.title ?? f.source}. {f.credit}. Lizenz: {f.license}.{f.acquired ? ` Aufnahme ${f.acquired.join(", ")}.` : ""}
+                {f.title ?? f.source}. {f.credit}. Licence: {f.license}.{f.acquired ? ` Acquired ${f.acquired.join(", ")}.` : ""}
               </span>
             </li>
           ))}
           <li className="grid gap-1 py-3 md:grid-cols-[14rem_1fr]">
-            <span className="metric text-snow">Pad-Koordinate</span>
+            <span className="metric text-snow">Pad coordinate</span>
             <span className="text-mist">
               {geo.pad.label}: {geo.pad.lat}, {geo.pad.lon} (WGS84), ±{geo.pad.accuracy_m} m, {geo.pad.basis}.
             </span>
           </li>
           <li className="grid gap-1 py-3 md:grid-cols-[14rem_1fr]">
-            <span className="metric text-snow">Schriften</span>
-            <span className="text-mist">Red Hat Display, Geist und Geist Mono, SIL Open Font License 1.1, lokal ausgeliefert.</span>
+            <span className="metric text-snow">Fonts</span>
+            <span className="text-mist">Red Hat Display, Geist and Geist Mono, SIL Open Font License 1.1, served locally.</span>
           </li>
         </ul>
       </Section>
@@ -227,102 +209,16 @@ function Belege({
   );
 }
 
-/** Prüfstand: eine große Zahl (bestandene Tests), darunter gezählte Belege und der Datenfluss. Alle Werte aus stats.json bzw. Provenance. */
-function Pruefstand({ s, p }: { s: StatsFile; p: Provenance }) {
-  const { tests: t, web_tests: w, evidence: e } = s;
-  const commit = t.fixture_commit.slice(0, 7);
-  const ran = t.ran_at ? `${fmtDate(t.ran_at)}, ${t.ran_at.slice(11, 16)} Uhr` : "–";
-  const source = p.data_source ? p.data_source[0].toUpperCase() + p.data_source.slice(1) : "–";
-  const facts: [string, string][] = [
-    ["Berichtsstand", "Archivierter Prüflauf des Fixture-Snapshots; kein Testnachweis für den aktuellen Live-Lauf"],
-    ["Kennzahlen mit Formel und Eingangszahlen", `${fmtNum(e.kpis_complete)} von ${fmtNum(e.kpis)}`],
-    ["Runs mit Belegen", `${fmtNum(e.runs_with_traces)} von ${fmtNum(e.runs_total)} (${e.traced_scopes.map((x) => SCOPE_LABELS[x] ?? x).join(", ")})`],
-    ["Annahmen mit Quellenangabe", `${fmtNum(e.assumptions_with_source)} von ${fmtNum(e.assumptions_used)}, davon ${fmtNum(e.team_assumptions)} als Team-Annahme gekennzeichnet`],
-    ["Tests der Weboberfläche", `${fmtNum(w.passed)} von ${fmtNum(w.total)} bestanden${w.failed > 0 ? `, ${fmtNum(w.failed)} fehlgeschlagen` : ""}`],
-    ["Nicht im Prüfstand", "Kostenkurve unter „Kosten“: Kopie der Isar Case DB, nicht vom Python-Rechenkern berechnet"],
-  ];
-  const flow: [string, string][] = [
-    ["GCAT-Katalog", `Stand ${fmtDate(p.catalog_date)} · Quelle ${source}`],
-    ["Python-Rechenkern", `engine/ und config/*.yaml · ${fmtNum(t.passed)} Tests`],
-    ["Ergebnisdateien", `JSON aus Engine-Commit ${p.source_commit.slice(0, 7)}`],
-    ["Diese Seite", "zeigt die Ergebnisse, rechnet nicht"],
-  ];
-
-  return (
-    <>
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
-        <div>
-          <p className="num font-display text-[clamp(2rem,4vw,2.8rem)] font-semibold text-snow">{fmtNum(t.passed)}</p>
-          <p className="text-snow">von {fmtNum(t.total)} Tests des Rechenkerns bestanden</p>
-          {t.failed > 0 && (
-            <div className="mt-1 text-alert">
-              <p>{fmtNum(t.failed)} fehlgeschlagen:</p>
-              <ul className="mt-1 space-y-1 text-[0.88rem]">
-                {t.failures.map((f) => (
-                  <li key={f.test}>
-                    <span className="metric break-all">{f.test}</span>
-                    <span className="block text-mist">{f.message}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {t.skipped > 0 && (
-            <p className="mt-1 text-[0.92rem] text-mist">
-              {fmtNum(t.skipped)} übersprungen{t.skip_reasons.length ? `: ${t.skip_reasons.map((r) => `${fmtNum(r.count)} × ${r.reason}`).join(", ")}` : ""}
-            </p>
-          )}
-          <p className={`mt-4 max-w-[52ch] text-[0.95rem] ${t.engine_matches_fixture ? "text-mist" : "text-amber"}`}>
-            {t.engine_matches_fixture ? (
-              <>
-                Geprüft wurde genau der Engine-Stand <span className="metric text-snow">{commit}</span>, aus dem die Zahlen dieser Seite stammen.
-              </>
-            ) : (
-              <>
-                Der geprüfte Engine-Stand weicht vom Stand der angezeigten Zahlen (<span className="metric">{commit}</span>) ab.
-              </>
-            )}
-          </p>
-          <p className="metric mt-2 text-[0.8rem] text-mist">
-            {t.command} · {ran} · {fmtNum(t.seconds, 0)} s
-          </p>
-        </div>
-        <dl className="divide-y divide-rule/60 border-y border-rule text-[0.92rem]">
-          {facts.map(([k, v]) => (
-            <div key={k} className="grid gap-1 py-3 sm:grid-cols-[16rem_1fr]">
-              <dt className="text-mist">{k}</dt>
-              <dd className="text-snow">{v}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-      <ol aria-label="Datenfluss" className="mt-10 grid gap-px border border-rule bg-rule md:grid-cols-4">
-        {flow.map(([h, d], i) => (
-          <li key={h} className="relative bg-night px-5 py-4">
-            <p className="font-medium text-snow">{h}</p>
-            <p className="mt-1 text-[0.88rem] text-mist">{d}</p>
-            {i < flow.length - 1 && (
-              <span aria-hidden="true" className="absolute -right-2.5 top-1/2 z-10 hidden -translate-y-1/2 bg-night px-0.5 text-ice md:block">
-                →
-              </span>
-            )}
-          </li>
-        ))}
-      </ol>
-    </>
-  );
-}
-
 function ProvenanceTable({ p }: { p: Provenance }) {
   const rows: [string, string][] = [
-    ["Status", p.status === "fixture" ? p.label : "Fachlieferung"],
-    ["Erzeugt", `${p.generated_at} · ${p.generated_by}`],
-    ["Vertrag", p.contract],
-    ["Engine-Commit", `${p.source_commit} (${p.source_commit_subject ?? ""})`],
-    ["Datenquelle", `${p.data_source ?? "–"}${p.fallback_reason ? ` (Fallback: ${p.fallback_reason})` : ""}`],
-    ["Snapshot-ID", p.snapshot_id ?? "–"],
-    ["GCAT-Katalogstand", fmtDate(p.catalog_date)],
-    ["Datenende 2026 (Annualisierung)", fmtDate(p.annualization_date)],
+    ["Status", p.status === "fixture" ? p.label : "Engine delivery"],
+    ["Generated", `${p.generated_at} · ${p.generated_by}`],
+    ["Contract", p.contract],
+    ["Engine commit", `${p.source_commit} (${p.source_commit_subject ?? ""})`],
+    ["Data source", `${p.data_source ?? "–"}${p.fallback_reason ? ` (Fallback: ${p.fallback_reason})` : ""}`],
+    ["Snapshot ID", p.snapshot_id ?? "–"],
+    ["GCAT catalogue date", fmtDate(p.catalog_date)],
+    ["Data end 2026 (annualisation)", fmtDate(p.annualization_date)],
     ["satcat SHA256", p.satcat_sha256 ?? "–"],
   ];
   return (
