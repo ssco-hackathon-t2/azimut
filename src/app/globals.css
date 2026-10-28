@@ -408,3 +408,18 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Chat-Panel: öffnet aus der Ecke des Buttons; das Mikrofon pulsiert nur während der Aufnahme. */
+@keyframes chat-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes chat-pulse {
+  from { opacity: 0.7; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.45); }
+}
+.chat-panel { transform-origin: bottom right; animation: chat-in 220ms var(--ease-out-expo); }
+.chat-pulse { animation: chat-pulse 1.2s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .chat-panel, .chat-pulse { animation: none; }
+}
