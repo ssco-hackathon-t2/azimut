@@ -4,7 +4,7 @@ export const MAX_INPUT_CHARS = 1000;
 export const MAX_HISTORY = 8;
 export const RATE_LIMIT = 60;
 export const RATE_WINDOW_MS = 60 * 60 * 1000;
-export const GLOBAL_LIMIT = 400;
+export const GLOBAL_LIMIT = 100;
 export const GLOBAL_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
