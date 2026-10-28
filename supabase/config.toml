@@ -1,0 +1,7 @@
+# Nur das, was der Deploy der Chat-Function braucht (kein lokaler Supabase-Stack).
+project_id = "azimut"
+
+[functions.azimut-chat]
+verify_jwt = false
+# knowledge.md wird zur Laufzeit gelesen und muss deshalb mit hochgeladen werden.
+static_files = ["./functions/azimut-chat/knowledge.md"]

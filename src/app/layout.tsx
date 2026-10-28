@@ -6,6 +6,7 @@ import "@fontsource-variable/geist-mono";
 import "./globals.css";
 import { SiteHeader, SiteHeaderStatic } from "@/components/shell/SiteHeader";
 import { SiteFooter } from "@/components/shell/SiteFooter";
+import { ChatAssistant } from "@/components/chat/ChatAssistant";
 
 export const metadata: Metadata = {
   title: "Azimut",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <SiteFooter />
         </Suspense>
+        <ChatAssistant />
       </body>
     </html>
   );

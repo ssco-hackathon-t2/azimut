@@ -38,6 +38,8 @@ jobs:
           # z. B. "/azimut"; leer bei eigener Domain
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
           NEXT_PUBLIC_API_URL: ${{ vars.ANDOYA_API_URL }}
+          # Chat-Assistent (Supabase Edge Function azimut-chat, nicht geheim); leer = Chat-Button ausgeblendet
+          NEXT_PUBLIC_CHAT_URL: https://uggkwbfhfkztaxwylrpc.supabase.co/functions/v1/azimut-chat
       - uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
