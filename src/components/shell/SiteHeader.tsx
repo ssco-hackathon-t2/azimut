@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { carryQuery } from "@/lib/selection";
+import { asset } from "@/lib/data";
 
 // Kopf wie im Canvas: Azimut und die Kapitel der Startseite (Unterseiten erreichbar über den Anhang).
 export const NAV = [
@@ -40,7 +41,7 @@ function HeaderBar({ query }: { query: string }) {
           <ul className="flex items-center gap-1">
             {NAV.map((n) => (
               <li key={n.href}>
-                <a href={n.href} className="rounded-sm px-3 py-2 text-[0.94rem] text-mist no-underline transition-colors duration-200 hover:text-snow">
+                <a href={asset(n.href)} className="rounded-sm px-3 py-2 text-[0.94rem] text-mist no-underline transition-colors duration-200 hover:text-snow">
                   {n.label}
                 </a>
               </li>
@@ -67,7 +68,7 @@ function HeaderBar({ query }: { query: string }) {
           <ul className="mx-auto max-w-[88rem] px-4 py-2">
             {NAV.map((n) => (
               <li key={n.href}>
-                <a href={n.href} onClick={() => setOpen(false)} className="block border-b border-rule/50 py-3 text-[1rem] text-snow no-underline">
+                <a href={asset(n.href)} onClick={() => setOpen(false)} className="block border-b border-rule/50 py-3 text-[1rem] text-snow no-underline">
                   {n.label}
                 </a>
               </li>
