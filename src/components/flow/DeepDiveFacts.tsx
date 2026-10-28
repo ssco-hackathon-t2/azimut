@@ -121,8 +121,10 @@ export function DeepDiveFacts({
     <div className="flex flex-col gap-[18px]">
       <div className="flex flex-col gap-1.5">
         <span className="font-mono text-[13px] tracking-[0.12em] text-mist-2">{tag}</span>
-        <h1 className="text-[clamp(1.75rem,2.4vw,2.5rem)] font-semibold leading-[1.05] tracking-[-0.02em]">{p.titel}</h1>
-        <span className="text-[16px] text-mist">{f(p.sub)}</span>
+        <h1 className="text-[clamp(1.75rem,2.4vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">{f(p.kern)}</h1>
+        <span className="text-[16px] text-mist">
+          {p.titel} · {f(p.sub)}
+        </span>
       </div>
       <div className="flex items-center gap-4 border border-rule-strong bg-night-2 px-4 py-3">
         <div className="flex shrink-0 flex-col items-start">
@@ -152,7 +154,6 @@ export function DeepDiveFacts({
           </span>
         ))}
       </div>
-      <div className="border-l-[3px] border-red py-1.5 pl-3.5 text-[20px] font-semibold leading-[1.35]">{f(p.kern)}</div>
       <div className="flex flex-col gap-2">
         <span className="text-[14px] text-mist">{f(d.ui.wie)}</span>
         <ol className="flex flex-col gap-1.5 text-[15px] leading-[1.35]">

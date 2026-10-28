@@ -2,7 +2,7 @@
   "version": 1,
   "panels": {
     "q1-trichter": {
-      "kicker": "Question 1 · Andøya · base year 2025",
+      "kicker": "Andøya · base year 2025",
       "title": "Andøya reaches only polar and sun-synchronous orbits. That is exactly where the open market is.",
       "sources": {
         "runs": "data/fixture/runs.json"
@@ -97,7 +97,7 @@
       ]
     },
     "standorte-markt": {
-      "kicker": "Question 2 · Six launch sites · base year 2025",
+      "kicker": "Six launch sites · base year 2025",
       "title": "More orbits, hardly more open market",
       "sources": {
         "sites": "data/sites/sites_compare.json"

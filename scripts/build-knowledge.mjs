@@ -8,6 +8,7 @@ const story = read("story.json");
 const flow = read("flow.json");
 const sc = read("sites/sites_compare.json");
 const db = read("isar/isar_data.json");
+const mc = read("demand/global_demand_mc.json").demand_mc;
 // Portfolio-Ketten liegen je Wendezeit vor; Verweise portfolio_chain:* meinen die Basis-Wendezeit.
 const items = sc.portfolios.items.map((p) => ({ ...p, chain: (p.variants?.[p.default_turnaround] ?? p).chain }));
 const tables = buildTables(db, { ...sc, portfolios: { ...sc.portfolios, items } });
@@ -66,8 +67,21 @@ flat(flow.startplaetze, "launch_sites", ["explorer", "plaetze"]);
 flat(flow.deepdive, "deepdive", ["ui"]);
 flat(flow.fabrik, "factory", ["dashboard"]);
 flat(flow.orbits, "orbits", ["bahnen", "geschaeft"]);
-flat(flow.weltmarkt, "world_market", ["pads", "orte", "home", "jahre", "texte"]);
+// Weltmarkt-Folie: Texte haben {Platzhalter}, die Zahlen dazu stehen in Abschnitt 2b.
+flat(flow.weltmarkt, "world_market", ["home", "punkt", "texte"]);
 flat(flow.hero, "hero");
+put();
+
+put("## 2b. World market gap tool on the home page (/#einstieg, Monte Carlo demand_mc)");
+put(`Satellites per year worldwide (data status ${mc.data_status}). Needed = demand incl. captive constellations without a launch limit; launched = min(needed, launch capacity); gap = needed minus launched; open market = needed without captive. From ${mc.fan_from} the values are a scenario fan, not a forecast. ${mc.scenarios.default.draws} runs per scenario; values: P50 (P10 to P90).`);
+put(`Satellites launched per year (GCAT history): ${mc.history.map((h) => `${h.year} ${h.sats}`).join(", ")}.`);
+const band = (q) => `${Math.round(q[1])} (${Math.round(q[0])} to ${Math.round(q[2])})`;
+for (const { id, label } of flow.weltmarkt.szenarien) {
+  put(`Starship scenario "${label}" (${id}):`);
+  for (const y of mc.scenarios[id].years.filter((y) => [2026, 2030, 2035, 2041, 2049].includes(y.year))) {
+    put(`- ${y.year}: needed ${band(y.demand)}, launched ${band(y.served)}, gap ${band(y.gap)}, open market (without captive) ${band(y.open)}, share of runs with a gap ${Math.round(y.p_gap * 100)}%`);
+  }
+}
 put();
 
 put("## 3. Launch site comparison (sites_compare.json, engine result)");

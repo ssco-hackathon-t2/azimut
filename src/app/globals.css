@@ -5,9 +5,10 @@
 /* static: alle Tokens landen als CSS-Variable in :root, auch ohne Utility-Nutzung. Das ECharts-Theme
    (components/charts/theme.ts) liest sie zur Laufzeit; Farben ändern sich nur hier. */
 @theme static {
-  --color-night: #0b1220;
-  --color-night-2: #111a2b;
-  --color-night-3: #18243a;
+  /* Grund schwarz (Sternenhimmel, Entscheidung 22.10.2026); Karten bleiben auf night-2/night-3. */
+  --color-night: #000000;
+  --color-night-2: #0a0d14;
+  --color-night-3: #10141d;
   --color-rule: #2a3a55;
   --color-rule-strong: #3d5272;
   --color-snow: #e9edf2;
@@ -52,7 +53,7 @@
   }
 
   body {
-    background: var(--color-night);
+    background: transparent;
     min-height: 100dvh;
     line-height: 1.55;
     overflow-x: hidden;
@@ -261,6 +262,54 @@
     .bub-in {
       animation: bub-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     }
+  /* flow-part architektur.css */
+    /* flow-part architektur.css (in @layer components) */
+    /* Architektur (Anhang): Datenpunkte laufen entlang der Pfeile; schmal senkrecht, ab 70rem Containerbreite waagerecht. */
+    @keyframes arch-y {
+      from { transform: translateY(0); opacity: 0; }
+      20%, 80% { opacity: 1; }
+      to { transform: translateY(100%); opacity: 0; }
+    }
+    @keyframes arch-x {
+      from { transform: translateX(0); opacity: 0; }
+      20%, 80% { opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    .arch-dot {
+      position: absolute;
+      inset: 0;
+      animation: arch-y 2.6s linear infinite;
+      animation-delay: var(--d, 0s);
+    }
+    .arch-dot::before {
+      content: "";
+      position: absolute;
+      left: -2.5px;
+      top: -2.5px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-ice);
+      box-shadow: 0 0 8px var(--color-ice);
+    }
+    @container (min-width: 70rem) {
+      .arch-dot {
+        animation-name: arch-x;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .arch-dot {
+        display: none;
+      }
+    }
+  /* Sternenhimmel: wenige helle Sterne funkeln (StarField). */
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+  .twinkle {
+    animation: twinkle 4.5s ease-in-out infinite;
+  }
   /* Klickbare Kennzahl im Fließtext (öffnet das Panel). */
   .zahl {
     font: inherit;

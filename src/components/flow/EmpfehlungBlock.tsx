@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import type { SitesCompare, Tables } from "@/lib/story";
 import type { PinPos } from "./Globe";
-import { nf, num, Rocket, TON, val, type FlowData, type Ton } from "./shared";
+import { nf, num, TON, val, type FlowData, type Ton } from "./shared";
 
 const Globe = dynamic(() => import("./Globe").then((m) => m.Globe), { ssr: false });
 
@@ -57,9 +57,6 @@ export function EmpfehlungBlock({ d, t, sc, home }: { d: EmpfehlungData; t: Tabl
                 const left = id === "andoya" || id === "saxavord_isar";
                 return (
                   <div key={id}>
-                    {id === "andoya" && <Rocket x={p.x} y={p.y} rot={p.rot} delay="0s" nose={TON.zuerst} />}
-                    {id === "andoya" && <Rocket x={p.x} y={p.y} rot={p.rot + 12} delay="2s" nose={TON.zuerst} />}
-                    {id === "nova_scotia" && <Rocket x={p.x} y={p.y} rot={p.rot} delay="1s" nose={TON.versicherung} />}
                     <span
                       className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full ${strong ? "border-2 border-white" : ""}`}
                       style={{ left: p.x, top: p.y, width: r, height: r, background: TON[ton] }}

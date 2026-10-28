@@ -33,6 +33,7 @@ import { OrbitsBlock } from "@/components/flow/OrbitsBlock";
 import { StartplaetzeBlock } from "@/components/flow/StartplaetzeBlock";
 import { FabrikBlock } from "@/components/flow/FabrikBlock";
 import { EmpfehlungBlock } from "@/components/flow/EmpfehlungBlock";
+import { ArchitectureDiagram } from "@/components/flow/ArchitectureDiagram";
 
 export interface StoryCtx {
   t: Tables;
@@ -93,7 +94,7 @@ function ChapterView({ c, ctx }: { c: Chapter; ctx: StoryCtx }) {
         {hasDetails && (
           <div className="rv mt-14 border-t border-rule" style={delay(flows.length + 1)}>
             {(c.lead || (c.kpis?.length ?? 0) > 0) && (
-              <Fold title={(c.kpis?.length ?? 0) > 0 ? "Key figures" : "Context"}>
+              <Fold title={<Tokens text={c.kpis_title ?? "Key figures"} t={ctx.t} />}>
                 {c.lead && (
                   <p className="max-w-[62ch] text-[clamp(1.02rem,1.4vw,1.22rem)] leading-relaxed text-mist">
                     <Tokens text={c.lead} t={ctx.t} strong />
@@ -107,7 +108,7 @@ function ChapterView({ c, ctx }: { c: Chapter; ctx: StoryCtx }) {
               </Fold>
             )}
             {rest.map((b, k) => (
-              <Fold key={k} title={b.title ?? b.kind}>
+              <Fold key={k} title={<Tokens text={b.title ?? b.kind} t={ctx.t} />}>
                 <BlockView b={b} ctx={ctx} />
               </Fold>
             ))}
@@ -144,14 +145,15 @@ function ChapterView({ c, ctx }: { c: Chapter; ctx: StoryCtx }) {
 }
 
 /** Aufklappbare Zeile mit Kreis-Plus (wie im Canvas „+ neue Fabrik?“); startet zu, das Plus dreht beim Öffnen zum Kreuz. */
-function Fold({ title, children }: { title: string; children: ReactNode }) {
+function Fold({ title, children }: { title: ReactNode; children: ReactNode }) {
   return (
     <details className="group border-b border-rule">
       <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3.5 py-3 text-[19px] font-semibold text-snow [&::-webkit-details-marker]:hidden">
         <span aria-hidden="true" className="grid h-9 w-9 flex-none place-items-center rounded-full border-2 border-snow text-[22px] font-bold leading-none transition-transform duration-300 group-open:rotate-45">
           +
         </span>
-        {title}
+        {/* Ein Textblock: Zahlen-Spans im Titel wären sonst einzelne Flex-Elemente ohne Umbruch (Überstand bei 375 px). */}
+        <span className="min-w-0">{title}</span>
       </summary>
       <div className="pb-10 pt-4">{children}</div>
     </details>
@@ -259,6 +261,8 @@ function BlockView({ b, ctx }: { b: Block; ctx: StoryCtx }) {
       return ctx.sites ? <InclinationLadder data={ctx.sites} /> : <OpenItem prefix="Open" title="Site comparison">sites_compare.json is missing.</OpenItem>;
     case "q1":
       return <Q1Levers ctx={ctx} />;
+    case "architecture":
+      return ctx.flow ? <ArchitectureDiagram d={ctx.flow.architektur} /> : null;
     case "links":
       return <DeepLinks query={ctx.query} />;
     case "funnel":

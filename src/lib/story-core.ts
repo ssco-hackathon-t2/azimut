@@ -43,7 +43,7 @@ export type Block = { title?: string } & (
   | { kind: "panel"; id: string; initialView?: string }
   /** Interaktiver Block aus dem Design-Canvas Skizze Flow (components/flow). */
   | { kind: "flow"; id: "orbits" | "startplaetze" | "fabrik" | "empfehlung" }
-  | { kind: "funnel" | "keystatement" | "scenarios" | "inclination" | "q1" | "links" }
+  | { kind: "funnel" | "keystatement" | "scenarios" | "inclination" | "q1" | "links" | "architecture" }
 );
 
 export interface Chapter {
@@ -53,6 +53,8 @@ export interface Chapter {
   title: string;
   lead?: string;
   kpis?: Kpi[];
+  /** Aktionstitel der aufklappbaren Kennzahlen-Zeile (Tokens erlaubt). */
+  kpis_title?: string;
   blocks?: Block[];
   /** Kapitel startet zugeklappt (nur Kicker mit „+“); öffnet per Klick oder Link auf #id. */
   collapsed?: boolean;

@@ -6,609 +6,61 @@
    "lon": 14,
    "dist": 4
   },
-  "jahr": 2025,
-  "bis": 2049,
-  "raketen_max": 48,
+  "jahr": 2041,
+  "szenario": "starship_none",
+  "szenarien": [
+   {
+    "id": "starship_none",
+    "label": "not available"
+   },
+   {
+    "id": "starship_delay",
+    "label": "+3 yrs"
+   },
+   {
+    "id": "default",
+    "label": "as modelled"
+   }
+  ],
+  "von": 2018,
+  "punkt": 25,
   "texte": {
-   "titel": "Global Orbit",
-   "kicker": "Isar · demand versus supply",
-   "lead": "Many more launches could be won than Isar can fly. That gap drives the demand for Isar.",
-   "potential": "Potential launches",
-   "actual": "Isar actual",
-   "vor_start": "no Isar launch yet",
-   "vor_start_info": "Founded {gruendung}, first flight {ab}",
-   "luecke": "launches gap",
-   "luecke_info": "Isar cannot fly this many winnable missions.",
-   "luecke_voll": "Factory 1 is full ({grenze} per year). From here on, factory 2 is needed.",
-   "reicht": "launches excess supply",
-   "reicht_info": "Supply is sufficient, now demand is the constraint.",
-   "annahme": " (assumption)",
-   "rk_vor_start": "No Isar launch yet",
-   "rk_potential": "Winnable: {n} launches per year",
-   "rk_actual": "Isar flies: {n} launches per year",
-   "rk_einheit": " · 1 rocket = {unit} launches",
-   "zeitleiste": "Timeline since the founding of Isar, to {bis}",
-   "zeitleiste_info": "Red = gap, green = supply is sufficient. From {annahme_ab} assumption: demand +{wachstum} % per year, supply grows to the factory limit of {grenze} by {grenze_jahr}.",
-   "panel": "How much of this does Europe launch itself, and from where?",
-   "filter": "Isar-relevant only",
-   "filter_info": "excluding US, China, Russia, Kazakhstan",
-   "orte_quelle": "Total orbital launches per site, Launch Library 2",
-   "fussnote": "Launches 2018–2023: annual tallies (to be cross-checked), 2024–2025: case DB, 2026: GCAT through July, 2027–2029: trend 2021–2025 (+22.5 % per year, assumption). Mass and orbits: LL2 history."
-  },
-  "jahre": [
-   {
-    "jahr": 2018,
-    "starts": 114,
-    "tonnen": 329,
-    "label": "2018",
-    "monate": null,
-    "bahnen": [
-     33.6,
-     44.3,
-     9.2,
-     13
-    ],
-    "isar": "Founded in Munich"
-   },
-   {
-    "jahr": 2019,
-    "starts": 102,
-    "tonnen": 337,
-    "label": "2019",
-    "monate": null,
-    "bahnen": [
-     57.2,
-     28.7,
-     3.5,
-     10.6
-    ],
-    "isar": "Spectrum development, no milestone in the case DB"
-   },
-   {
-    "jahr": 2020,
-    "starts": 114,
-    "tonnen": 516,
-    "label": "2020",
-    "monate": null,
-    "bahnen": [
-     72,
-     15.7,
-     8.1,
-     4.1
-    ],
-    "isar": "Series A USD 17M (April), Series B EUR 75M (December)"
-   },
-   {
-    "jahr": 2021,
-    "starts": 146,
-    "tonnen": 709,
-    "label": "2021",
-    "monate": null,
-    "bahnen": [
-     60.7,
-     20.2,
-     15.8,
-     3.3
-    ],
-    "isar": "Exclusive pad at Andøya for 20 years, Series B extended by USD 75M"
-   },
-   {
-    "jahr": 2022,
-    "starts": 186,
-    "tonnen": 971,
-    "label": "2022",
-    "monate": null,
-    "bahnen": [
-     66.8,
-     24,
-     4.4,
-     4.8
-    ],
-    "isar": "Term sheet for Kourou"
-   },
-   {
-    "jahr": 2023,
-    "starts": 223,
-    "tonnen": 1523,
-    "label": "2023",
-    "monate": [
-     16,
-     13,
-     26,
-     12,
-     20,
-     13,
-     19,
-     22,
-     23,
-     17,
-     15,
-     30
-    ],
-    "bahnen": [
-     70.6,
-     22,
-     4.9,
-     2.5
-    ],
-    "isar": "Series C USD 165M (March)"
-   },
-   {
-    "jahr": 2024,
-    "ref": "market_metrics:mm_013:value",
-    "tonnen": 2050,
-    "label": "2024",
-    "monate": [
-     22,
-     19,
-     21,
-     19,
-     26,
-     17,
-     13,
-     21,
-     23,
-     20,
-     29,
-     30
-    ],
-    "bahnen": [
-     79.8,
-     14.1,
-     2.9,
-     3.2
-    ],
-    "isar": "Series C extended by USD 70M"
-   },
-   {
-    "jahr": 2025,
-    "ref": "market_metrics:mm_012:value",
-    "tonnen": 2706,
-    "label": "2025",
-    "monate": [
-     21,
-     20,
-     26,
-     26,
-     28,
-     25,
-     24,
-     28,
-     31,
-     25,
-     31,
-     40
-    ],
-    "bahnen": [
-     75.3,
-     20.5,
-     2.3,
-     1.9
-    ],
-    "isar": "Flight 1 on 30 March terminated after about 30 s"
-   },
-   {
-    "jahr": 2026,
-    "starts": 172,
-    "tonnen": 1468,
-    "label": "2026 through July",
-    "monate": [
-     24,
-     18,
-     30,
-     32,
-     23,
-     29,
-     12,
-     null,
-     null,
-     null,
-     null,
-     null
-    ],
-    "bahnen": [
-     46.7,
-     45.3,
-     5.3,
-     2.7
-    ],
-    "isar": "Series D EUR 270M (June), Nova Scotia contract (July), flight 2 reached orbit (5 Sept)"
-   }
-  ],
-  "zukunft": [
-   {
-    "jahr": 2027,
-    "starts": 490,
-    "label": "2027 (trend)",
-    "isar": "Plan: 4 flights, Andøya remains the only launch site until the end of 2027"
-   },
-   {
-    "jahr": 2028,
-    "starts": 610,
-    "label": "2028 (trend)",
-    "isar": "Plan: double the cadence, first launch from Nova Scotia"
-   },
-   {
-    "jahr": 2029,
-    "starts": 740,
-    "label": "2029 (trend)",
-    "isar": "Assumption: Andøya plus Nova Scotia, Kourou possible from 2029"
-   }
-  ],
-  "zukunft_isar": [
-   [
-    2030,
-    "Plan: ramp-up to 18 launches, second pad in operation"
-   ],
-   [
-    2039,
-    "Assumption: supply grows towards the factory limit of {grenze}"
-   ],
-   [
-    2041,
-    "Assumption: factory 1 fully utilised"
-   ],
-   [
-    2049,
-    "Assumption: demand exceeds factory 1, factory 2 needed"
-   ]
-  ],
-  "luecke": {
-   "ab": 2025,
-   "nachfrage": [
-    9.6,
-    9.8,
-    10,
-    10.3,
-    10.5,
-    10.8
-   ],
-   "angebot": [
-    1,
-    1,
-    4,
-    8,
-    12,
-    15.2
-   ],
-   "wachstum_ref": "assumptions:viz02_growth_addressable:value_base",
-   "grenze_jahr": 2040,
-   "status": "2025 to 2029: engine and Isar plan; from 2030 assumption (demand +12 % per year per DB assumption viz02, range 0–30 %)"
-  },
-  "europa": {
-   "ref": "market_metrics:mm_022:value",
-   "isar": 1,
-   "text": "orbital launches from Europe in 2026 through October"
-  },
-  "ohne": [
-   "US",
-   "CN",
-   "RU",
-   "KZ"
-  ],
-  "isar_ab": {
-   "andoya": 2025,
-   "nova_scotia": 2028,
-   "kourou_elm": 2029
-  },
-  "kandidaten": [
-   "andoya",
-   "esrange",
-   "saxavord",
-   "nova_scotia",
-   "kourou_elm",
-   "santa_maria"
-  ],
-  "orte": {
-   "alle": [
-    [
-     "Plesetsk",
-     1688
-    ],
-    [
-     "Baikonur",
-     1561
-    ],
-    [
-     "Cape Canaveral",
-     1105
-    ],
-    [
-     "Kourou (Europe, ESA)",
-     336
-    ],
-    [
-     "Jiuquan",
-     299
-    ],
-    [
-     "Andøya",
-     2
-    ]
-   ],
-   "isar": [
-    [
-     "Kourou (Europe, ESA)",
-     336
-    ],
-    [
-     "Satish Dhawan (India)",
-     103
-    ],
-    [
-     "Tanegashima (Japan)",
-     100
-    ],
-    [
-     "Mahia (New Zealand)",
-     84
-    ],
-    [
-     "Uchinoura (Japan)",
-     43
-    ],
-    [
-     "Andøya",
-     2
-    ]
-   ]
-  },
-  "pads": [
-   [
-    62.93,
-    40.58,
-    1688,
-    "RU",
-    "Plesetsk"
-   ],
-   [
-    45.97,
-    63.3,
-    1561,
-    "KZ",
-    "Baikonur"
-   ],
-   [
-    28.49,
-    -80.58,
-    1105,
-    "US",
-    "Cape Canaveral"
-   ],
-   [
-    34.75,
-    -120.52,
-    915,
-    "US",
-    "Vandenberg"
-   ],
-   [
-    5.17,
-    -52.69,
-    336,
-    "GF",
-    "Kourou"
-   ],
-   [
-    40.96,
-    100.29,
-    299,
-    "CN",
-    "Jiuquan"
-   ],
-   [
-    28.52,
-    -80.65,
-    281,
-    "US",
-    ""
-   ],
-   [
-    28.25,
-    102.03,
-    242,
-    "CN",
-    "Xichang"
-   ],
-   [
-    38.85,
-    111.61,
-    162,
-    "CN",
-    "Taiyuan"
-   ],
-   [
-    13.72,
-    80.23,
-    103,
-    "IN",
-    "Satish Dhawan"
-   ],
-   [
-    48.59,
-    45.72,
-    101,
-    "RU",
-    "Kapustin Yar"
-   ],
-   [
-    30.4,
-    130.97,
-    100,
-    "JP",
-    "Tanegashima"
-   ],
-   [
-    -39.26,
-    177.87,
-    84,
-    "NZ",
-    "Mahia"
-   ],
-   [
-    19.61,
-    110.95,
-    75,
-    "CN",
-    ""
-   ],
-   [
-    37.93,
-    -75.47,
-    55,
-    "US",
-    "Wallops"
-   ],
-   [
-    31.25,
-    131.08,
-    43,
-    "JP",
-    ""
-   ],
-   [
-    36.68,
-    121.24,
-    29,
-    "CN",
-    ""
-   ],
-   [
-    51.88,
-    128.33,
-    21,
-    "RU",
-    ""
-   ],
-   [
-    35.23,
-    53.92,
-    15,
-    "IR",
-    ""
-   ],
-   [
-    31.9,
-    34.69,
-    13,
-    "IL",
-    ""
-   ],
-   [
-    51.05,
-    59.85,
-    10,
-    "RU",
-    ""
-   ],
-   [
-    57.44,
-    -152.34,
-    9,
-    "US",
-    ""
-   ],
-   [
-    -2.94,
-    40.21,
-    9,
-    "IT",
-    ""
-   ],
-   [
-    34.43,
-    127.53,
-    8,
-    "KR",
-    ""
-   ],
-   [
-    39.66,
-    124.7,
-    7,
-    "KP",
-    ""
-   ],
-   [
-    36.2,
-    55.33,
-    6,
-    "IR",
-    ""
-   ],
-   [
-    -30.96,
-    136.53,
-    6,
-    "AU",
-    ""
-   ],
-   [
-    51.7,
-    128,
-    5,
-    "RU",
-    ""
-   ],
-   [
-    30.78,
-    -3.06,
-    4,
-    "FR",
-    ""
-   ],
-   [
-    -2.34,
-    -44.42,
-    3,
-    "BR",
-    ""
-   ],
-   [
-    33.54,
-    135.89,
-    3,
-    "JP",
-    ""
-   ],
-   [
-    40.86,
-    129.69,
-    2,
-    "KP",
-    ""
-   ],
-   [
-    22.02,
-    -159.78,
-    1,
-    "US",
-    ""
-   ],
-   [
-    26,
-    -97.16,
-    1,
-    "US",
-    ""
-   ],
-   [
-    -19.96,
-    148.11,
-    1,
-    "AU",
-    ""
-   ]
-  ]
+   "titel": "In {year} the world needs {need} satellites launched, launches {sup} and leaves {gap} without a rocket.",
+   "titel_ohne": "In {year} the world needs {need} satellites launched and launches {sup}, so at the median no satellite waits for a rocket.",
+   "needed": "Needed",
+   "needed_info": "satellites to launch in {year} · of which captive {captive}",
+   "launched": "Launched",
+   "launched_info": "satellites launched in {year}",
+   "gap": "Gap",
+   "gap_info": "satellites without a rocket · in {p}% of {runs} runs",
+   "keine": "no gap at the median · demand exceeds capacity in {p}% of {runs} runs",
+   "leg_launched": "launched",
+   "leg_gap": "no rocket",
+   "leg_unit": "1 dot = {n} satellites",
+   "starship": "Starship",
+   "jahr": "Year",
+   "jahr_zurueck": "Previous year",
+   "jahr_vor": "Next year",
+   "fan": "from {fan} scenario fan",
+   "methode": "Monte Carlo, {runs} runs, median with P10–P90 band, satellites per year · needed = demand without launch limit · launched = min(needed, capacity of {vehicles} launch vehicles) · from {fan} scenario fan, not a forecast · {source}, run of {created}",
+   "globus": "Globe, drag to rotate. Ring of dots around it, filled = launched, hollow red = no rocket."
+  }
  },
  "orbits": {
-  "titel": "Five orbits, one core business: Isar’s open market lies almost entirely in sun-synchronous orbit.",
-  "titel_fern": "Key focus: strengthen our core, Launch as a Service.",
+  "titel": "Five orbits, one core business. Isar’s open market lies almost entirely in sun-synchronous orbit.",
+  "titel_fern": "Key focus is to strengthen our core, Launch as a Service.",
   "titel_aussen": "Key focus stays on our core. Other models are possible on the platform, but we do not pursue them.",
   "hinweis": "Click an orbit or a satellite",
   "fuss_fern": "We focus on the nucleus to strengthen our core first. Market size: launch services market 2025.",
-  "fuss_aussen": "Area = market potential in USD B (case DB, business_models; telecom and satellite services from SIA 2025). All possible on top of the launch platform, none of them pursued: focus stays on the nucleus. Models without a market figure in the DB are not shown.",
+  "fuss_aussen": "Planets of the solar system = other business models, area = market potential in USD B (case DB business_models; telecom and satellite services from SIA 2025). Orbit = proximity to the core (near, mid, far). All possible on top of the launch platform, none of them pursued: focus stays on the nucleus. Models without a market figure in the DB are not shown.",
   "quelle": "Satellites and mass 2025 by inclination, engine funnel and GCAT. Mass = all satellites in the orbit.",
+  "knoepfe": {
+   "fern": "↓ Zoom out: other business models",
+   "zurueck": "↑ Back to orbits",
+   "aussen": "↗ Show other business models",
+   "innen": "↙ Hide other business models",
+   "schliessen": "Close details"
+  },
   "stufen": [
    "Core",
    "Near",
@@ -774,26 +226,32 @@
   "geschaeft": {
    "kern": "Launch as a Service",
    "kern_ref": "business_models:laas_commercial:market_size_usd_bn",
-   "urteile": {
-    "verfolgen": "pursue",
-    "spaeter": "later",
-    "nicht": "not pursued"
+   "drehen": {
+    "hinweis": "Drag to rotate",
+    "zurueck": "Rotate the planets back",
+    "vor": "Rotate the planets forward"
    },
    "ringe": [
     {
-     "label": "Near",
-     "rx": 175,
-     "ry": 105
+     "label": "Near the core",
+     "rx": 210,
+     "ry": 72,
+     "color": "#7ee0b5",
+     "speed": 1.6
     },
     {
      "label": "Mid",
-     "rx": 335,
-     "ry": 185
+     "rx": 360,
+     "ry": 122,
+     "color": "#f2b45a",
+     "speed": 1
     },
     {
      "label": "Far",
-     "rx": 500,
-     "ry": 255
+     "rx": 520,
+     "ry": 178,
+     "color": "#8794a8",
+     "speed": 0.6
     }
    ],
    "modelle": [
@@ -801,64 +259,64 @@
      "name": "Launch site operations",
      "ref": "business_models:launch_site_ops:market_size_usd_bn",
      "ring": 0,
-     "deg": 30,
-     "urteil": "verfolgen"
+     "deg": 215,
+     "planet": "mars"
     },
     {
      "name": "Kick stage",
      "ref": "business_models:kick_stage_otv:market_size_usd_bn",
      "ring": 1,
-     "deg": 90,
-     "urteil": "spaeter"
+     "deg": 300,
+     "planet": "pluto"
     },
     {
      "name": "Hypersonic tests",
      "ref": "business_models:hypersonic_tests:market_size_usd_bn",
      "ring": 1,
-     "deg": 155,
-     "urteil": "nicht"
+     "deg": 150,
+     "planet": "uranus"
     },
     {
      "name": "Suborbital",
      "ref": "business_models:suborbital:market_size_usd_bn",
      "ring": 1,
-     "deg": 300,
-     "urteil": "nicht"
+     "deg": 115,
+     "planet": "moon"
     },
     {
      "name": "Sell engines",
      "ref": "business_models:engine_sales:market_size_usd_bn",
      "ring": 1,
-     "deg": 210,
-     "urteil": "nicht"
+     "deg": 55,
+     "planet": "neptune"
     },
     {
      "name": "Telecom and satellite services",
      "ref": "market_metrics:mm_010:value",
      "ring": 2,
-     "deg": 0,
-     "urteil": "nicht"
+     "deg": 22,
+     "planet": "jupiter"
     },
     {
      "name": "Own satellites",
      "ref": "business_models:own_satellites:market_size_usd_bn",
      "ring": 2,
-     "deg": 185,
-     "urteil": "nicht"
+     "deg": 180,
+     "planet": "saturn"
     },
     {
      "name": "Data, constellation",
      "ref": "business_models:data_constellation:market_size_usd_bn",
      "ring": 2,
-     "deg": 60,
-     "urteil": "nicht"
+     "deg": 232,
+     "planet": "venus"
     },
     {
      "name": "Space situational awareness",
      "ref": "business_models:ssa:market_size_usd_bn",
      "ring": 2,
-     "deg": 250,
-     "urteil": "nicht"
+     "deg": 80,
+     "planet": "mercury"
     }
    ]
   }
@@ -866,7 +324,7 @@
  "startplaetze": {
   "hinweis": "Click the map or a launch site: camera flight to the pad",
   "fuss": "Per pad = 365 × weather-capable days ÷ 30 days turnaround",
-  "offen": "[open]",
+  "offen": "n/a",
   "links": [
    "andoya",
    "saxavord_isar",
@@ -1071,7 +529,7 @@
    "kein_bezug": "no link"
   },
   "explorer": {
-   "titel": "Further viable launch sites by our six criteria",
+   "titel": "Andøya stays the strongest of the viable launch sites on our six criteria",
    "kriterien": [
     "Market",
     "Payload",
@@ -1403,21 +861,46 @@
   }
  },
  "fabrik": {
+  "lead": "Two factories at {u} utilisation deliver {out} rockets a year and close a part of the world satellite gap from page 2. Two sites also make production resilient.",
+  "titel": {
+   "f1": "{name} alone builds {per} rockets a year at {u} utilisation, {x} times the 2030 plan",
+   "f2": "A second factory is needed from {thr} launches a year, with Canada, the UK and Spain as candidates",
+   "model": "{need} rockets a year need {pads} pads and close {pct} of the world satellite gap 2030"
+  },
+  "fabriken": 2,
+  "ziel_auslastung": 0.95,
+  "wendezeit_schnell": 7,
+  "break_even_info": "unit cost EUR {unit}M at 20 a year, fixed cost EUR {fix}M",
+  "luecke_2030": {
+   "label": "World launch gap 2030 · page 1",
+   "wert": 324,
+   "platzhalter": false,
+   "datei": null,
+   "feld": null,
+   "hinweis": "World gap 2030: placeholder from page 1 until the Supabase forecast is attached.",
+   "jahr": 2030,
+   "szenario": "starship_none",
+   "mc_label": "World satellite gap 2030 · Monte Carlo, page 2",
+   "mc_hinweis": "World gap 2030: satellites needed minus launched (P50, 10,000 runs, Supabase demand_mc, same Starship scenario as page 2). Rockets converted at Spectrum's 1,000 kg to LEO over the 177 kg average small satellite of 2025."
+  },
   "fabrik1": {
    "name": "Vaterstetten",
    "ort": "near Munich",
+   "land": "Germany",
    "lat": 48.11,
    "lon": 11.77,
-   "flaeche": 40000,
-   "jahr": 2030,
    "zeilen": [
     [
      "Unit cost",
-     "EUR 6M per rocket at 20 per year, learning rate 0.85"
+     "EUR {unit}M per rocket at 20 a year, learning rate {lr}"
     ],
     [
      "Fixed cost",
-     "EUR 90M per year"
+     "EUR {fix}M per year"
+    ],
+    [
+     "Break-even",
+     "{be} launches a year at EUR {price}M launch price (assumption)"
     ],
     [
      "Talent",
@@ -1430,53 +913,50 @@
     [
      "Routes",
      "Esrange 4–6 days, Andøya 5–8 days, Nova Scotia 14 days by sea"
+    ],
+    [
+     "Built 2026",
+     "{built} rockets (actual)"
     ]
-   ]
+   ],
+   "fazit": "Rockets are not the constraint, running the factory hot is the decision."
   },
-  "karte": "Route from factory 1 to the six launch sites. Red = Andøya, the only site today.",
+  "karte": "Routes from factory 1 to the six launch sites. Red = Andøya, the only site today.",
   "fabrik2": {
+   "ort": "Canada, UK or Spain · candidates",
    "schwelle": 0.85,
-   "gebaut_2026": 2,
    "kandidaten": [
     [
      "Canada, near Nova Scotia",
      "4",
      "79.8",
-     "[gap]"
+     "≈ EUR 26*"
     ],
     [
      "UK, near SaxaVord",
      "9",
      "70.7",
-     "[gap]"
+     "≈ EUR 42*"
     ],
     [
      "Spain, low-wage EU",
-     "[open]",
-     "[open]",
+     "1",
+     "68.7",
      "EUR 28.7"
     ],
     [
-     "Germany (today)",
+     "Germany (today, factory 1)",
      "5",
      "69.3",
      "EUR 49.8"
     ]
    ],
-   "ausloeser": "local manufacturing as a condition of a partner state (Canada, TKMS offset deal).",
-   "fuss": "Talent = top-100 aerospace universities (GRAS 2026), stability = World Bank WGI 2025 (0–100), wage = industry per hour."
+   "ausloeser": "local manufacturing as a condition of a partner state (Canada, TKMS offset deal). With the world gap on page 1, the trigger is a question of when, not if.",
+   "fuss": "Talent = universities in the GRAS 2026 aerospace top 100 (Spain: UPM, 76–100). Stability = World Bank WGI 2025 political stability, governance score 0–100. Wage = Eurostat labour cost per hour in industry 2025 (ES, DE). *Estimates: UK from ONS ASHE 2026 (air and spacecraft, GBP 30.03 gross) × 1.19; Canada aerospace parts, wages only, CAD 38.93 (StatCan 2024)."
   },
-  "frage": "With potential new sites → new factory?",
-  "dashboard": {
-   "formel": "Investment = factories × value per factory + X × cost per pad. X = pads needed so that all factories are utilised across the year.",
-   "start": {
-    "F": 3,
-    "U": 85,
-    "T": 30,
-    "W": 60,
-    "FW": 0,
-    "PK": 0
-   },
+  "fuss": "Factory 1 data: case DB (floor space, design capacity, unit and fixed cost). Factory 2: same design assumed.",
+  "modell": {
+   "formel": "Investment = factories × value per factory + pads × cost per pad. Pads = what it takes to fly every rocket the factories build.",
    "hebel": [
     [
      "F",
@@ -1485,16 +965,16 @@
      3,
      1,
      "#",
-     "as many rockets per year each as Vaterstetten"
+     "{cap} rockets a year each, like {name}"
     ],
     [
      "U",
-     "Target utilisation",
+     "Utilisation",
      10,
      100,
-     5,
+     1,
      "#%",
-     "share of factory capacity that should fly"
+     "share of design capacity that is built and flown"
     ],
     [
      "T",
@@ -1512,7 +992,7 @@
      95,
      5,
      "#%",
-     "Andøya 60%, Nova Scotia 65%, Kourou 85%"
+     "Andøya {wa}, Nova Scotia {wn}, Kourou {wk}"
     ],
     [
      "FW",
@@ -1521,7 +1001,7 @@
      500,
      10,
      "EUR #M",
-     "not yet in the DB, 0 = open"
+     "unpublished, Vaterstetten is leased from VGP; proxy Rocket Lab Long Beach USD 16M bought, about USD 100M replacement"
     ],
     [
      "PK",
@@ -1530,54 +1010,43 @@
      200,
      5,
      "EUR #M",
-     "reference Kourou launch complex EUR 35M, 0 = open"
+     "your input, 0 = open"
     ]
    ],
    "szenarien": [
     [
-     "As sketched: 3 factories",
+     "Two factories at {u}",
+     {}
+    ],
+    [
+     "One factory at {u}",
      {
-      "F": 3,
-      "U": 85,
-      "T": 30,
-      "W": 60
+      "F": 1
      }
     ],
     [
-     "One factory full",
+     "Plan 2030, one factory at {plan}",
      {
       "F": 1,
-      "U": 85,
-      "T": 30,
-      "W": 60
+      "U": "plan"
      }
     ],
     [
-     "Demand 2030 only",
+     "Fast turnaround, {fast} days",
      {
-      "F": 1,
-      "U": 29,
-      "T": 30,
-      "W": 60
-     }
-    ],
-    [
-     "Fast turnaround",
-     {
-      "F": 1,
-      "U": 85,
-      "T": 7,
-      "W": 60
+      "T": "fast"
      }
     ]
-   ]
+   ],
+   "check_hoch": "Cross-check: {need} rockets a year, but only {win} missions are winnable for Isar in 2030 (case DB). Closing {pct} of the world gap needs market access beyond today’s open market. That is the hypothesis to test.",
+   "check_tief": "Cross-check: at this setting production stays below what Isar can win today ({win} missions in 2030). The constraint is the break-even of {be} launches, not the market."
   }
  },
  "empfehlung": {
   "kicker": "Recommendation to Isar",
   "urteil_label": "For SSVE",
   "urteil": "Support",
-  "pruef_titel": "Review criteria by 31 Dec 2027",
+  "pruef_titel": "Three criteria decide the review on 31 Dec 2027",
   "pruef": [
    "Launch rate achieved",
    "Nova Scotia: licence and pad",
@@ -1671,7 +1140,7 @@
    "markt": "{market} launches per year winnable",
    "wie": "How {name} becomes resilient",
    "fuss": "Score = overall grade across the six criteria, weighting “resilience first” (geopolitics ×3, weather ×2, maturity ×2). Failed launch: {standdown} months of downtime (median of analogues).",
-   "offen": "[open]",
+   "offen": "n/a",
    "kacheln": "No Sentinel tiles or OSM data for this site yet [gap] · camera flight on the 3D globe",
    "uebersicht": "[ back to overview ]"
   },
@@ -1721,7 +1190,7 @@
     "note": "Licensed spaceport and NATO, but the UK is not in the EU and each operator needs its own launch licence.",
     "orbits": "High, polar and SSO, {inc}",
     "ausbau": "Two more launch complexes under construction; Orbex slot free since its insolvency (Feb 2026); Isar first launch 2029 at the earliest",
-    "kern": "{extra} additional openly addressable payloads versus Andøya: a backup without Norway, not extra market.",
+    "kern": "{extra} additional openly addressable payloads versus Andøya, a backup without Norway, not extra market.",
     "wie": [
      "Contract with SaxaVord; so far only the UK–German declaration",
      "British operator licence and marine licence for Isar (RFA's marine licence took 31 months)",
@@ -1754,6 +1223,152 @@
      "INNOSPACE priority until 2030 and local political criticism"
     ]
    }
+  }
+ },
+ "architektur": {
+  "aria": "Architecture and data flow, from sources to partners and jury",
+  "schichten": [
+   {
+    "id": "quellen",
+    "nr": "01",
+    "titel": "Sources",
+    "tech": "Snapshots, no live fetch",
+    "items": [
+     {
+      "name": "GCAT catalogue",
+      "note": "J. McDowell, as of 17 Oct 2026, SHA256 per file"
+     },
+     {
+      "name": "Research CSVs",
+      "note": "source and status on every row"
+     },
+     {
+      "name": "Launch Library 2",
+      "note": "251 pads, SHA256, site cross-check"
+     }
+    ]
+   },
+   {
+    "id": "daten",
+    "nr": "02",
+    "titel": "Data",
+    "tech": "Parquet · Supabase Postgres · YAML",
+    "items": [
+     {
+      "name": "Payload tables",
+      "note": "built by the pipeline, loaded nightly into Postgres"
+     },
+     {
+      "name": "Case DB",
+      "note": "merge script checks every contribution"
+     },
+     {
+      "name": "Assumptions",
+      "note": "config/*.yaml with value, unit, source"
+     }
+    ]
+   },
+   {
+    "id": "engine",
+    "nr": "03",
+    "titel": "Engine",
+    "tech": "Python",
+    "hervorheben": true,
+    "items": [
+     {
+      "name": "Funnel E0 → E3",
+      "note": "per launch site, one exclusion reason per payload"
+     },
+     {
+      "name": "Scenarios",
+      "note": "three cases, timeline, portfolio, shock"
+     },
+     {
+      "name": "Evidence trace",
+      "note": "formula, inputs and assumptions per figure"
+     }
+    ],
+    "fuss": "SQL and Python give identical results"
+   },
+   {
+    "id": "vertrag",
+    "nr": "04",
+    "titel": "API & export",
+    "tech": "FastAPI · versioned JSON",
+    "items": [
+     {
+      "name": "Engine API",
+      "note": "FastAPI on Railway, /api/*.json on request"
+     },
+     {
+      "name": "Provenance",
+      "note": "snapshot ID, engine commit, assumptions hash"
+     },
+     {
+      "name": "Static files",
+      "note": "sites_compare.json, isar_data.json"
+     }
+    ]
+   },
+   {
+    "id": "frontend",
+    "nr": "05",
+    "titel": "Frontend",
+    "tech": "Next.js · static export",
+    "items": [
+     {
+      "name": "Story and analysis",
+      "note": "every figure with status and source"
+     },
+     {
+      "name": "GitHub Pages",
+      "note": "public repo azimut"
+     },
+     {
+      "name": "Bundled data",
+      "note": "works without the API, data as of the last export"
+     }
+    ]
+   }
+  ],
+  "pfeile": [
+   "ingest",
+   "read",
+   "export",
+   "fetch",
+   "view"
+  ],
+  "publikum": {
+   "titel": "Partners",
+   "note": "and jury"
+  },
+  "umweg": {
+   "von": "daten",
+   "nach": "vertrag",
+   "label": "isar_data.json · Case DB tables, no engine step"
+  },
+  "checks": [
+   {
+    "tag": "CI · nightly",
+    "titel": "Ingest gate",
+    "note": "automated data checks before every switch",
+    "ziele": [
+     "daten",
+     "engine"
+    ]
+   },
+   {
+    "tag": "CI · deploy",
+    "titel": "Pages build",
+    "note": "automated checks before publishing",
+    "ziele": [
+     "frontend"
+    ]
+   }
+  ],
+  "legende": {
+   "fluss": "data flow",
+   "check": "automated check"
   }
  }
 }

@@ -10,7 +10,7 @@ import { SCENARIO_FALLBACK } from "@/lib/labels";
 import { ErrorState } from "@/components/ui/States";
 import { StoryChapters, Tokens } from "@/components/story/StoryChapters";
 import { ChapterRail } from "@/components/story/ChapterRail";
-import { WeltmarktHero } from "@/components/flow/WeltmarktHero";
+import { WeltmarktHero, type DemandMC } from "@/components/flow/WeltmarktHero";
 import { ProduktionHero } from "@/components/flow/ProduktionHero";
 import { OrbitFlight } from "@/components/flow/DeepDiveScene";
 import type { FlowData } from "@/components/flow/shared";
@@ -28,6 +28,7 @@ export function HomeView({ hero = "weltmarkt" }: { hero?: "weltmarkt" | "andoya"
   const db = useLiveJSON<Tables>("data/isar/isar_data.json");
   const sites = useLiveJSON<SitesCompare>("data/sites/sites_compare.json");
   const flow = useLiveJSON<FlowData>("data/flow.json");
+  const demand = useLiveJSON<DemandMC>("data/demand/global_demand_mc.json");
   const { selection } = useSelection(manifest.state === "ready" ? manifest.data : undefined);
   const q = selectionQuery(selection);
 
@@ -54,7 +55,7 @@ export function HomeView({ hero = "weltmarkt" }: { hero?: "weltmarkt" | "andoya"
       ) : flow.state === "ready" && dataReady ? (
         <>
           <ProduktionHero d={flow.data.hero} />
-          <WeltmarktHero d={flow.data.weltmarkt} t={t} />
+          <WeltmarktHero d={flow.data.weltmarkt} t={t} mc={demand.state === "ready" ? demand.data : undefined} />
         </>
       ) : (
         <section id="einstieg" aria-busy="true" className="h-[calc(100svh-var(--header-h))] min-h-[640px]" />

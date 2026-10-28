@@ -15,6 +15,8 @@ export function useLiveJSON<T>(path: string): Loadable<T> {
   useEffect(() => {
     let alive = true;
     let last = "";
+    let tries = 0;
+    let retryTimer: number | undefined;
     const load = () =>
       fetch(asset(path), { cache: "no-store" })
         .then((r) => {
@@ -27,9 +29,15 @@ export function useLiveJSON<T>(path: string): Loadable<T> {
           last = text;
           setResult({ state: "ready", data });
         })
-        // Halb gespeicherte Datei im Live-Modus: letzten guten Stand behalten.
+        // Halb gespeicherte Datei (z. B. während eines Updates): letzten guten Stand behalten und kurz danach
+        // automatisch neu laden; erst nach mehreren Fehlversuchen den Fehler zeigen.
         .catch((e: unknown) => {
-          if (alive && !last) setResult({ state: "error", error: e instanceof Error ? e.message : String(e), retry: () => setAttempt((a) => a + 1) });
+          if (!alive || last) return;
+          if (tries++ < 5) {
+            retryTimer = window.setTimeout(load, 800);
+            return;
+          }
+          setResult({ state: "error", error: e instanceof Error ? e.message : String(e), retry: () => setAttempt((a) => a + 1) });
         });
     load();
     const live = new URLSearchParams(window.location.search).has("live");
@@ -37,6 +45,7 @@ export function useLiveJSON<T>(path: string): Loadable<T> {
     return () => {
       alive = false;
       window.clearInterval(id);
+      window.clearTimeout(retryTimer);
     };
   }, [path, attempt]);
   return result;

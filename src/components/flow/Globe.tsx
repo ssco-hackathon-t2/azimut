@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { asset } from "@/lib/data";
 import { latLonToVec, starDirection, subsolarPoint } from "@/lib/geo";
@@ -53,12 +53,22 @@ export function Globe(props: Props) {
   cb.current = props;
   const ctl = useRef<{ goTo: (v: View) => void; refresh: () => void } | null>(null);
 
+  // Performance: WebGL-Kontext erst anlegen, wenn der Globus bis auf einen Bildschirm herangescrollt ist.
+  const [near, setNear] = useState(false);
+  useEffect(() => {
+    const el = host.current;
+    if (!el || near) return;
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && setNear(true), { rootMargin: "100% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [near]);
+
   useEffect(() => ctl.current?.goTo(props.view), [props.view]);
   useEffect(() => ctl.current?.refresh(), [props.pins]);
 
   useEffect(() => {
     const el = host.current;
-    if (!el) return;
+    if (!el || !near) return;
     const probe = document.createElement("canvas").getContext("webgl2");
     probe?.getExtension("WEBGL_lose_context")?.loseContext();
     if (!probe) {
@@ -74,7 +84,7 @@ export function Globe(props: Props) {
     }
     let disposed = false;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setClearColor(0x000000, 0);
     renderer.autoClear = false;
@@ -315,7 +325,8 @@ export function Globe(props: Props) {
       renderer.domElement.remove();
       ctl.current = null;
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [near]);
 
   return <div ref={host} className="absolute inset-0 cursor-grab touch-none active:cursor-grabbing" />;
 }

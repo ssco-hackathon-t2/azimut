@@ -7,6 +7,7 @@ import type { FabrikData } from "./FabrikBlock";
 import type { EmpfehlungData } from "./EmpfehlungBlock";
 import type { HeroData } from "./ProduktionHero";
 import type { DeepDiveData } from "./DeepDiveFacts";
+import type { ArchitekturData } from "./ArchitectureDiagram";
 
 /** public/data/flow.json: Texte und Canvas-Angaben je Kapitel (Design-Canvas Skizze Flow). Der Typ je Kapitel liegt bei seiner Komponente. */
 export interface FlowData {
@@ -17,6 +18,7 @@ export interface FlowData {
   empfehlung: EmpfehlungData;
   hero: HeroData;
   deepdive: DeepDiveData;
+  architektur: ArchitekturData;
 }
 
 export type Ton = "zuerst" | "versicherung" | "option" | "nicht";

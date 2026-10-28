@@ -12,7 +12,7 @@
       "id": "frage-1",
       "nav": "Orbits",
       "kicker": "Orbits and strategies",
-      "title": "Andøya reaches only polar and sun-synchronous orbits. That is exactly where the open market is.",
+      "title": "Andøya reaches only polar and sun-synchronous orbits, exactly where the open market is.",
       "kpis": [
         {
           "ref": "sites:andoya:missions_per_year",
@@ -42,20 +42,21 @@
         },
         {
           "kind": "q1",
-          "title": "Switch launch sites on and off"
+          "title": "Further launch sites add little open market to Andøya"
         },
         {
           "kind": "panel",
           "id": "q1-trichter",
-          "title": "From all payloads to the openly addressable market"
+          "title": "Only {{site_andoya_e2_count}} of {{sites_meta:all:e0_count}} payloads in 2025 are openly addressable from Andøya"
         }
-      ]
+      ],
+      "kpis_title": "Andøya can win {{q1_andoya_share_global_launches|pct|0}} of all orbital launches"
     },
     {
       "id": "frage-2",
       "nav": "Launch sites",
       "kicker": "Launch sites",
-      "title": "Six launch sites, one result: more orbits, hardly any more open market.",
+      "title": "Six launch sites add orbits but hardly any open market.",
       "kpis": [
         {
           "ref": "sites:kourou_elm:e2_extra_vs_andoya",
@@ -84,25 +85,26 @@
         },
         {
           "kind": "inclination",
-          "title": "Inclination windows of the six launch sites"
+          "title": "Kourou and Nova Scotia open the widest inclination windows"
         },
         {
           "kind": "panel",
           "id": "standorte-markt",
-          "title": "More orbits, hardly more open market"
+          "title": "New sites add orbits, hardly any open market"
         },
         {
           "kind": "text",
           "text": "Nova Scotia is the second jurisdiction, with Canada and NATO as customers. Kourou stands for ESA, institutional customers and near-equatorial orbits. SaxaVord and Esrange are SSO backups if Andøya goes down. Santa Maria offers mid inclinations from EU soil, so far suborbital only.",
-          "title": "What the sites really stand for"
+          "title": "Each site stands for a customer group, not for extra market"
         }
-      ]
+      ],
+      "kpis_title": "Further sites add only a small share of openly addressable payloads"
     },
     {
       "id": "frage-3",
       "nav": "Factory to launch",
       "kicker": "Factory to launch",
-      "title": "The factory is not the bottleneck. With one pad, cadence is the constraint. From the second pad on, demand is.",
+      "title": "Production is our bottleneck, not launch sites. Two factories run at 95% are the focus.",
       "kpis": [
         {
           "ref": "portfolio_chain:A_rampe_wetter:value",
@@ -137,20 +139,21 @@
         {
           "kind": "panel",
           "id": "engpass-2030",
-          "title": "Bottleneck chain 2030"
+          "title": "One pad caps Isar at {{portfolio_chain:A_rampe_wetter:value|num|1}} launches a year"
         },
         {
           "kind": "panel",
           "id": "standorte-faktoren",
           "title": "Andøya leads on law and maturity, Kourou on weather"
         }
-      ]
+      ],
+      "kpis_title": "One pad manages only {{portfolio_chain:A_rampe_wetter:value|num|1}} launches a year after weather"
     },
     {
       "id": "empfehlung",
       "nav": "Recommendation",
       "kicker": "Recommendation to Isar",
-      "title": "Proceed, with a review gate by 31 Dec 2027.",
+      "title": "Our recommendation is to proceed and expand platforms, with a review gate by 31 Dec 2027.",
       "blocks": [
         {
           "kind": "flow",
@@ -159,27 +162,27 @@
         {
           "kind": "quote",
           "text": "With one pad, cadence is the constraint. From the second pad on, demand is.",
-          "title": "Core message"
+          "title": "Cadence, not floor space, limits growth today"
         },
         {
           "kind": "text",
           "text": "One pad at Andøya manages only about {{portfolio_chain:A_rampe_wetter:value|num|0}} launches per year after weather, while break-even is at {{break_even_ops}}. The second pad (Andøya Pad 2 or Nova Scotia) is the most important step. The Vaterstetten factory (capacity {{facts:fa_003:value_num}} per year) is sufficient for that.",
-          "title": "Cadence before footprint"
+          "title": "A second pad comes before more factory space"
         },
         {
           "kind": "text",
           "text": "Contract in place since 7 Jul 2026, first launch planned for 2028, Canadian launch legislation (C-28) still pending. Money only against milestones: licence, pad handover, first launch.",
-          "title": "Nova Scotia as insurance, not as a growth engine"
+          "title": "Nova Scotia insures against Andøya, it does not drive growth"
         },
         {
           "kind": "text",
           "text": "Kourou only for ESA and institutional customers. SaxaVord as an emergency backup for SSO without Norway.",
-          "title": "Kourou and SaxaVord as options with a trigger"
+          "title": "Kourou and SaxaVord stay options until a trigger is hit"
         },
         {
           "kind": "text",
           "text": "The number one review criterion is the launch rate achieved, not the number of launch sites.",
-          "title": "For SSVE: support, with a review gate by 31 Dec 2027"
+          "title": "SSVE should support Isar, with a review gate by 31 Dec 2027"
         }
       ]
     },
@@ -187,14 +190,19 @@
       "id": "anhang",
       "nav": "Appendix",
       "kicker": "Appendix",
-      "title": "How the tool is built.",
+      "title": "One engine, one database and one interface keep every number traceable.",
       "lead": "Every number comes from a data file and carries its status and source.",
       "blocks": [
         {
+          "kind": "architecture",
+          "title": "Every number flows from verified sources through one engine to the screen"
+        },
+        {
           "kind": "links",
-          "title": "Further pages"
+          "title": "Further pages hold the detailed analysis"
         }
-      ]
+      ],
+      "kpis_title": "Every number carries its status and source"
     }
   ]
 }

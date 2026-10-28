@@ -7,6 +7,7 @@ import "./globals.css";
 import { SiteHeader, SiteHeaderStatic } from "@/components/shell/SiteHeader";
 import { SiteFooter } from "@/components/shell/SiteFooter";
 import { ChatAssistant } from "@/components/chat/ChatAssistant";
+import { StarField } from "@/components/shell/StarField";
 
 export const metadata: Metadata = {
   title: "Azimut",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1220",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <StarField />
         <a
           href="#inhalt"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-night-3 focus:px-4 focus:py-2"

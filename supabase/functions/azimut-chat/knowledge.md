@@ -5,37 +5,37 @@ Tool pages: home page chapters (World market /#einstieg, Orbits /#frage-1, Launc
 ## 1. Story of the home page (numbers resolved)
 Hero: Europe's private path to orbit starts at the Arctic Circle. Isar Aerospace builds Spectrum: 1,000 kg to LEO, 700 kg to SSO. Flight 1 was terminated on 30 Mar 2025, flight 2 reached orbit on 5 Sep 2026. Series D of more than €270m on 9 Jun 2026. Only active launch site: Andøya, Norway. Claim: With one pad, cadence is the constraint. From the second pad on, demand is.
 
-### Chapter Orbits (/#frage-1): Andøya reaches only polar and sun-synchronous orbits. That is exactly where the open market is.
+### Chapter Orbits (/#frage-1): Andøya reaches only polar and sun-synchronous orbits, exactly where the open market is.
 - KPI: about 3% of all orbital launches in 2025. 9.6 winnable missions per year out of 329 launches. Case DB with Isar's capacity: 3.6%.
 - KPI: 20.0% technically reachable (E1). Window 90 to 108°, altitude, mass
 - KPI: 406 openly addressable payloads (E2). 8.9% of all payloads in 2025
 
-### Chapter Launch sites (/#frage-2): Six launch sites, one result: more orbits, hardly any more open market.
+### Chapter Launch sites (/#frage-2): Six launch sites add orbits but hardly any open market.
 - KPI: at most plus 11% openly addressable payloads compared with Andøya. Kourou: +45 to 451
 - KPI: 89.5% technically reachable from Kourou. Andøya: 20.0%
 - KPI: 69.0% technically reachable from Nova Scotia. openly addressable: 439 payloads
-- What the sites really stand for: Nova Scotia is the second jurisdiction, with Canada and NATO as customers. Kourou stands for ESA, institutional customers and near-equatorial orbits. SaxaVord and Esrange are SSO backups if Andøya goes down. Santa Maria offers mid inclinations from EU soil, so far suborbital only.
+- Each site stands for a customer group, not for extra market: Nova Scotia is the second jurisdiction, with Canada and NATO as customers. Kourou stands for ESA, institutional customers and near-equatorial orbits. SaxaVord and Esrange are SSO backups if Andøya goes down. Santa Maria offers mid inclinations from EU soil, so far suborbital only.
 
-### Chapter Factory to launch (/#frage-3): The factory is not the bottleneck. With one pad, cadence is the constraint. From the second pad on, demand is.
+### Chapter Factory to launch (/#frage-3): Production is our bottleneck, not launch sites. Two factories run at 95% are the focus.
 - KPI: only 7.3 launches per year from one pad at Andøya, weather-adjusted. 60% weather-suitable days, 30 days between two launches. Winnable demand 10.8, break-even 13
 - KPI: 11.6 winnable missions in 2030 with all six sites. Andøya only: 10.8
 - KPI: about 4× factory capacity versus winnable demand in 2030. 40 rockets per year versus 10.8 winnable missions (Andøya only)
 
-### Chapter Recommendation (/#empfehlung): Proceed, with a review gate by 31 Dec 2027.
-- Core message: With one pad, cadence is the constraint. From the second pad on, demand is.
-- Cadence before footprint: One pad at Andøya manages only about 7 launches per year after weather, while break-even is at 13. The second pad (Andøya Pad 2 or Nova Scotia) is the most important step. The Vaterstetten factory (capacity 40 per year) is sufficient for that.
-- Nova Scotia as insurance, not as a growth engine: Contract in place since 7 Jul 2026, first launch planned for 2028, Canadian launch legislation (C-28) still pending. Money only against milestones: licence, pad handover, first launch.
-- Kourou and SaxaVord as options with a trigger: Kourou only for ESA and institutional customers. SaxaVord as an emergency backup for SSO without Norway.
-- For SSVE: support, with a review gate by 31 Dec 2027: The number one review criterion is the launch rate achieved, not the number of launch sites.
+### Chapter Recommendation (/#empfehlung): Our recommendation is to proceed and expand platforms, with a review gate by 31 Dec 2027.
+- Cadence, not floor space, limits growth today: With one pad, cadence is the constraint. From the second pad on, demand is.
+- A second pad comes before more factory space: One pad at Andøya manages only about 7 launches per year after weather, while break-even is at 13. The second pad (Andøya Pad 2 or Nova Scotia) is the most important step. The Vaterstetten factory (capacity 40 per year) is sufficient for that.
+- Nova Scotia insures against Andøya, it does not drive growth: Contract in place since 7 Jul 2026, first launch planned for 2028, Canadian launch legislation (C-28) still pending. Money only against milestones: licence, pad handover, first launch.
+- Kourou and SaxaVord stay options until a trigger is hit: Kourou only for ESA and institutional customers. SaxaVord as an emergency backup for SSO without Norway.
+- SSVE should support Isar, with a review gate by 31 Dec 2027: The number one review criterion is the launch rate achieved, not the number of launch sites.
 
-### Chapter Appendix (/#anhang): How the tool is built.
+### Chapter Appendix (/#anhang): One engine, one database and one interface keep every number traceable.
 Every number comes from a data file and carries its status and source.
 
 ## 2. Recommendation and interactive sections (flow.json; {placeholders} are filled live in the page)
 recommendation.kicker: Recommendation to Isar
 recommendation.urteil_label: For SSVE
 recommendation.urteil: Support
-recommendation.pruef_titel: Review criteria by 31 Dec 2027
+recommendation.pruef_titel: Three criteria decide the review on 31 Dec 2027
 recommendation.pruef: Launch rate achieved, Nova Scotia: licence and pad, Backup for Andøya secured
 recommendation.plaetze: andoya / Andøya + Pad 2 / zuerst; nova_scotia / Nova Scotia / versicherung; saxavord_isar / SaxaVord / option; kourou_elm / Kourou / option; esrange_isar / Esrange / nicht; santa_maria / Santa Maria / nicht
 recommendation.legende.zuerst: first: second pad
@@ -92,7 +92,7 @@ deepdive.plaetze.saxavord_isar.sub: No contract. Named in the UK–German declar
 deepdive.plaetze.saxavord_isar.note: Licensed spaceport and NATO, but the UK is not in the EU and each operator needs its own launch licence.
 deepdive.plaetze.saxavord_isar.orbits: High, polar and SSO, {inc}
 deepdive.plaetze.saxavord_isar.ausbau: Two more launch complexes under construction; Orbex slot free since its insolvency (Feb 2026); Isar first launch 2029 at the earliest
-deepdive.plaetze.saxavord_isar.kern: {extra} additional openly addressable payloads versus Andøya: a backup without Norway, not extra market.
+deepdive.plaetze.saxavord_isar.kern: {extra} additional openly addressable payloads versus Andøya, a backup without Norway, not extra market.
 deepdive.plaetze.saxavord_isar.wie: Contract with SaxaVord; so far only the UK–German declaration, British operator licence and marine licence for Isar (RFA's marine licence took 31 months), New pad: the Fredo pad is exclusive to RFA
 deepdive.plaetze.esrange_isar.titel: Esrange Space Center, spaceport (option)
 deepdive.plaetze.esrange_isar.sub: No contract. Isar already tests engines and stages here
@@ -108,64 +108,98 @@ deepdive.plaetze.santa_maria.orbits: Low to SSO southwards, {inc} (estimated)
 deepdive.plaetze.santa_maria.ausbau: INNOSPACE builds its pad in stages; orbital launches 2027 at the earliest
 deepdive.plaetze.santa_maria.kern: {extra} more openly addressable payloads than Andøya, but no link to Isar and no orbital launch yet.
 deepdive.plaetze.santa_maria.wie: Any link with Isar [gap]: no contract, no option, Orbital capability: so far only suborbital launches (Aug 2026), INNOSPACE priority until 2030 and local political criticism
+factory.lead: Two factories at {u} utilisation deliver {out} rockets a year and close a part of the world satellite gap from page 2. Two sites also make production resilient.
+factory.titel.f1: {name} alone builds {per} rockets a year at {u} utilisation, {x} times the 2030 plan
+factory.titel.f2: A second factory is needed from {thr} launches a year, with Canada, the UK and Spain as candidates
+factory.titel.model: {need} rockets a year need {pads} pads and close {pct} of the world satellite gap 2030
+factory.fabriken: 2
+factory.ziel_auslastung: 0.95
+factory.wendezeit_schnell: 7
+factory.break_even_info: unit cost EUR {unit}M at 20 a year, fixed cost EUR {fix}M
+factory.luecke_2030.label: World launch gap 2030 · page 1
+factory.luecke_2030.wert: 324
+factory.luecke_2030.platzhalter: false
+factory.luecke_2030.hinweis: World gap 2030: placeholder from page 1 until the Supabase forecast is attached.
+factory.luecke_2030.jahr: 2030
+factory.luecke_2030.szenario: starship_none
+factory.luecke_2030.mc_label: World satellite gap 2030 · Monte Carlo, page 2
+factory.luecke_2030.mc_hinweis: World gap 2030: satellites needed minus launched (P50, 10,000 runs, Supabase demand_mc, same Starship scenario as page 2). Rockets converted at Spectrum's 1,000 kg to LEO over the 177 kg average small satellite of 2025.
 factory.fabrik1.name: Vaterstetten
 factory.fabrik1.ort: near Munich
+factory.fabrik1.land: Germany
 factory.fabrik1.lat: 48.11
 factory.fabrik1.lon: 11.77
-factory.fabrik1.flaeche: 40000
-factory.fabrik1.jahr: 2030
-factory.fabrik1.zeilen: Unit cost / EUR 6M per rocket at 20 per year, learning rate 0.85; Fixed cost / EUR 90M per year; Talent / TUM ranked 38th worldwide in aerospace engineering (ShanghaiRanking 2026); Stability / Germany 69.3 of 100 (World Bank WGI 2025); Routes / Esrange 4–6 days, Andøya 5–8 days, Nova Scotia 14 days by sea
-factory.karte: Route from factory 1 to the six launch sites. Red = Andøya, the only site today.
+factory.fabrik1.zeilen: Unit cost / EUR {unit}M per rocket at 20 a year, learning rate {lr}; Fixed cost / EUR {fix}M per year; Break-even / {be} launches a year at EUR {price}M launch price (assumption); Talent / TUM ranked 38th worldwide in aerospace engineering (ShanghaiRanking 2026); Stability / Germany 69.3 of 100 (World Bank WGI 2025); Routes / Esrange 4–6 days, Andøya 5–8 days, Nova Scotia 14 days by sea; Built 2026 / {built} rockets (actual)
+factory.fabrik1.fazit: Rockets are not the constraint, running the factory hot is the decision.
+factory.karte: Routes from factory 1 to the six launch sites. Red = Andøya, the only site today.
+factory.fabrik2.ort: Canada, UK or Spain · candidates
 factory.fabrik2.schwelle: 0.85
-factory.fabrik2.gebaut_2026: 2
-factory.fabrik2.kandidaten: Canada, near Nova Scotia / 4 / 79.8 / [gap]; UK, near SaxaVord / 9 / 70.7 / [gap]; Spain, low-wage EU / [open] / [open] / EUR 28.7; Germany (today) / 5 / 69.3 / EUR 49.8
-factory.fabrik2.ausloeser: local manufacturing as a condition of a partner state (Canada, TKMS offset deal).
-factory.fabrik2.fuss: Talent = top-100 aerospace universities (GRAS 2026), stability = World Bank WGI 2025 (0–100), wage = industry per hour.
-factory.frage: With potential new sites → new factory?
-orbits.titel: Five orbits, one core business: Isar’s open market lies almost entirely in sun-synchronous orbit.
-orbits.titel_fern: Key focus: strengthen our core, Launch as a Service.
+factory.fabrik2.kandidaten: Canada, near Nova Scotia / 4 / 79.8 / ≈ EUR 26*; UK, near SaxaVord / 9 / 70.7 / ≈ EUR 42*; Spain, low-wage EU / 1 / 68.7 / EUR 28.7; Germany (today, factory 1) / 5 / 69.3 / EUR 49.8
+factory.fabrik2.ausloeser: local manufacturing as a condition of a partner state (Canada, TKMS offset deal). With the world gap on page 1, the trigger is a question of when, not if.
+factory.fabrik2.fuss: Talent = universities in the GRAS 2026 aerospace top 100 (Spain: UPM, 76–100). Stability = World Bank WGI 2025 political stability, governance score 0–100. Wage = Eurostat labour cost per hour in industry 2025 (ES, DE). *Estimates: UK from ONS ASHE 2026 (air and spacecraft, GBP 30.03 gross) × 1.19; Canada aerospace parts, wages only, CAD 38.93 (StatCan 2024).
+factory.fuss: Factory 1 data: case DB (floor space, design capacity, unit and fixed cost). Factory 2: same design assumed.
+factory.modell.formel: Investment = factories × value per factory + pads × cost per pad. Pads = what it takes to fly every rocket the factories build.
+factory.modell.hebel: F / Factories / 1 / 3 / 1 / # / {cap} rockets a year each, like {name}; U / Utilisation / 10 / 100 / 1 / #% / share of design capacity that is built and flown; T / Turnaround per pad / 7 / 90 / 1 / # days / team assumption 7 to 90 days; W / Weather-capable days / 30 / 95 / 5 / #% / Andøya {wa}, Nova Scotia {wn}, Kourou {wk}; FW / Value per factory / 0 / 500 / 10 / EUR #M / unpublished, Vaterstetten is leased from VGP; proxy Rocket Lab Long Beach USD 16M bought, about USD 100M replacement; PK / Cost per pad / 0 / 200 / 5 / EUR #M / your input, 0 = open
+factory.modell.szenarien.0.0: Two factories at {u}
+factory.modell.szenarien.1.0: One factory at {u}
+factory.modell.szenarien.1.1.F: 1
+factory.modell.szenarien.2.0: Plan 2030, one factory at {plan}
+factory.modell.szenarien.2.1.F: 1
+factory.modell.szenarien.2.1.U: plan
+factory.modell.szenarien.3.0: Fast turnaround, {fast} days
+factory.modell.szenarien.3.1.T: fast
+factory.modell.check_hoch: Cross-check: {need} rockets a year, but only {win} missions are winnable for Isar in 2030 (case DB). Closing {pct} of the world gap needs market access beyond today’s open market. That is the hypothesis to test.
+factory.modell.check_tief: Cross-check: at this setting production stays below what Isar can win today ({win} missions in 2030). The constraint is the break-even of {be} launches, not the market.
+orbits.titel: Five orbits, one core business. Isar’s open market lies almost entirely in sun-synchronous orbit.
+orbits.titel_fern: Key focus is to strengthen our core, Launch as a Service.
 orbits.titel_aussen: Key focus stays on our core. Other models are possible on the platform, but we do not pursue them.
 orbits.hinweis: Click an orbit or a satellite
 orbits.fuss_fern: We focus on the nucleus to strengthen our core first. Market size: launch services market 2025.
-orbits.fuss_aussen: Area = market potential in USD B (case DB, business_models; telecom and satellite services from SIA 2025). All possible on top of the launch platform, none of them pursued: focus stays on the nucleus. Models without a market figure in the DB are not shown.
+orbits.fuss_aussen: Planets of the solar system = other business models, area = market potential in USD B (case DB business_models; telecom and satellite services from SIA 2025). Orbit = proximity to the core (near, mid, far). All possible on top of the launch platform, none of them pursued: focus stays on the nucleus. Models without a market figure in the DB are not shown.
 orbits.quelle: Satellites and mass 2025 by inclination, engine funnel and GCAT. Mass = all satellites in the orbit.
+orbits.knoepfe.fern: ↓ Zoom out: other business models
+orbits.knoepfe.zurueck: ↑ Back to orbits
+orbits.knoepfe.aussen: ↗ Show other business models
+orbits.knoepfe.innen: ↙ Hide other business models
+orbits.knoepfe.schliessen: Close details
 orbits.stufen: Core, Near, Adjacent, Option, Outside
-world_market.jahr: 2025
-world_market.bis: 2049
-world_market.raketen_max: 48
-world_market.zukunft.0.jahr: 2027
-world_market.zukunft.0.starts: 490
-world_market.zukunft.0.label: 2027 (trend)
-world_market.zukunft.0.isar: Plan: 4 flights, Andøya remains the only launch site until the end of 2027
-world_market.zukunft.1.jahr: 2028
-world_market.zukunft.1.starts: 610
-world_market.zukunft.1.label: 2028 (trend)
-world_market.zukunft.1.isar: Plan: double the cadence, first launch from Nova Scotia
-world_market.zukunft.2.jahr: 2029
-world_market.zukunft.2.starts: 740
-world_market.zukunft.2.label: 2029 (trend)
-world_market.zukunft.2.isar: Assumption: Andøya plus Nova Scotia, Kourou possible from 2029
-world_market.zukunft_isar: 2030 / Plan: ramp-up to 18 launches, second pad in operation; 2039 / Assumption: supply grows towards the factory limit of {grenze}; 2041 / Assumption: factory 1 fully utilised; 2049 / Assumption: demand exceeds factory 1, factory 2 needed
-world_market.luecke.ab: 2025
-world_market.luecke.nachfrage: 9.6, 9.8, 10, 10.3, 10.5, 10.8
-world_market.luecke.angebot: 1, 1, 4, 8, 12, 15.2
-world_market.luecke.wachstum_ref: assumptions:viz02_growth_addressable:value_base
-world_market.luecke.grenze_jahr: 2040
-world_market.luecke.status: 2025 to 2029: engine and Isar plan; from 2030 assumption (demand +12 % per year per DB assumption viz02, range 0–30 %)
-world_market.europa.ref: market_metrics:mm_022:value
-world_market.europa.isar: 1
-world_market.europa.text: orbital launches from Europe in 2026 through October
-world_market.ohne: US, CN, RU, KZ
-world_market.isar_ab.andoya: 2025
-world_market.isar_ab.nova_scotia: 2028
-world_market.isar_ab.kourou_elm: 2029
-world_market.kandidaten: andoya, esrange, saxavord, nova_scotia, kourou_elm, santa_maria
+world_market.jahr: 2041
+world_market.szenario: starship_none
+world_market.szenarien.0.id: starship_none
+world_market.szenarien.0.label: not available
+world_market.szenarien.1.id: starship_delay
+world_market.szenarien.1.label: +3 yrs
+world_market.szenarien.2.id: default
+world_market.szenarien.2.label: as modelled
+world_market.von: 2018
 hero.titel: Production is all it takes
 hero.weiter: Scroll down
 hero.bild: hero/isar-launch.jpg
 hero.bild_alt: Spectrum lifting off from Andøya Spaceport, flame and exhaust plume over the launch pad
 hero.credit: Image: Spectrum flight 2, 5 Sep 2026 · © Isar Aerospace
 hero.weiter_nach_s: 15
+
+## 2b. World market gap tool on the home page (/#einstieg, Monte Carlo demand_mc)
+Satellites per year worldwide (data status abgeleitet). Needed = demand incl. captive constellations without a launch limit; launched = min(needed, launch capacity); gap = needed minus launched; open market = needed without captive. From 2036 the values are a scenario fan, not a forecast. 10000 runs per scenario; values: P50 (P10 to P90).
+Satellites launched per year (GCAT history): 2018 578, 2019 540, 2020 1290, 2021 1852, 2022 2543, 2023 2951, 2024 2889, 2025 4552.
+Starship scenario "not available" (starship_none):
+- 2026: needed 5169 (4338 to 5778), launched 4418 (3884 to 5100), gap 594 (0 to 1478), open market (without captive) 1165 (982 to 1541), share of runs with a gap 77%
+- 2030: needed 6415 (5418 to 7663), launched 4928 (3930 to 5959), gap 1473 (0 to 3129), open market (without captive) 1962 (1604 to 2611), share of runs with a gap 87%
+- 2035: needed 9840 (8384 to 11567), launched 5184 (4112 to 6491), gap 4658 (2384 to 6998), open market (without captive) 2274 (1820 to 3140), share of runs with a gap 100%
+- 2041: needed 9320 (7664 to 11311), launched 5163 (4063 to 6631), gap 4153 (1593 to 6707), open market (without captive) 2643 (2109 to 3749), share of runs with a gap 99%
+- 2049: needed 9707 (8086 to 11716), launched 5124 (4069 to 6456), gap 4594 (2372 to 6885), open market (without captive) 3351 (2659 to 4761), share of runs with a gap 100%
+Starship scenario "+3 yrs" (starship_delay):
+- 2026: needed 5169 (4338 to 5778), launched 4587 (4056 to 5275), gap 341 (0 to 1262), open market (without captive) 1165 (982 to 1541), share of runs with a gap 65%
+- 2030: needed 6415 (5418 to 7663), launched 5238 (4202 to 6306), gap 1081 (0 to 2822), open market (without captive) 1962 (1604 to 2611), share of runs with a gap 77%
+- 2035: needed 9840 (8384 to 11567), launched 8940 (5702 to 10904), gap 0 (0 to 4434), open market (without captive) 2274 (1820 to 3140), share of runs with a gap 41%
+- 2041: needed 9320 (7664 to 11311), launched 8896 (6397 to 10993), gap 0 (0 to 2878), open market (without captive) 2643 (2109 to 3749), share of runs with a gap 20%
+- 2049: needed 9707 (8086 to 11716), launched 9266 (6441 to 11414), gap 0 (0 to 3185), open market (without captive) 3351 (2659 to 4761), share of runs with a gap 21%
+Starship scenario "as modelled" (default):
+- 2026: needed 5169 (4338 to 5778), launched 4587 (4056 to 5275), gap 341 (0 to 1262), open market (without captive) 1165 (982 to 1541), share of runs with a gap 65%
+- 2030: needed 6415 (5418 to 7663), launched 6038 (4845 to 7302), gap 0 (0 to 1754), open market (without captive) 1962 (1604 to 2611), share of runs with a gap 31%
+- 2035: needed 9840 (8384 to 11567), launched 9318 (6130 to 11225), gap 0 (0 to 3756), open market (without captive) 2274 (1820 to 3140), share of runs with a gap 26%
+- 2041: needed 9320 (7664 to 11311), launched 8906 (6408 to 10998), gap 0 (0 to 2837), open market (without captive) 2643 (2109 to 3749), share of runs with a gap 20%
+- 2049: needed 9707 (8086 to 11716), launched 9266 (6441 to 11414), gap 0 (0 to 3185), open market (without captive) 3351 (2659 to 4761), share of runs with a gap 21%
 
 ## 3. Launch site comparison (sites_compare.json, engine result)
 Basis year 2025, data status abgeleitet. E0 = all payloads 4552; union of openly addressable payloads (E2) over all six sites: 451.
